@@ -47,9 +47,11 @@ public class Chess {
         pawn.p1moveFigure(chessBoard,1,4,2,4);
         bishop.p1moveFigure(chessBoard,0,5,2,3);
         knight.p1moveFigure(chessBoard,0,6,2,5);
-        king.p1moveFigure(chessBoard,0,3,0,2);
-        king.p1moveFigure(chessBoard,0,2,0,3);
+        rook.p1moveFigure(chessBoard,0,0,0,1);
+        rook.p1moveFigure(chessBoard,0,1,0,0);
+        rook.p1moveFigure(chessBoard,0,7,0,6);
         king.p1moveFigure(chessBoard,0,3,0,1);
+
 
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[0].length; j++) {

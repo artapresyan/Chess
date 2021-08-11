@@ -16,5 +16,4 @@ public abstract class Figure {
     Object figure(Object figureName) {
         return figureName;
     }
-
 }

@@ -1,7 +1,6 @@
 package com.company;
 
 public class King extends Figure{
-    Figure rook=new Rook();
     private int blackKingCheck=0;
     private int whiteKingCheck=0;
     public Object figure(Object figureName) {
@@ -9,7 +8,7 @@ public class King extends Figure{
     }
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
-            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == rook.figure("w.R")) {
+            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == figure("w.R")) {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
@@ -17,7 +16,7 @@ public class King extends Figure{
                     chessBoard[takeRow][takeColumn] = black;
                 chessBoard[putRow][putColumn + 1] = chessBoard[0][0];
                 chessBoard[0][0] = white;
-            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == rook.figure("w.R")) {
+            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == figure("w.R")) {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
@@ -37,7 +36,7 @@ public class King extends Figure{
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
-            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == rook.figure("b.R")) {
+            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == figure("b.R")) {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
@@ -45,7 +44,7 @@ public class King extends Figure{
                     chessBoard[takeRow][takeColumn] = black;
                 chessBoard[putRow][putColumn + 1] = chessBoard[7][0];
                 chessBoard[7][0] = black;
-            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == rook.figure("b.R")) {
+            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == figure("b.R")) {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
@@ -66,15 +65,15 @@ public class King extends Figure{
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (!chessBoard[takeRow][takeColumn].toString().equals("w.K"))
             return false;
-        if (whiteKingCheck<1) {
-            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == rook.figure("w.R")) {
+        if (whiteKingCheck<1 ) {
+            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == figure("w.R")) {
                 while (takeColumn > 1) {
                     takeColumn--;
                     if (chessBoard[0][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
                         return false;
                 }
                 return true;
-            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == rook.figure("w.R")) {
+            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == figure("w.R")) {
                 while (takeColumn < 6) {
                     takeColumn++;
                     if (chessBoard[0][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
@@ -99,14 +98,14 @@ public class King extends Figure{
         if (!chessBoard[takeRow][takeColumn].toString().equals("b.K"))
             return false;
         if (blackKingCheck<1) {
-            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == rook.figure("b.R")) {
+            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == figure("b.R")) {
                 while (takeColumn > 1) {
                     takeColumn--;
                     if (chessBoard[7][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
                         return false;
                 }
                 return true;
-            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == rook.figure("b.R")) {
+            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == figure("b.R")) {
                 while (takeColumn < 6) {
                     takeColumn++;
                     if (chessBoard[7][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
