@@ -28,8 +28,10 @@ public class Chess {
         chessBoard[0][5] = bishop.figure("wbB");
         chessBoard[0][6] = knight.figure("wKn");
         chessBoard[0][7] = rook.figure("w.R");
-        chessBoard[1][0]=pawn.figure("w.P");chessBoard[1][1]=pawn.figure("w.P");chessBoard[1][2]=pawn.figure("w.P");chessBoard[1][3]=pawn.figure("w.P");chessBoard[1][4]=pawn.figure("w.P");chessBoard[1][5]=pawn.figure("w.P");chessBoard[1][6]=pawn.figure("w.P");chessBoard[1][7]=pawn.figure("w.P");
-        chessBoard[6][0]=pawn.figure("b.P");chessBoard[6][1]=pawn.figure("b.P");chessBoard[6][2]=pawn.figure("b.P");chessBoard[6][3]=pawn.figure("b.P");chessBoard[6][4]=pawn.figure("b.P");chessBoard[6][5]=pawn.figure("b.P");chessBoard[6][6]=pawn.figure("b.P");chessBoard[6][7]=pawn.figure("b.P");
+        for (int i=0;i<chessBoard[1].length;i++)
+            chessBoard[1][i]=pawn.figure("w.P");
+        for (int i=0;i<chessBoard[6].length;i++)
+            chessBoard[6][i]=pawn.figure("b.P");
         chessBoard[7][0] = rook.figure("b.R");
         chessBoard[7][1] = knight.figure("bKn");
         chessBoard[7][2] = bishop.figure("bwB");
@@ -39,20 +41,12 @@ public class Chess {
         chessBoard[7][6] = knight.figure("bKn");
         chessBoard[7][7] = rook.figure("b.R");
 
-        pawn.p1moveFigure(chessBoard,1,3,3,3);
-        pawn.p1moveFigure(chessBoard,1,2,3,2);
-        bishop.p1moveFigure(chessBoard,0,2,4,6);
-        knight.p1moveFigure(chessBoard,0,1,2,0);
-        queen.p1moveFigure(chessBoard,0,4,3,1);
-        pawn.p1moveFigure(chessBoard,1,4,2,4);
-        bishop.p1moveFigure(chessBoard,0,5,2,3);
-        knight.p1moveFigure(chessBoard,0,6,2,5);
-        rook.p1moveFigure(chessBoard,0,0,0,1);
-        rook.p1moveFigure(chessBoard,0,1,0,0);
-        rook.p1moveFigure(chessBoard,0,7,0,6);
-        king.p1moveFigure(chessBoard,0,3,0,1);
+        pawn.p2moveFigure(chessBoard,6,2,5,2);
+        pawn.p1moveFigure(chessBoard,1,3,2,3);
+        queen.p1moveFigure(chessBoard,0,4,4,0);
+        knight.p2moveFigure(chessBoard,7,1,5,0);
 
-
+        System.out.println();
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[0].length; j++) {
                 System.out.print(chessBoard[i][j] + " ");

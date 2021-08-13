@@ -3,7 +3,6 @@ package com.company;
 public class King extends Figure {
     private int blackKingCheck = 0;
     private int whiteKingCheck = 0;
-    boolean x = false;
 
     public Object figure(Object figureName) {
         return figureName;

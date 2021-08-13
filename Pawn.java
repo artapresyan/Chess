@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class Pawn extends Figure {
     String name;
     Scanner a=new Scanner(System.in);
-    Figure rook=new Rook();
-    Figure knight=new Knight();
-    Figure bishop=new Bishop();
-    Figure queen=new Queen();
+    King king=new King();
+    Rook rook=new Rook();
+    Knight knight=new Knight();
+    Bishop bishop=new Bishop();
+    Queen queen=new Queen();
     public Object figure(Object figureName) {
         return figureName;
     }
@@ -36,15 +37,33 @@ public class Pawn extends Figure {
                 else
                     System.out.println("Invalid figure");
             } else {
-                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
+                for (int i = 0; i < chessBoard.length; i++) {
+                    for (int j = 0; j < chessBoard[0].length; j++) {
+                        if (chessBoard[i][j] == "w.K" ) {
+                            if (!king.p1KingChecked(chessBoard, i, j)) {
+                                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                                if ((takeColumn + takeRow) % 2 == 0)
+                                    chessBoard[takeRow][takeColumn] = white;
+                                else
+                                    chessBoard[takeRow][takeColumn] = black;
+                                if (king.p1KingChecked(chessBoard, i, j)){
+                                    chessBoard[takeRow][takeColumn] = chessBoard[putRow][putColumn];
+                                    if ((takeColumn + takeRow) % 2 == 0)
+                                        chessBoard[takeRow][takeColumn] = white;
+                                    else
+                                        chessBoard[takeRow][takeColumn] = black;
+                                    System.out.println("Invalid move, opening check");
+                                    break;
+                                }
+                            }else
+                                System.out.println("King checked, please be observant...");
+                            break;
+                        }
+                    }
+                }
             }
-        }else {
+        }else
             System.out.println("Invalid move");
-        }
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
@@ -62,23 +81,41 @@ public class Pawn extends Figure {
                         chessBoard[0][putColumn] = bishop.figure("wwB");
                     else
                         chessBoard[0][putColumn] = bishop.figure("wbB");
-                }
-                else if (name.equalsIgnoreCase("Rook"))
+                } else if (name.equalsIgnoreCase("Rook"))
                     chessBoard[0][putColumn] = rook.figure("w.R");
                 else if (name.equalsIgnoreCase("Queen"))
                     chessBoard[0][putColumn] = queen.figure("w.Q");
                 else
                     System.out.println("Invalid figure");
             } else {
-                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeRow + takeColumn) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
+                for (int i = 0; i < chessBoard.length; i++) {
+                    for (int j = 0; j < chessBoard[0].length; j++) {
+                        if (chessBoard[i][j] == "b.K") {
+                            if (!king.p2KingChecked(chessBoard, i, j)) {
+                                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                                if ((takeColumn + takeRow) % 2 == 0)
+                                    chessBoard[takeRow][takeColumn] = white;
+                                else
+                                    chessBoard[takeRow][takeColumn] = black;
+                                if (king.p2KingChecked(chessBoard, i, j)){
+                                    chessBoard[takeRow][takeColumn] = chessBoard[putRow][putColumn];
+                                    if ((takeColumn + takeRow) % 2 == 0)
+                                        chessBoard[takeRow][takeColumn] = white;
+                                    else
+                                        chessBoard[takeRow][takeColumn] = black;
+                                    System.out.println("Illegal move, opening check");
+                                    break;
+                                }
+                            }
+                            else
+                                System.out.println("King checked, please be observant...");
+                            break;
+                        }
+                    }
+                }
             }
-        }else {
+        }else
             System.out.println("Invalid move");
-        }
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (!chessBoard[takeRow][takeColumn].toString().equals("w.P"))
