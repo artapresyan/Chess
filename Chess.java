@@ -11,40 +11,55 @@ public class Chess {
         Figure queen=new Queen();
         Figure king=new King();
         Figure pawn=new Pawn();
-        Object[][] chessBoard = new Object[8][8];
-        for (int i = 0; i < chessBoard.length; i++) {
-            for (int j = 0; j < chessBoard[0].length; j++) {
+        Object[][] chessBoard = new Object[10][10];
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[0].length-1; j++) {
                 if ((i + j) % 2 == 0)
                     chessBoard[i][j] = white;//spitak
                 else
                     chessBoard[i][j] = black;//sev
             }
         }
-        chessBoard[0][0] = rook.figure("w.R");
-        chessBoard[0][1] = knight.figure("wKn");
-        chessBoard[0][2] = bishop.figure("wwB");
-        chessBoard[0][3] = king.figure("w.K");
-        chessBoard[0][4] = queen.figure("w.Q");
-        chessBoard[0][5] = bishop.figure("wbB");
-        chessBoard[0][6] = knight.figure("wKn");
-        chessBoard[0][7] = rook.figure("w.R");
-        for (int i=0;i<chessBoard[1].length;i++)
-            chessBoard[1][i]=pawn.figure("w.P");
-        for (int i=0;i<chessBoard[6].length;i++)
-            chessBoard[6][i]=pawn.figure("b.P");
-        chessBoard[7][0] = rook.figure("b.R");
-        chessBoard[7][1] = knight.figure("bKn");
-        chessBoard[7][2] = bishop.figure("bwB");
-        chessBoard[7][3] = king.figure("b.K");
-        chessBoard[7][4] = queen.figure("b.Q");
-        chessBoard[7][5] = bishop.figure("bbB");
-        chessBoard[7][6] = knight.figure("bKn");
-        chessBoard[7][7] = rook.figure("b.R");
+        for (int i=1,x=1;i<chessBoard.length-1;i++,x++)
+            chessBoard[i][0]=x+" ";
+        for (int i=1,x=1;i<chessBoard.length-1;i++,x++)
+            chessBoard[i][9]=" "+x;
+        for (char a='H', i=1;i<chessBoard.length-1;a--,i++)
+            chessBoard[0][i]=" "+a+" ";
+        for (char a='H', i=1;i<chessBoard.length-1;a--,i++)
+            chessBoard[9][i]=" "+a+" ";
+        chessBoard[0][0]="  ";
+        chessBoard[9][0]="  ";
+        chessBoard[0][9]="  ";
+        chessBoard[9][9]="  ";
+        chessBoard[1][1] = rook.p1whiteFigure();
+        chessBoard[1][2] = knight.p1whiteFigure();
+        chessBoard[1][3] = bishop.p1whiteFigure();
+        chessBoard[1][4] = king.p1whiteFigure();
+        chessBoard[1][5] = queen.p1whiteFigure();
+        chessBoard[1][6] = bishop.p1blackFigure();
+        chessBoard[1][7] = knight.p1whiteFigure();
+        chessBoard[1][8] = rook.p1whiteFigure();
+        for (int i=1;i<chessBoard[1].length-1;i++)
+            chessBoard[2][i]=pawn.p1whiteFigure();
+        chessBoard[8][1] = rook.p2blackFigure();
+        chessBoard[8][2] = knight.p2blackFigure();
+        chessBoard[8][3] = bishop.p2blackFigure();
+        chessBoard[8][4] = king.p2blackFigure();
+        chessBoard[8][5] = queen.p2blackFigure();
+        chessBoard[8][6] = bishop.p2whiteFigure();
+        chessBoard[8][7] = knight.p2blackFigure();
+        chessBoard[8][8] = rook.p2blackFigure();
+        for (int i=1;i<chessBoard[7].length-1;i++)
+            chessBoard[7][i]=pawn.p2blackFigure();
 
-        pawn.p2moveFigure(chessBoard,6,2,5,2);
-        pawn.p1moveFigure(chessBoard,1,3,2,3);
-        queen.p1moveFigure(chessBoard,0,4,4,0);
-        knight.p2moveFigure(chessBoard,7,1,5,0);
+        pawn.p2moveFigure(chessBoard,7,3,6,3);
+        pawn.p1moveFigure(chessBoard,2,4,3,4);
+        queen.p1moveFigure(chessBoard,1,5,5,1);
+        pawn.p2moveFigure(chessBoard,7,2,6,2);
+        pawn.p2moveFigure(chessBoard,6,3,5,3);
+        pawn.p2moveFigure(chessBoard,6,2,5,1);
+        pawn.p2moveFigure(chessBoard,6,1,4,1);
 
         System.out.println();
         for (int i = 0; i < chessBoard.length; i++) {

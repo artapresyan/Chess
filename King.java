@@ -3,29 +3,33 @@ package com.company;
 public class King extends Figure {
     private int blackKingCheck = 0;
     private int whiteKingCheck = 0;
-
-    public Object figure(Object figureName) {
-        return figureName;
+    Object p1figureName="w.K";
+    Object p2figureName="b.K";
+    public Object p1whiteFigure() {
+        return p1figureName;
+    }
+    public Object p2blackFigure() {
+        return p2figureName;
     }
 
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
-            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == figure("w.R")) {
+            if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == 2 && chessBoard[1][1] == "w.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
                 else
                     chessBoard[takeRow][takeColumn] = black;
-                chessBoard[putRow][putColumn + 1] = chessBoard[0][0];
-                chessBoard[0][0] = white;
-            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == figure("w.R")) {
+                chessBoard[putRow][putColumn + 1] = chessBoard[1][1];
+                chessBoard[1][1] = white;
+            } else if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == -2 && chessBoard[1][8] == "w.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
                 else
                     chessBoard[takeRow][takeColumn] = black;
-                chessBoard[putRow][putColumn - 1] = chessBoard[0][7];
-                chessBoard[0][7] = black;
+                chessBoard[putRow][putColumn - 1] = chessBoard[1][8];
+                chessBoard[1][8] = black;
             } else {
                 whiteKingCheck++;
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
@@ -40,22 +44,22 @@ public class King extends Figure {
 
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
-            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == figure("b.R")) {
+            if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == 2 && chessBoard[8][1] == "b.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
                 else
                     chessBoard[takeRow][takeColumn] = black;
-                chessBoard[putRow][putColumn + 1] = chessBoard[7][0];
-                chessBoard[7][0] = black;
-            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == figure("b.R")) {
+                chessBoard[putRow][putColumn + 1] = chessBoard[8][1];
+                chessBoard[8][1] = black;
+            } else if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == -2 && chessBoard[8][8] == "b.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 if ((takeColumn + takeRow) % 2 == 0)
                     chessBoard[takeRow][takeColumn] = white;
                 else
                     chessBoard[takeRow][takeColumn] = black;
-                chessBoard[putRow][putColumn - 1] = chessBoard[7][7];
-                chessBoard[7][7] = white;
+                chessBoard[putRow][putColumn - 1] = chessBoard[8][8];
+                chessBoard[8][8] = white;
             } else if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
                 if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
                     blackKingCheck++;
@@ -71,20 +75,20 @@ public class King extends Figure {
 
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (!chessBoard[takeRow][takeColumn].toString().equals("w.K") || p1KingChecked(chessBoard, putRow, putColumn))
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || p1KingChecked(chessBoard, putRow, putColumn))
             return false;
         if (whiteKingCheck < 1) {
-            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == figure("w.R") && !p2KingChecked(chessBoard, putRow, putColumn +1)) {
-                while (takeColumn > 1) {
+            if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == 2 && chessBoard[1][1] == "w.R" && !p2KingChecked(chessBoard, putRow, putColumn +1)) {
+                while (takeColumn > 2) {
                     takeColumn--;
-                    if (chessBoard[0][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[1][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
                         return false;
                 }
                 return true;
-            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == figure("w.R") && !p2KingChecked(chessBoard, putRow, putColumn - 1)) {
-                while (takeColumn < 6) {
+            } else if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == -2 && chessBoard[1][8] == "w.R" && !p2KingChecked(chessBoard, putRow, putColumn - 1)) {
+                while (takeColumn < 7) {
                     takeColumn++;
-                    if (chessBoard[0][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[1][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
                         return false;
                 }
                 return true;
@@ -103,20 +107,20 @@ public class King extends Figure {
     }
 
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (!chessBoard[takeRow][takeColumn].toString().equals("b.K") || p2KingChecked(chessBoard, putRow, putColumn))
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || p2KingChecked(chessBoard, putRow, putColumn))
             return false;
         if (blackKingCheck < 1) {
-            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == figure("b.R") && !p2KingChecked(chessBoard, putRow, putColumn + 1)) {
-                while (takeColumn > 1) {
+            if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == 2 && chessBoard[8][1] == "b.R" && !p2KingChecked(chessBoard, putRow, putColumn + 1)) {
+                while (takeColumn > 2) {
                     takeColumn--;
-                    if (chessBoard[7][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[8][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
                         return false;
                 }
                 return true;
-            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == figure("b.R") && !p2KingChecked(chessBoard, putRow, putColumn - 1)) {
-                while (takeColumn < 6) {
+            } else if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == -2 && chessBoard[8][8] == "b.R" && !p2KingChecked(chessBoard, putRow, putColumn - 1)) {
+                while (takeColumn < 7) {
                     takeColumn++;
-                    if (chessBoard[7][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[8][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
                         return false;
                 }
                 return true;
