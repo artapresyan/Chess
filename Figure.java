@@ -16,4 +16,10 @@ public abstract class Figure {
     Object figure(Object figureName) {
         return figureName;
     }
+    boolean p1OpenCheck(Object[][] chessBoard, int row, int column){
+        return true;
+    }
+    boolean p2OpenCheck(Object[][] chessBoard, int row, int column){
+        return true;
+    }
 }

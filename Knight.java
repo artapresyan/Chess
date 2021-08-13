@@ -7,18 +7,22 @@ public class Knight extends Figure {
     }
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+            if ((takeColumn + takeRow) % 2 == 0)
+                chessBoard[takeRow][takeColumn] = white;
+            else
+                chessBoard[takeRow][takeColumn] = black;
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[0].length; j++) {
                     if (chessBoard[i][j] == "w.K" ) {
-                        if (!king.p1KingChecked(chessBoard, i, j)) {
-                            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                            if ((takeColumn + takeRow) % 2 == 0)
-                                chessBoard[takeRow][takeColumn] = white;
-                            else
-                                chessBoard[takeRow][takeColumn] = black;
-                        }
-                        else
+                        if (king.p1KingChecked(chessBoard, i, j)){
                             System.out.println("King checked, please be observant...");
+                            chessBoard[takeRow][takeColumn]=figure("wKn");
+                            if ((putColumn + putRow) % 2 == 0)
+                                chessBoard[putRow][putColumn] = white;
+                            else
+                                chessBoard[putRow][putColumn] = black;
+                        }
                         break;
                     }
                 }
@@ -28,18 +32,22 @@ public class Knight extends Figure {
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+            if ((takeColumn + takeRow) % 2 == 0)
+                chessBoard[takeRow][takeColumn] = white;
+            else
+                chessBoard[takeRow][takeColumn] = black;
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[0].length; j++) {
                     if (chessBoard[i][j] == "b.K" ) {
-                        if (!king.p2KingChecked(chessBoard, i, j)) {
-                            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                            if ((takeColumn + takeRow) % 2 == 0)
-                                chessBoard[takeRow][takeColumn] = white;
-                            else
-                                chessBoard[takeRow][takeColumn] = black;
-                        }
-                        else
+                        if (king.p1KingChecked(chessBoard, i, j)){
                             System.out.println("King checked, please be observant...");
+                            chessBoard[takeRow][takeColumn]=figure("bKn");
+                            if ((putColumn + putRow) % 2 == 0)
+                                chessBoard[putRow][putColumn] = white;
+                            else
+                                chessBoard[putRow][putColumn] = black;
+                        }
                         break;
                     }
                 }
