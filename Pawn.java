@@ -3,8 +3,8 @@ package com.company;
 import java.util.Scanner;
 
 public class Pawn extends Figure {
-    Object p1figureName="w.P";
-    Object p2figureName="b.P";
+    private final Object p1figureName="w.P";
+    private final Object p2figureName="b.P";
     public Object p1whiteFigure() {
         return p1figureName;
     }

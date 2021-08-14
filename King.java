@@ -3,8 +3,8 @@ package com.company;
 public class King extends Figure {
     private int blackKingCheck = 0;
     private int whiteKingCheck = 0;
-    Object p1figureName="w.K";
-    Object p2figureName="b.K";
+    private final Object p1figureName="w.K";
+    private final Object p2figureName="b.K";
     public Object p1whiteFigure() {
         return p1figureName;
     }

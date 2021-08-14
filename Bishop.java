@@ -2,10 +2,10 @@ package com.company;
 
 public class Bishop extends Figure{
     King king=new King();
-    Object p1whiteFigureName="wwB";
-    Object p1blackFigureName="wbB";
-    Object p2whiteFigureName="bwB";
-    Object p2blackFigureName="bbB";
+    private final Object p1whiteFigureName="wwB";
+    private final Object p1blackFigureName="wbB";
+    private final Object p2whiteFigureName="bwB";
+    private final Object p2blackFigureName="bbB";
     public Object p1whiteFigure() {
         return p1whiteFigureName;
     }

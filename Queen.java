@@ -2,8 +2,8 @@ package com.company;
 
 public class Queen extends Figure {
     King king=new King();
-    Object p1figureName="w.Q";
-    Object p2figureName="b.Q";
+    private final Object p1figureName="w.Q";
+    private final Object p2figureName="b.Q";
     public Object p1whiteFigure() {
         return p1figureName;
     }
