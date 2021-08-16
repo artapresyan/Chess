@@ -23,10 +23,7 @@ public class Pawn extends Figure {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             if (putRow == 8) {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeRow + takeColumn) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
+                chessBoard[takeRow][takeColumn]=null;
                 System.out.println("Choose figure");
                 name = a.nextLine();
                 if (name.equalsIgnoreCase("Knight"))
@@ -45,23 +42,17 @@ public class Pawn extends Figure {
                     System.out.println("Invalid figure");
             } else {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
-                for (int i = 1; i < chessBoard.length-1; i++) {
-                    for (int j = 1; j < chessBoard[8].length-1; j++) {
-                        if (chessBoard[i][j] == king.p1whiteFigure() ) {
-                            if (king.p1KingChecked(chessBoard, i, j)){
-                                System.out.println("Please be observant, check your King position...");
-                                chessBoard[takeRow][takeColumn]=p1whiteFigure();
-                                if ((putColumn + putRow) % 2 == 0)
-                                    chessBoard[putRow][putColumn] = white;
-                                else
-                                    chessBoard[putRow][putColumn] = black;
-                            }
-                            break;
+                chessBoard[takeRow][takeColumn]=null;
+            }
+            for (int i = 1; i < chessBoard.length-1; i++) {
+                for (int j = 1; j < chessBoard[8].length-1; j++) {
+                    if (chessBoard[i][j] == king.p1whiteFigure() ) {
+                        if (king.p1KingChecked(chessBoard, i, j)){
+                            System.out.println("Please be observant, check your King position...");
+                            chessBoard[takeRow][takeColumn]=p1whiteFigure();
+                            chessBoard[putRow][putColumn] = null;
                         }
+                        break;
                     }
                 }
             }
@@ -71,10 +62,8 @@ public class Pawn extends Figure {
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             if (putRow == 1) {
-                if ((takeRow + takeColumn) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
+                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                chessBoard[takeRow][takeColumn]=null;
                 System.out.println("Choose figure");
                 name = a.nextLine();
                 if (name.equalsIgnoreCase("Knight"))
@@ -92,23 +81,17 @@ public class Pawn extends Figure {
                     System.out.println("Invalid figure");
             } else {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
-                for (int i = 1; i < chessBoard.length-1; i++) {
-                    for (int j = 1; j < chessBoard[1].length-1; j++) {
-                        if (chessBoard[i][j] == king.p2blackFigure()) {
-                            if (king.p2KingChecked(chessBoard, i, j)){
-                                System.out.println("Please be observant, check your King position...");
-                               chessBoard[takeRow][takeColumn]=p2blackFigure();
-                                if ((putColumn + putRow) % 2 == 0)
-                                    chessBoard[putRow][putColumn] = white;
-                                else
-                                    chessBoard[putRow][putColumn] = black;
-                            }
-                            break;
+                chessBoard[takeRow][takeColumn]=null;
+            }
+            for (int i = 1; i < chessBoard.length-1; i++) {
+                for (int j = 1; j < chessBoard[1].length-1; j++) {
+                    if (chessBoard[i][j] == king.p2blackFigure()) {
+                        if (king.p2KingChecked(chessBoard, i, j)){
+                            System.out.println("Please be observant, check your King position...");
+                            chessBoard[takeRow][takeColumn]=p2blackFigure();
+                            chessBoard[putRow][putColumn] = null;
                         }
+                        break;
                     }
                 }
             }
@@ -116,41 +99,38 @@ public class Pawn extends Figure {
             System.out.println("Invalid move");
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure())
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putColumn && takeColumn==putColumn)
              return false;
          if (takeRow == 2 && takeRow - putRow == -2) {
              while (takeRow < putRow) {
                  takeRow++;
-                 if (takeColumn!=putColumn || (chessBoard[takeRow][putColumn] != white && chessBoard[takeRow][putColumn] != black))
+                 if (takeColumn!=putColumn || chessBoard[takeRow][putColumn] != null)
                      return false;
              }
                  return true;
          } else if (takeRow - putRow == -1) {
-             if ((takeColumn - putColumn == -1 || takeColumn - putColumn == 1) && chessBoard[putRow][putColumn].toString().charAt(0) == 'b') {
+             if (takeColumn == putColumn && chessBoard[putRow][putColumn] == null) {
                  return true;
-             }
-             else if (takeColumn==putColumn && (chessBoard[putRow][putColumn] == white || chessBoard[putRow][putColumn] == black)) {
-                 return true;
-             }
+             } else if (chessBoard[putRow][putColumn]!=null)
+                 return (takeColumn - putColumn == -1 || takeColumn - putColumn == 1) && chessBoard[putRow][putColumn].toString().charAt(0) == 'b';
          }
              return false;
     }
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p2blackFigure())
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putColumn && takeColumn==putColumn)
             return false;
         if (takeRow == 7 && takeRow - putRow == 2) {
             while (takeRow > putRow) {
                 takeRow--;
-                if (takeColumn!=putColumn || (chessBoard[takeRow][putColumn] != white && chessBoard[takeRow][putColumn] != black))
+                if (takeColumn!=putColumn || chessBoard[takeRow][putColumn] != null)
                     return false;
             }
             return true;
         } else if (takeRow - putRow == 1) {
-            if ((takeColumn - putColumn == -1 || takeColumn - putColumn == 1) && chessBoard[putRow][putColumn].toString().charAt(0) == 'w') {
+            if (takeColumn == putColumn && chessBoard[putRow][putColumn] == null) {
                 return true;
-            } else if (takeColumn == putColumn && (chessBoard[putRow][putColumn] == white || chessBoard[putRow][putColumn] == black)) {
-                return true;
-            }
+            } else if (chessBoard[putRow][putColumn]!=null)
+                return (takeColumn - putColumn == -1 || takeColumn - putColumn == 1) && chessBoard[putRow][putColumn].toString().charAt(0) == 'w';
         }
             return false;
     }

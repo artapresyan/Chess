@@ -1,23 +1,15 @@
 package com.company;
 
 public class Board {
-    Object[][] createBoard(Object[][] chessBoard){
-        Object white="***";
-        Object black="###";
+    void createBoard(Object[][] chessBoard){
+
         Figure rook=new Rook();
         Figure knight=new Knight();
         Figure bishop=new Bishop();
         Figure queen=new Queen();
         Figure king=new King();
         Figure pawn=new Pawn();
-        for (int i = 1; i < chessBoard.length-1; i++) {
-            for (int j = 1; j < chessBoard[1].length-1; j++) {
-                if ((i + j) % 2 == 0)
-                    chessBoard[i][j] = white;
-                else
-                    chessBoard[i][j] = black;
-            }
-        }
+
         for (int i=1,x=1;i<chessBoard.length-1;i++,x++)
             chessBoard[i][0]=x+" ";
         for (int i=1,x=1;i<chessBoard.length-1;i++,x++)
@@ -50,11 +42,16 @@ public class Board {
         chessBoard[8][8] = rook.p2blackFigure();
         for (int i=1;i<chessBoard[7].length-1;i++)
             chessBoard[7][i]=pawn.p2blackFigure();
-        return chessBoard;
     }
     void getBoard(Object[][] chessBoard){
         for (int i = 0; i < chessBoard.length; i++) {
-            for (int j = 0; j < chessBoard[0].length; j++) {
+            for (int j = 0; j < chessBoard[1].length; j++) {
+                if (chessBoard[i][j]==null){
+                    if ((i + j) % 2 == 0)
+                        chessBoard[i][j] = "***";//white
+                    else
+                        chessBoard[i][j] = "###";//black
+                }
                 System.out.print(chessBoard[i][j] + " ");
             }
             System.out.println();

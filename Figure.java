@@ -1,10 +1,10 @@
 package com.company;
 
 public abstract class Figure {
-    Object white = "***";
-    Object black = "###";
-    Object p1figureName;
-    Object p2figureName;
+    private Object p1figureName;
+    private Object p2figureName;
+    private boolean wIsMoved=false;
+    private boolean bIsMoved=false;
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
@@ -27,10 +27,16 @@ public abstract class Figure {
     public Object p2blackFigure() {
         return p2figureName;
     }
-    boolean p1OpenCheck(Object[][] chessBoard, int row, int column){
+    boolean wIsMoved(){
+        return wIsMoved;
+    }
+    boolean bIsMoved(){
+        return bIsMoved;
+    }
+    boolean p1KingChecked(Object[][] chessBoard, int Row, int Column) {
         return true;
     }
-    boolean p2OpenCheck(Object[][] chessBoard, int row, int column){
+    boolean p2KingChecked(Object[][] chessBoard, int Row, int Column) {
         return true;
     }
 }

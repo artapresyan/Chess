@@ -1,42 +1,38 @@
 package com.company;
 
 public class King extends Figure {
-    private int blackKingCheck = 0;
-    private int whiteKingCheck = 0;
     private final Object p1figureName="w.K";
     private final Object p2figureName="b.K";
+    private boolean wIsMoved=false;
+    private boolean bIsMoved=false;
     public Object p1whiteFigure() {
         return p1figureName;
     }
     public Object p2blackFigure() {
         return p2figureName;
     }
-
+    boolean wIsMoved() {
+        return wIsMoved;
+    }
+    boolean bIsMoved() {
+        return bIsMoved;
+    }
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == 2 && chessBoard[1][1] == "w.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
                 chessBoard[putRow][putColumn + 1] = chessBoard[1][1];
-                chessBoard[1][1] = white;
+                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[1][1] = null;
             } else if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == -2 && chessBoard[1][8] == "w.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
                 chessBoard[putRow][putColumn - 1] = chessBoard[1][8];
-                chessBoard[1][8] = black;
+                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[1][8] = null;
             } else {
-                whiteKingCheck++;
+                wIsMoved=true;
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
+                chessBoard[takeRow][takeColumn]=null;
             }
         } else
             System.out.println("Invalid move");
@@ -46,28 +42,19 @@ public class King extends Figure {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == 2 && chessBoard[8][1] == "b.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
                 chessBoard[putRow][putColumn + 1] = chessBoard[8][1];
-                chessBoard[8][1] = black;
+                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[8][1] = null;
             } else if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == -2 && chessBoard[8][8] == "b.R") {
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                if ((takeColumn + takeRow) % 2 == 0)
-                    chessBoard[takeRow][takeColumn] = white;
-                else
-                    chessBoard[takeRow][takeColumn] = black;
                 chessBoard[putRow][putColumn - 1] = chessBoard[8][8];
-                chessBoard[8][8] = white;
+                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[8][8] = null;
             } else if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
                 if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                    blackKingCheck++;
+                    bIsMoved=true;
                     chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                    if ((takeColumn + takeRow) % 2 == 0)
-                        chessBoard[takeRow][takeColumn] = white;
-                    else
-                        chessBoard[takeRow][takeColumn] = black;
+                    chessBoard[takeRow][takeColumn]=null;
                 }
             }
         }else
@@ -75,20 +62,20 @@ public class King extends Figure {
 
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || p1KingChecked(chessBoard, putRow, putColumn))
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || p1KingChecked(chessBoard, putRow, putColumn) || takeRow==putColumn && takeColumn==putColumn)
             return false;
-        if (whiteKingCheck < 1) {
-            if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == 2 && chessBoard[1][1] == "w.R" && !p2KingChecked(chessBoard, putRow, putColumn +1)) {
+        if (!wIsMoved) {
+            if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == 2 && chessBoard[1][1] == "w.R" && !p1KingChecked(chessBoard, putRow, putColumn +1)) {
                 while (takeColumn > 2) {
                     takeColumn--;
-                    if (chessBoard[1][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[1][takeColumn] != null)
                         return false;
                 }
                 return true;
-            } else if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == -2 && chessBoard[1][8] == "w.R" && !p2KingChecked(chessBoard, putRow, putColumn - 1)) {
+            } else if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == -2 && chessBoard[1][8] == "w.R" && !p1KingChecked(chessBoard, putRow, putColumn - 1)) {
                 while (takeColumn < 7) {
                     takeColumn++;
-                    if (chessBoard[1][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[1][takeColumn] != null)
                         return false;
                 }
                 return true;
@@ -96,43 +83,40 @@ public class King extends Figure {
         }
         if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
             if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                if (chessBoard[putRow][putColumn].toString().charAt(0) == 'b' && !p1KingChecked(chessBoard,putRow,putColumn)) {
+                if (chessBoard[putRow][putColumn] == null)
                     return true;
-                } else if (chessBoard[putRow][putColumn] == white || chessBoard[putRow][putColumn] == black && !p1KingChecked(chessBoard,putRow,putColumn)) {
-                    return true;
-                }
+                else
+                    return chessBoard[putRow][putColumn].toString().charAt(0) == 'b';
             }
         }
         return false;
     }
 
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || p2KingChecked(chessBoard, putRow, putColumn))
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || p2KingChecked(chessBoard, putRow, putColumn) || takeRow==putColumn && takeColumn==putColumn)
             return false;
-        if (blackKingCheck < 1) {
+        if (!bIsMoved) {
             if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == 2 && chessBoard[8][1] == "b.R" && !p2KingChecked(chessBoard, putRow, putColumn + 1)) {
                 while (takeColumn > 2) {
                     takeColumn--;
-                    if (chessBoard[8][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[8][takeColumn] != null)
                         return false;
                 }
-                return true;
             } else if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == -2 && chessBoard[8][8] == "b.R" && !p2KingChecked(chessBoard, putRow, putColumn - 1)) {
                 while (takeColumn < 7) {
                     takeColumn++;
-                    if (chessBoard[8][takeColumn] != white && chessBoard[takeRow][takeColumn] != black)
+                    if (chessBoard[8][takeColumn] != null)
                         return false;
                 }
-                return true;
             }
+            return true;
         }
         if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
             if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                if (chessBoard[putRow][putColumn].toString().charAt(0) == 'w' && !p2KingChecked(chessBoard,putRow,putColumn)) {
+                if (chessBoard[putRow][putColumn] == null)
                     return true;
-                } else if (chessBoard[putRow][putColumn] == white || chessBoard[putRow][putColumn] == black && !p2KingChecked(chessBoard,putRow,putColumn)) {
-                    return true;
-                }
+                else
+                    return chessBoard[putRow][putColumn].toString().charAt(0) == 'w';
             }
         }
         return false;
@@ -233,105 +217,89 @@ public class King extends Figure {
         }
 
         try {
-            while (true) {
+            do {
                 row++;
                 column++;
                 if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         }catch (ArrayIndexOutOfBoundsException ignore) {
         }
         row = Row;
         column = Column;
 
         try {
-            while (true) {
+            do {
                 row--;
                 column--;
                 if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         }catch (ArrayIndexOutOfBoundsException ignore) {
         }
         row = Row;
         column = Column;
 
         try {
-            while (true) {
+            do {
                 row--;
                 column++;
                 if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         }catch (ArrayIndexOutOfBoundsException ignore) {
         }
         row = Row;
         column = Column;
 
         try {
-            while (true) {
+            do {
                 row++;
                 column--;
                 if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         } catch (ArrayIndexOutOfBoundsException ignore) {
-            }
+        }
         row = Row;
         column = Column;
 
         try {
-            while(true) {
+            do {
                 row++;
                 if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         } catch (ArrayIndexOutOfBoundsException ignore) {
         }
         row = Row;
 
         try {
-            while (true) {
+            do {
                 row--;
                 if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         }catch (ArrayIndexOutOfBoundsException ignore) {
         }
         row = Row;
 
         try {
-            while (true) {
+            do {
                 column++;
                 if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         }catch (ArrayIndexOutOfBoundsException ignore) {
         }
         column = Column;
 
         try {
-            while (true) {
+            do {
                 column--;
                 if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
                     return true;
-                if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                    break;
-            }
+            } while (chessBoard[row][column] == null);
         }catch (ArrayIndexOutOfBoundsException ignore) {
         }
         return false;
@@ -430,79 +398,90 @@ public class King extends Figure {
             } catch (ArrayIndexOutOfBoundsException ignore) {
             }
             try {
-                while (true) {
+                do {
                     row++;
                     column++;
                     if (chessBoard[row][column] == "wbB" || chessBoard[row][column] == "wwB" || chessBoard[row][column] == "w.Q")
                         return true;
-                    if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                        break;
-                }
+                } while (chessBoard[row][column] == null);
             }catch (ArrayIndexOutOfBoundsException ignore) {
             }
             row = Row;
             column = Column;
 
             try {
-                while (true) {
+                do {
                     row++;
                     if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
                         return true;
-                    if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                        break;
 
-                }
+                } while (chessBoard[row][column] == null);
             }catch (ArrayIndexOutOfBoundsException ignore) {
             }
             row = Row;
 
             try {
-                while (true) {
+                do {
                     row--;
                     column--;
                     if (chessBoard[row][column] == "wbB" || chessBoard[row][column] == "wwB" || chessBoard[row][column] == "w.Q")
                         return true;
-                    if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                        break;
-                }
+                } while (chessBoard[row][column] == null);
             }catch (ArrayIndexOutOfBoundsException ignore) {
             }
             row = Row;
             column = Column;
 
             try {
-                while (true) {
+                do {
                     row--;
                     if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
                         return true;
-                    if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                        break;
-                }
+                } while (chessBoard[row][column] == null);
             }catch (ArrayIndexOutOfBoundsException ignore) {
             }
             row = Row;
 
             try {
-                while (true) {
+                do {
                     column++;
                     if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
                         return true;
-                    if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                        break;
-                }
+                } while (chessBoard[row][column] == null);
             }catch (ArrayIndexOutOfBoundsException ignore) {
             }
             column = Column;
 
             try {
-                while (true) {
+                do {
                     column--;
                     if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
                         return true;
-                    if (chessBoard[row][column] != white && chessBoard[row][column] != black)
-                        break;
-                }
+                } while (chessBoard[row][column] == null);
             }catch (ArrayIndexOutOfBoundsException ignore) {
+            }
+            column=Column;
+
+            try {
+                do {
+                    row--;
+                    column++;
+                    if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
+                        return true;
+                } while (chessBoard[row][column] == null);
+            }catch (ArrayIndexOutOfBoundsException ignore) {
+            }
+            row = Row;
+            column = Column;
+
+            try {
+                do {
+                    row++;
+                    column--;
+                    if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
+                        return true;
+                } while (chessBoard[row][column] == null);
+            } catch (ArrayIndexOutOfBoundsException ignore) {
             }
             return false;
         }
