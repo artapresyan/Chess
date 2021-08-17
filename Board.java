@@ -2,7 +2,6 @@ package com.company;
 
 public class Board {
     void createBoard(Object[][] chessBoard){
-
         Figure rook=new Rook();
         Figure knight=new Knight();
         Figure bishop=new Bishop();

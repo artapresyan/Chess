@@ -23,9 +23,9 @@ public class Pawn extends Figure {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             Object mover;
             if (putRow == 8) {
-                mover=chessBoard[putRow][putColumn];
+                mover = chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[takeRow][takeColumn] = null;
                 System.out.println("Choose figure");
                 name = a.nextLine();
                 if (name.equalsIgnoreCase("Knight"))
@@ -35,38 +35,32 @@ public class Pawn extends Figure {
                         chessBoard[8][putColumn] = bishop.p1whiteFigure();
                     else
                         chessBoard[8][putColumn] = bishop.p1blackFigure();
-                }
-                else if (name.equalsIgnoreCase("Rook"))
+                } else if (name.equalsIgnoreCase("Rook"))
                     chessBoard[8][putColumn] = rook.p1whiteFigure();
                 else if (name.equalsIgnoreCase("Queen"))
                     chessBoard[8][putColumn] = queen.p1whiteFigure();
                 else
                     System.out.println("Invalid figure");
             } else {
-                mover=chessBoard[putRow][putColumn];
+                mover = chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[takeRow][takeColumn] = null;
             }
-            for (int i = 1; i < chessBoard.length-1; i++) {
-                for (int j = 1; j < chessBoard[8].length-1; j++) {
-                    if (chessBoard[i][j] == king.p1whiteFigure() ) {
-                        if (king.p1KingChecked(chessBoard, i, j)){
-                            System.out.println("Please be observant, check your King position...");
-                            chessBoard[takeRow][takeColumn]=p1whiteFigure();
-                            chessBoard[putRow][putColumn] = mover;
-                        }
-                        break;
-                    }
-                }
+            if (king.p1KingChecked(chessBoard)) {
+                System.out.println("Please be observant, check your King position...");
+                chessBoard[takeRow][takeColumn] = p1whiteFigure();
+                chessBoard[putRow][putColumn] = mover;
             }
         }else
             System.out.println("Invalid move");
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            Object mover;
             if (putRow == 1) {
+                mover = chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[takeRow][takeColumn] = null;
                 System.out.println("Choose figure");
                 name = a.nextLine();
                 if (name.equalsIgnoreCase("Knight"))
@@ -83,20 +77,14 @@ public class Pawn extends Figure {
                 else
                     System.out.println("Invalid figure");
             } else {
+                mover = chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                chessBoard[takeRow][takeColumn]=null;
+                chessBoard[takeRow][takeColumn] = null;
             }
-            for (int i = 1; i < chessBoard.length-1; i++) {
-                for (int j = 1; j < chessBoard[1].length-1; j++) {
-                    if (chessBoard[i][j] == king.p2blackFigure()) {
-                        if (king.p2KingChecked(chessBoard, i, j)){
-                            System.out.println("Please be observant, check your King position...");
-                            chessBoard[takeRow][takeColumn]=p2blackFigure();
-                            chessBoard[putRow][putColumn] = null;
-                        }
-                        break;
-                    }
-                }
+            if (king.p2KingChecked(chessBoard)) {
+                System.out.println("Please be observant, check your King position...");
+                chessBoard[takeRow][takeColumn] = p2blackFigure();
+                chessBoard[putRow][putColumn] = mover;
             }
         }else
             System.out.println("Invalid move");
@@ -136,6 +124,54 @@ public class Pawn extends Figure {
                 return (takeColumn - putColumn == -1 || takeColumn - putColumn == 1) && chessBoard[putRow][putColumn].toString().charAt(0) == 'w';
         }
             return false;
+    }
+    boolean p1ValidMoves(Object[][] chessBoard) {
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[1].length-1; j++) {
+                if (chessBoard[i][j] == "w.P") {
+                    try {
+                        if (chessBoard[i+1][j]==null)
+                        return true;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (chessBoard[i+1][j+1].toString().charAt(0)=='b')
+                            return true;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (chessBoard[i+1][j-1].toString().charAt(0)=='b')
+                            return true;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    boolean p2ValidMoves(Object[][] chessBoard) {
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[1].length-1; j++) {
+                if (chessBoard[i][j] == "b.P") {
+                    try {
+                        if (chessBoard[i+1][j]==null)
+                            return true;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (chessBoard[i+1][j+1].toString().charAt(0)=='w')
+                            return true;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (chessBoard[i+1][j-1].toString().charAt(0)=='w')
+                            return true;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
 
