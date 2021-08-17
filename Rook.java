@@ -4,16 +4,26 @@ public class Rook extends Figure {
     King king=new King();
     private Object p1figureName="w.R";
     private Object p2figureName="b.R";
+//    private boolean wrIsMoved=false;
+//    private boolean brIsMoved=false;
     public Object p1whiteFigure() {
         return p1figureName;
     }
     public Object p2blackFigure() {
         return p2figureName;
     }
+//    boolean wrIsMoved() {
+//        return wrIsMoved;
+//    }
+//    boolean brIsMoved() {
+//        return brIsMoved;
+//    }
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             p1figureName="w.r";
+ //           wrIsMoved=true;
             chessBoard[takeRow][takeColumn]=p1whiteFigure();
+            Object mover=chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
             chessBoard[takeRow][takeColumn] = null;
             for (int i = 1; i < chessBoard.length-1; i++) {
@@ -22,7 +32,7 @@ public class Rook extends Figure {
                         if (king.p1KingChecked(chessBoard, i, j)){
                             System.out.println("Please be observant, check your King position...");
                             chessBoard[takeRow][takeColumn]=p1whiteFigure();
-                            chessBoard[putRow][putColumn] = null;
+                            chessBoard[putRow][putColumn] = mover;
                         }
                         break;
                     }
@@ -35,7 +45,9 @@ public class Rook extends Figure {
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             p2figureName="b.r";
+//            brIsMoved=true;
             chessBoard[takeRow][takeColumn]=p2blackFigure();
+            Object mover=chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
             chessBoard[takeRow][takeColumn] = null;
             for (int i = 1; i < chessBoard.length-1; i++) {
@@ -44,7 +56,7 @@ public class Rook extends Figure {
                         if (king.p2KingChecked(chessBoard, i, j)){
                             System.out.println("Please be observant, check your King position...");
                             chessBoard[takeRow][takeColumn]=p2blackFigure();
-                            chessBoard[putRow][putColumn] = null;
+                            chessBoard[putRow][putColumn] = mover;
                         }
                         break;
                     }
@@ -54,7 +66,7 @@ public class Rook extends Figure {
             System.out.println("Invalid move");
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (takeRow == putRow) {
             if (putColumn > takeColumn) {
@@ -92,7 +104,7 @@ public class Rook extends Figure {
             return chessBoard[putRow][putColumn].toString().charAt(0) == 'b';
     }
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (takeRow == putRow) {
             if (putColumn > takeColumn) {

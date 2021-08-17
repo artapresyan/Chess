@@ -3,19 +3,13 @@ package com.company;
 public class King extends Figure {
     private final Object p1figureName="w.K";
     private final Object p2figureName="b.K";
-    private boolean wIsMoved=false;
-    private boolean bIsMoved=false;
+    private boolean wkIsMoved=false;
+    private boolean bkIsMoved=false;
     public Object p1whiteFigure() {
         return p1figureName;
     }
     public Object p2blackFigure() {
         return p2figureName;
-    }
-    boolean wIsMoved() {
-        return wIsMoved;
-    }
-    boolean bIsMoved() {
-        return bIsMoved;
     }
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
@@ -30,7 +24,7 @@ public class King extends Figure {
                 chessBoard[takeRow][takeColumn]=null;
                 chessBoard[1][8] = null;
             } else {
-                wIsMoved=true;
+                wkIsMoved=true;
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 chessBoard[takeRow][takeColumn]=null;
             }
@@ -52,7 +46,7 @@ public class King extends Figure {
                 chessBoard[8][8] = null;
             } else if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
                 if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                    bIsMoved=true;
+                    bkIsMoved=true;
                     chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                     chessBoard[takeRow][takeColumn]=null;
                 }
@@ -62,9 +56,9 @@ public class King extends Figure {
 
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || p1KingChecked(chessBoard, putRow, putColumn) || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || p1KingChecked(chessBoard, putRow, putColumn) || takeRow==putRow && takeColumn==putColumn)
             return false;
-        if (!wIsMoved) {
+        if (!wkIsMoved) {
             if (putRow == 1 && takeRow == 1 && takeColumn - putColumn == 2 && chessBoard[1][1] == "w.R" && !p1KingChecked(chessBoard, putRow, putColumn +1)) {
                 while (takeColumn > 2) {
                     takeColumn--;
@@ -93,9 +87,9 @@ public class King extends Figure {
     }
 
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || p2KingChecked(chessBoard, putRow, putColumn) || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || p2KingChecked(chessBoard, putRow, putColumn) || takeRow==putRow && takeColumn==putColumn)
             return false;
-        if (!bIsMoved) {
+        if (!bkIsMoved) {
             if (putRow == 8 && takeRow == 8 && takeColumn - putColumn == 2 && chessBoard[8][1] == "b.R" && !p2KingChecked(chessBoard, putRow, putColumn + 1)) {
                 while (takeColumn > 2) {
                     takeColumn--;

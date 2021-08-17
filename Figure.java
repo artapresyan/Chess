@@ -27,12 +27,6 @@ public abstract class Figure {
     public Object p2blackFigure() {
         return p2figureName;
     }
-    boolean wIsMoved(){
-        return wIsMoved;
-    }
-    boolean bIsMoved(){
-        return bIsMoved;
-    }
     boolean p1KingChecked(Object[][] chessBoard, int Row, int Column) {
         return true;
     }

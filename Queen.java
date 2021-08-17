@@ -12,6 +12,7 @@ public class Queen extends Figure {
     }
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            Object mover=chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
             chessBoard[takeRow][takeColumn] = null;
             for (int i = 1; i < chessBoard.length-1; i++) {
@@ -20,7 +21,7 @@ public class Queen extends Figure {
                         if (king.p1KingChecked(chessBoard, i, j)){
                             System.out.println("Please be observant, check your King position...");
                             chessBoard[takeRow][takeColumn]=p1whiteFigure();
-                            chessBoard[putRow][putColumn] = null;
+                            chessBoard[putRow][putColumn] = mover;
                         }
                         break;
                     }
@@ -31,6 +32,7 @@ public class Queen extends Figure {
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            Object mover=chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
             chessBoard[takeRow][takeColumn] = null;
             for (int i = 1; i < chessBoard.length-1; i++) {
@@ -39,7 +41,7 @@ public class Queen extends Figure {
                         if (king.p2KingChecked(chessBoard, i, j)){
                             System.out.println("Please be observant, check your King position...");
                             chessBoard[takeRow][takeColumn]=p2blackFigure();
-                            chessBoard[putRow][putColumn] = null;
+                            chessBoard[putRow][putColumn] = mover;
                         }
                         break;
                     }
@@ -49,7 +51,7 @@ public class Queen extends Figure {
             System.out.println("Invalid move");
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (takeRow == putRow) {
             if (putColumn > takeColumn) {
@@ -115,7 +117,7 @@ public class Queen extends Figure {
             return chessBoard[putRow][putColumn].toString().charAt(0) == 'b';
     }
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (takeRow == putRow) {
             if (putColumn > takeColumn) {

@@ -21,6 +21,7 @@ public class Bishop extends Figure{
 
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            Object mover=chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
             chessBoard[takeRow][takeColumn]=null;
             for (int i = 1; i < chessBoard.length-1; i++) {
@@ -32,7 +33,7 @@ public class Bishop extends Figure{
                                 chessBoard[takeRow][takeColumn]=p1whiteFigure();
                             else
                                 chessBoard[takeRow][takeColumn]=p1blackFigure();
-                            chessBoard[putRow][putColumn]=null;
+                            chessBoard[putRow][putColumn]=mover;
                         }
                         break;
                     }
@@ -43,6 +44,7 @@ public class Bishop extends Figure{
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            Object mover=chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
             chessBoard[takeRow][takeColumn]=null;
             for (int i = 1; i < chessBoard.length-1; i++) {
@@ -54,7 +56,7 @@ public class Bishop extends Figure{
                                 chessBoard[takeRow][takeColumn]=p2whiteFigure();
                             else
                                 chessBoard[takeRow][takeColumn]=p2blackFigure();
-                            chessBoard[putRow][putColumn]=null;
+                            chessBoard[putRow][putColumn]=mover;
                         }
                         break;
                     }
@@ -65,7 +67,7 @@ public class Bishop extends Figure{
     }
 
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() && chessBoard[takeRow][takeColumn]!=p1blackFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() && chessBoard[takeRow][takeColumn]!=p1blackFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (putRow>takeRow && putColumn>takeColumn){
             while(takeRow<putRow-1 && takeColumn<putColumn-1){
@@ -103,7 +105,7 @@ public class Bishop extends Figure{
     }
 
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn] != p2blackFigure() && chessBoard[takeRow][takeColumn] != p2whiteFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn] != p2blackFigure() && chessBoard[takeRow][takeColumn] != p2whiteFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (putRow > takeRow && putColumn > takeColumn) {
             while (takeRow < putRow - 1 && takeColumn < putColumn - 1) {
