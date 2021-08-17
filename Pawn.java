@@ -21,7 +21,9 @@ public class Pawn extends Figure {
 
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+            Object mover;
             if (putRow == 8) {
+                mover=chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 chessBoard[takeRow][takeColumn]=null;
                 System.out.println("Choose figure");
@@ -41,6 +43,7 @@ public class Pawn extends Figure {
                 else
                     System.out.println("Invalid figure");
             } else {
+                mover=chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 chessBoard[takeRow][takeColumn]=null;
             }
@@ -50,7 +53,7 @@ public class Pawn extends Figure {
                         if (king.p1KingChecked(chessBoard, i, j)){
                             System.out.println("Please be observant, check your King position...");
                             chessBoard[takeRow][takeColumn]=p1whiteFigure();
-                            chessBoard[putRow][putColumn] = null;
+                            chessBoard[putRow][putColumn] = mover;
                         }
                         break;
                     }
