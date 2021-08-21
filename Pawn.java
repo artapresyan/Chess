@@ -5,21 +5,21 @@ import java.util.Scanner;
 public class Pawn extends Figure {
     private final Object p1figureName="w.P";
     private final Object p2figureName="b.P";
+    private String name;
+    Scanner a=new Scanner(System.in);
     public Object p1whiteFigure() {
         return p1figureName;
     }
     public Object p2blackFigure() {
         return p2figureName;
     }
-    String name;
-    Scanner a=new Scanner(System.in);
-    King king=new King();
-    Rook rook=new Rook();
-    Knight knight=new Knight();
-    Bishop bishop=new Bishop();
-    Queen queen=new Queen();
 
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+        King king=new King();
+        Rook rook=new Rook();
+        Knight knight=new Knight();
+        Bishop bishop=new Bishop();
+        Queen queen=new Queen();
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             Object mover;
             if (putRow == 8) {
@@ -55,6 +55,11 @@ public class Pawn extends Figure {
             System.out.println("Invalid move");
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+        King king=new King();
+        Rook rook=new Rook();
+        Knight knight=new Knight();
+        Bishop bishop=new Bishop();
+        Queen queen=new Queen();
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             Object mover;
             if (putRow == 1) {
@@ -90,7 +95,7 @@ public class Pawn extends Figure {
             System.out.println("Invalid move");
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p1whiteFigure() || takeRow==putRow && takeColumn==putColumn)
              return false;
          if (takeRow == 2 && takeRow - putRow == -2) {
              while (takeRow < putRow) {
@@ -108,7 +113,7 @@ public class Pawn extends Figure {
              return false;
     }
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putColumn && takeColumn==putColumn)
+        if (chessBoard[takeRow][takeColumn]!=p2blackFigure() || takeRow==putRow && takeColumn==putColumn)
             return false;
         if (takeRow == 7 && takeRow - putRow == 2) {
             while (takeRow > putRow) {
@@ -125,53 +130,115 @@ public class Pawn extends Figure {
         }
             return false;
     }
-    boolean p1ValidMoves(Object[][] chessBoard) {
+    boolean p1NoMoves(Object[][] chessBoard) {
         for (int i = 1; i < chessBoard.length-1; i++) {
             for (int j = 1; j < chessBoard[1].length-1; j++) {
                 if (chessBoard[i][j] == "w.P") {
                     try {
-                        if (chessBoard[i+1][j]==null)
-                        return true;
+                        if (p1checkMove(chessBoard,i,j,i+1,j))
+                        return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i+1][j+1].toString().charAt(0)=='b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i+1,j+1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i+1][j-1].toString().charAt(0)=='b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i+1,j-1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                 }
             }
         }
-        return false;
+        return true;
     }
-    boolean p2ValidMoves(Object[][] chessBoard) {
+    boolean p2NoMoves(Object[][] chessBoard) {
         for (int i = 1; i < chessBoard.length-1; i++) {
             for (int j = 1; j < chessBoard[1].length-1; j++) {
                 if (chessBoard[i][j] == "b.P") {
                     try {
-                        if (chessBoard[i+1][j]==null)
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+1,j))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i+1][j+1].toString().charAt(0)=='w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+1,j+1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i+1][j-1].toString().charAt(0)=='w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+1,j-1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                 }
             }
         }
-        return false;
+        return true;
+    }
+    boolean p1CoverCheck(Object[][] chessBoard) {
+        King king=new King();
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[1].length-1; j++) {
+                if (chessBoard[i][j] == "w.P") {
+                    try {
+                        if (p1checkMove(chessBoard,i,j,i+1,j))
+                            chessBoard[i+1][j]=chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard,i,j,i+1,j+1))
+                            chessBoard[i+1][j+1]=chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard,i,j,i+1,j-1))
+                            chessBoard[i+1][j-1]=chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    boolean p2CoverCheck(Object[][] chessBoard) {
+        King king=new King();
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[1].length-1; j++) {
+                if (chessBoard[i][j] == "b.P") {
+                    try {
+                        if (p2checkMove(chessBoard,i,j,i-1,j))
+                            chessBoard[i-1][j]=chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard,i,j,i-1,j+1))
+                            chessBoard[i-1][j+1]=chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard,i,j,i-1,j-1))
+                            chessBoard[i-1][j-1]=chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                }
+            }
+        }
+        return true;
     }
 }
 

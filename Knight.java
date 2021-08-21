@@ -1,7 +1,6 @@
 package com.company;
 
 public class Knight extends Figure {
-    King king = new King();
     private final Object p1figureName = "wKn";
     private final Object p2figureName = "bKn";
 
@@ -14,6 +13,7 @@ public class Knight extends Figure {
     }
 
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+        King king=new King();
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             Object mover = chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
@@ -29,6 +29,7 @@ public class Knight extends Figure {
     }
 
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+        King king=new King();
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
             Object mover = chessBoard[putRow][putColumn];
             chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
@@ -85,104 +86,234 @@ public class Knight extends Figure {
         return false;
     }
 
-    boolean p1ValidMoves(Object[][] chessBoard) {
+    boolean p1NoMoves(Object[][] chessBoard) {
         for (int i = 1; i < chessBoard.length-1; i++) {
             for (int j = 1; j < chessBoard[1].length-1; j++) {
                 if ((chessBoard[i][j] == "wKn")) {
                     try {
-                        if (chessBoard[i - 2][j + 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i-2,j+1))
+                            return false;
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
                     try {
-                        if (chessBoard[i - 2][j - 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i-2,j-1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i - 1][j - 2] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i-1,j-2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 1][j - 2] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i+1,j-2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 2][j - 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i+2,j-1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 2][j + 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i+2,j+1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 1][j + 2] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i+1,j+2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i - 1][j + 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'b')
-                            return true;
+                        if (p1checkMove(chessBoard,i,j,i-1,j+2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
-
                 }
             }
         }
-        return false;
+        return true;
     }
-    boolean p2ValidMoves(Object[][] chessBoard) {
+    boolean p2NoMoves(Object[][] chessBoard) {
         for (int i = 1; i < chessBoard.length-1; i++) {
             for (int j = 1; j < chessBoard[1].length-1; j++) {
                 if ((chessBoard[i][j] == "bKn")) {
                     try {
-                        if (chessBoard[i - 2][j + 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i-2,j+1))
+                            return false;
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
                     try {
-                        if (chessBoard[i - 2][j - 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i-2,j-1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i - 1][j - 2] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i-1,j-2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 1][j - 2] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+1,j-2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 2][j - 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+2,j-1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 2][j + 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+2,j+1))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i + 1][j + 2] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i+1,j+2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
                     try {
-                        if (chessBoard[i - 1][j + 1] == null || chessBoard[i - 2][j + 1].toString().charAt(0) == 'w')
-                            return true;
+                        if (p2checkMove(chessBoard,i,j,i-1,j+2))
+                            return false;
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
-
                 }
             }
         }
-        return false;
+        return true;
+    }
+    boolean p1CoverCheck(Object[][] chessBoard) {
+        King king=new King();
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[1].length-1; j++) {
+                if ((chessBoard[i][j] == "wKn")) {
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i - 2, j + 1))
+                            chessBoard[i - 2][j + 1] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    } catch (ArrayIndexOutOfBoundsException ignore) {
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i - 2, j - 1))
+                            chessBoard[i - 2][j - 1] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i - 1, j - 2))
+                            chessBoard[i - 1][j - 2] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i + 1, j - 2))
+                            chessBoard[i + 1][j - 2] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i + 2, j - 1))
+                            chessBoard[i + 2][j - 1] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i + 2, j + 1))
+                            chessBoard[i + 2][j + 1] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i + 1, j + 2))
+                            chessBoard[i + 1][j + 2] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p1checkMove(chessBoard, i, j, i - 1, j + 2))
+                            chessBoard[i - 1][j + 2] = chessBoard[i][j];
+                        if (king.p1KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    boolean p2CoverCheck(Object[][] chessBoard) {
+        King king=new King();
+        for (int i = 1; i < chessBoard.length-1; i++) {
+            for (int j = 1; j < chessBoard[1].length-1; j++) {
+                if ((chessBoard[i][j] == "bKn")) {
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i - 2, j + 1))
+                            chessBoard[i - 2][j + 1] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    } catch (ArrayIndexOutOfBoundsException ignore) {
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i - 2, j - 1))
+                            chessBoard[i - 2][j - 1] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i - 1, j - 2))
+                            chessBoard[i - 1][j - 2] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i + 1, j - 2))
+                            chessBoard[i + 1][j - 2] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i + 2, j - 1))
+                            chessBoard[i + 2][j - 1] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i + 2, j + 1))
+                            chessBoard[i + 2][j + 1] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i + 1, j + 2))
+                            chessBoard[i + 1][j + 2] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                    try {
+                        if (p2checkMove(chessBoard, i, j, i - 1, j + 2))
+                            chessBoard[i - 1][j + 2] = chessBoard[i][j];
+                        if (king.p2KingChecked(chessBoard))
+                            return false;
+                    }catch (ArrayIndexOutOfBoundsException ignore){
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

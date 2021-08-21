@@ -3,8 +3,6 @@ package com.company;
 public abstract class Figure {
     private Object p1figureName;
     private Object p2figureName;
-    private boolean wIsMoved=false;
-    private boolean bIsMoved=false;
     public Object p1whiteFigure() {
         return p1figureName;
     }
@@ -27,10 +25,16 @@ public abstract class Figure {
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         return true;
     }
-    boolean p1ValidMoves(Object[][] chessBoard) {
-        return false;
+    boolean p1NoMoves(Object[][] chessBoard) {
+        return true;
     }
-    boolean p2ValidMoves(Object[][] chessBoard) {
-        return false;
+    boolean p2NoMoves(Object[][] chessBoard) {
+        return true;
+    }
+    boolean p1CoverCheck(Object[][]chessBoard){
+        return true;
+    }
+    boolean p2CoverCheck(Object[][]chessBoard){
+        return true;
     }
 }
