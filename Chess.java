@@ -2,7 +2,50 @@ package com.company;
 import java.util.Scanner;
 
 public class Chess {
-
+    static boolean p1ValidMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn){
+        Figure rook = new Rook();
+        Figure knight = new Knight();
+        Figure bishop = new Bishop();
+        Figure queen = new Queen();
+        King king = new King();
+        Figure pawn = new Pawn();
+        if (rook.p1checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(knight.p1checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(bishop.p1checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(queen.p1checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(king.p1checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if (pawn.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn))
+            return true;
+        System.out.println("P1 be watchful it is invalid move..."+"\n");
+        return false;
+    }
+    static boolean p2ValidMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn){
+        Figure rook = new Rook();
+        Figure knight = new Knight();
+        Figure bishop = new Bishop();
+        Figure queen = new Queen();
+        King king = new King();
+        Figure pawn = new Pawn();
+        if (rook.p2checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(knight.p2checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(bishop.p2checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(queen.p2checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if(king.p2checkMove(chessBoard,takeRow,takeColumn,putRow,putColumn))
+            return true;
+        else if (pawn.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn))
+            return true;
+        System.out.println("P2 be watchful it is invalid move..."+"\n");
+        return false;
+    }
     public static void main(String[] args) {
         Board board = new Board();
     //    Scanner getLet = new Scanner(System.in);
@@ -36,32 +79,40 @@ public class Chess {
         queen.p1moveFigure(chessBoard,7,5,7,3);
         queen.p1moveFigure(chessBoard,7,3,8,3);
         queen.p1moveFigure(chessBoard,8,3,8,2);
-        queen.p1moveFigure(chessBoard,8,2,8,1);
-        queen.p1moveFigure(chessBoard,8,1,6,3);
+        queen.p1moveFigure(chessBoard,8,2,6,2);
         king.p2moveFigure(chessBoard,8,4,7,5);
         king.p2moveFigure(chessBoard,7,5,8,6);
         king.p2moveFigure(chessBoard,8,6,8,7);
         king.p2moveFigure(chessBoard,8,7,8,8);
+        pawn.p1moveFigure(chessBoard,4,4,5,4);
+        pawn.p1moveFigure(chessBoard,5,4,6,4);
+        pawn.p1moveFigure(chessBoard,6,4,7,4);
+        king.p2moveFigure(chessBoard,8,8,7,7);
+        pawn.p1moveFigure(chessBoard,7,4,8,4);
+        queen.p1moveFigure(chessBoard,8,4,7,4);
+        king.p2moveFigure(chessBoard,7,7,8,7);
         board.printBoard(chessBoard);
         while (!gameOver) {
             queue++;
             board.getBoard(chessBoard);
             if (queue % 2 == 0) {
                 if (king.p1Mated(chessBoard)) {
-                    System.out.println("P1 lost the game by checkmate");
+                    System.out.println("\n"+"P1 lost the game by checkmate");
                     gameOver=true;
                 }else if(king.p1StaleMate(chessBoard)) {
-                    System.out.println("P2 made stalemate");
+                    System.out.println("\n"+"P2 made stalemate");
                     gameOver=true;
                 } else {
-                    System.out.println("P1 Enter takeRow");
-                    takeRow = getNum.nextByte();
-                    System.out.println("P1 Enter takeColumn");
-                    takeColumn = getNum.nextByte();
-                    System.out.println("P1 Enter putRow");
-                    putRow = getNum.nextByte();
-                    System.out.println("P1 Enter putColumn");
-                    putColumn = getNum.nextByte();
+                    do {
+                        System.out.println("P1 Enter takeRow");
+                        takeRow = getNum.nextByte();
+                        System.out.println("P1 Enter takeColumn");
+                        takeColumn = getNum.nextByte();
+                        System.out.println("P1 Enter putRow");
+                        putRow = getNum.nextByte();
+                        System.out.println("P1 Enter putColumn");
+                        putColumn = getNum.nextByte();
+                    }while (!p1ValidMove(chessBoard,takeRow,takeColumn,putRow,putColumn));
                     if (chessBoard[takeRow][takeColumn] == "w.R" || chessBoard[takeRow][takeColumn] == "w.r") {
                         rook.p1moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     } else if (chessBoard[takeRow][takeColumn] == "wKn") {
@@ -78,20 +129,22 @@ public class Chess {
                 }
             }else {
                 if (king.p2Mated(chessBoard)) {
-                    System.out.println("P2 lost the game by checkmate");
+                    System.out.println("\n"+"P2 lost the game by checkmate");
                     gameOver=true;
                 }else if(king.p2StaleMate(chessBoard)) {
-                    System.out.println("P1 made stalemate");
+                    System.out.println("\n"+"P1 made stalemate");
                     gameOver=true;
                 } else {
-                    System.out.println("P2 Enter takeRow");
-                    takeRow = getNum.nextByte();
-                    System.out.println("P2 Enter takeColumn");
-                    takeColumn = getNum.nextByte();
-                    System.out.println("P2 Enter putRow");
-                    putRow = getNum.nextByte();
-                    System.out.println("P2 Enter putColumn");
-                    putColumn = getNum.nextByte();
+                    do {
+                        System.out.println("P2 Enter takeRow");
+                        takeRow = getNum.nextByte();
+                        System.out.println("P2 Enter takeColumn");
+                        takeColumn = getNum.nextByte();
+                        System.out.println("P2 Enter putRow");
+                        putRow = getNum.nextByte();
+                        System.out.println("P2 Enter putColumn");
+                        putColumn = getNum.nextByte();
+                    }while (!p2ValidMove(chessBoard,takeRow,takeColumn,putRow,putColumn));
                     if (chessBoard[takeRow][takeColumn] == "b.R" || chessBoard[takeRow][takeColumn] == "b.r") {
                         rook.p2moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     } else if (chessBoard[takeRow][takeColumn] == "bKn") {

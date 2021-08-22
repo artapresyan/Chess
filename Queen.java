@@ -279,19 +279,19 @@ public class Queen extends Figure {
                         while (row<chessBoard.length-2) {
                             row++;
                             mover = chessBoard[row][j];
-                            if (p1checkMove(chessBoard, row - 1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row - 1][j];
-                                chessBoard[row - 1][j] = null;
+                            if (p1checkMove(chessBoard, i, j, row, j)) {
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -300,19 +300,19 @@ public class Queen extends Figure {
                         while (row>1) {
                             row--;
                             mover = chessBoard[row][j];
-                            if (p1checkMove(chessBoard, row+1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row+1][j];
-                                chessBoard[row+1][j] = null;
+                            if (p1checkMove(chessBoard, i, j, row, j)) {
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -321,19 +321,19 @@ public class Queen extends Figure {
                         while (column<chessBoard.length-2) {
                             column++;
                             mover = chessBoard[i][column];
-                            if (p1checkMove(chessBoard, i, column-1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column-1];
-                                chessBoard[i][column-1] = null;
+                            if (p1checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -342,19 +342,19 @@ public class Queen extends Figure {
                         while (column>1) {
                             column--;
                             mover = chessBoard[i][column];
-                            if (p1checkMove(chessBoard, i, column+1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column+1];
-                                chessBoard[i][column+1] = null;
+                            if (p1checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -365,19 +365,19 @@ public class Queen extends Figure {
                             row++;
                             column++;
                             mover = chessBoard[row][column];
-                            if (p1checkMove(chessBoard, row - 1, column-1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row - 1][column-1];
-                                chessBoard[row - 1][column-1] = null;
+                            if (p1checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -388,19 +388,19 @@ public class Queen extends Figure {
                             row++;
                             column--;
                             mover = chessBoard[row][column];
-                            if (p1checkMove(chessBoard, row - 1, column+1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row - 1][column+1];
-                                chessBoard[row - 1][column+1] = null;
+                            if (p1checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -411,19 +411,19 @@ public class Queen extends Figure {
                             row--;
                             column++;
                             mover = chessBoard[row][column];
-                            if (p1checkMove(chessBoard, row + 1, column-1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row + 1][column-1];
-                                chessBoard[row + 1][column-1] = null;
+                            if (p1checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -434,19 +434,19 @@ public class Queen extends Figure {
                             row--;
                             column--;
                             mover = chessBoard[row][column];
-                            if (p1checkMove(chessBoard, row + 1, column+1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row + 1][column+1];
-                                chessBoard[row + 1][column+1] = null;
+                            if (p1checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -468,18 +468,18 @@ public class Queen extends Figure {
                             row++;
                             mover = chessBoard[row][j];
                             if (p2checkMove(chessBoard, row - 1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row - 1][j];
-                                chessBoard[row - 1][j] = null;
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -488,19 +488,19 @@ public class Queen extends Figure {
                         while (row>1) {
                             row--;
                             mover = chessBoard[row][j];
-                            if (p2checkMove(chessBoard, row+1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row+1][j];
-                                chessBoard[row+1][j] = null;
+                            if (p2checkMove(chessBoard, i, j, row, j)) {
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -509,19 +509,19 @@ public class Queen extends Figure {
                         while (column<chessBoard.length-2) {
                             column++;
                             mover = chessBoard[i][column];
-                            if (p2checkMove(chessBoard, i, column-1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column-1];
-                                chessBoard[i][column-1] = null;
+                            if (p2checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -530,19 +530,19 @@ public class Queen extends Figure {
                         while (column>1) {
                             column--;
                             mover = chessBoard[i][column];
-                            if (p2checkMove(chessBoard, i, column+1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column+1];
-                                chessBoard[i][column+1] = null;
+                            if (p2checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -553,19 +553,19 @@ public class Queen extends Figure {
                             row++;
                             column++;
                             mover = chessBoard[row][column];
-                            if (p2checkMove(chessBoard, row - 1, column-1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row - 1][column-1];
-                                chessBoard[row - 1][column-1] = null;
+                            if (p2checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -576,19 +576,19 @@ public class Queen extends Figure {
                             row++;
                             column--;
                             mover = chessBoard[row][column];
-                            if (p2checkMove(chessBoard, row - 1, column+1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row - 1][column+1];
-                                chessBoard[row - 1][column+1] = null;
+                            if (p2checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -599,19 +599,19 @@ public class Queen extends Figure {
                             row--;
                             column++;
                             mover = chessBoard[row][column];
-                            if (p2checkMove(chessBoard, row + 1, column-1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row + 1][column-1];
-                                chessBoard[row + 1][column-1] = null;
+                            if (p2checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -622,19 +622,19 @@ public class Queen extends Figure {
                             row--;
                             column--;
                             mover = chessBoard[row][column];
-                            if (p2checkMove(chessBoard, row + 1, column+1, row, column)) {
-                                chessBoard[row][column] = chessBoard[row + 1][column+1];
-                                chessBoard[row + 1][column+1] = null;
+                            if (p2checkMove(chessBoard, i, j, row, column)) {
+                                chessBoard[row][column] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }

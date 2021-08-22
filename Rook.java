@@ -20,7 +20,6 @@ public class Rook extends Figure {
     void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         King king=new King();
         if (p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
-            p1figureName = "w.r";
             //           wrIsMoved=true;
             chessBoard[takeRow][takeColumn] = p1whiteFigure();
             Object mover = chessBoard[putRow][putColumn];
@@ -31,16 +30,14 @@ public class Rook extends Figure {
                 System.out.println("Please be observant, check your King's position...");
                 chessBoard[takeRow][takeColumn] = p1whiteFigure();
                 chessBoard[putRow][putColumn] = mover;
-
-            }
-
+            }else
+            p1figureName = "w.r";
         } else
             System.out.println("Invalid move");
     }
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         King king=new King();
         if (p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
-            p2figureName = "b.r";
 //            brIsMoved=true;
             chessBoard[takeRow][takeColumn] = p2blackFigure();
             Object mover = chessBoard[putRow][putColumn];
@@ -51,7 +48,8 @@ public class Rook extends Figure {
                 System.out.println("Please be observant, check your King's position...");
                 chessBoard[takeRow][takeColumn] = p2blackFigure();
                 chessBoard[putRow][putColumn] = mover;
-            }
+            }else
+                p2figureName = "b.r";
         } else
             System.out.println("Invalid move");
     }
@@ -199,19 +197,19 @@ public class Rook extends Figure {
                         while (row<chessBoard.length-2) {
                             row++;
                             mover = chessBoard[row][j];
-                            if (p1checkMove(chessBoard, row - 1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row - 1][j];
-                                chessBoard[row - 1][j] = null;
+                            if (p1checkMove(chessBoard, i, j, row, j)) {
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -220,19 +218,19 @@ public class Rook extends Figure {
                         while (row>1) {
                             row--;
                             mover = chessBoard[row][j];
-                            if (p1checkMove(chessBoard, row+1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row+1][j];
-                                chessBoard[row+1][j] = null;
+                            if (p1checkMove(chessBoard, i, j, row, j)) {
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -241,19 +239,19 @@ public class Rook extends Figure {
                         while (column<chessBoard.length-2) {
                             column++;
                             mover = chessBoard[i][column];
-                            if (p1checkMove(chessBoard, i, column-1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column-1];
-                                chessBoard[i][column-1] = null;
+                            if (p1checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -262,19 +260,19 @@ public class Rook extends Figure {
                         while (column>1) {
                             column--;
                             mover = chessBoard[i][column];
-                            if (p1checkMove(chessBoard, i, column+1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column+1];
-                                chessBoard[i][column+1] = null;
+                            if (p1checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p1KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p1whiteFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p1whiteFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p1whiteFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -296,18 +294,18 @@ public class Rook extends Figure {
                             row++;
                             mover = chessBoard[row][j];
                             if (p2checkMove(chessBoard, row - 1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row - 1][j];
-                                chessBoard[row - 1][j] = null;
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -316,19 +314,19 @@ public class Rook extends Figure {
                         while (row>1) {
                             row--;
                             mover = chessBoard[row][j];
-                            if (p2checkMove(chessBoard, row+1, j, row, j)) {
-                                chessBoard[row][j] = chessBoard[row+1][j];
-                                chessBoard[row+1][j] = null;
+                            if (p2checkMove(chessBoard, i, j, row, j)) {
+                                chessBoard[row][j] = chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[row][j] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[row][j] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[row][j] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -337,19 +335,19 @@ public class Rook extends Figure {
                         while (column<chessBoard.length-2) {
                             column++;
                             mover = chessBoard[i][column];
-                            if (p2checkMove(chessBoard, i, column-1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column-1];
-                                chessBoard[i][column-1] = null;
+                            if (p2checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
@@ -358,19 +356,19 @@ public class Rook extends Figure {
                         while (column>1) {
                             column--;
                             mover = chessBoard[i][column];
-                            if (p2checkMove(chessBoard, i, column+1, i, column)) {
-                                chessBoard[i][column] =  chessBoard[i][column+1];
-                                chessBoard[i][column+1] = null;
+                            if (p2checkMove(chessBoard, i, j, i, column)) {
+                                chessBoard[i][column] =  chessBoard[i][j];
+                                chessBoard[i][j] = null;
                                 if (!king.p2KingChecked(chessBoard)) {
                                     chessBoard[i][j] = p2blackFigure();
                                     chessBoard[i][column] = mover;
                                     return true;
+                                }else {
+                                    chessBoard[i][j] = p2blackFigure();
+                                    chessBoard[i][column] = mover;
                                 }
-                            } else {
-                                chessBoard[i][j] = p2blackFigure();
-                                chessBoard[i][column] = mover;
+                            } else
                                 break;
-                            }
                         }
                     }catch (ArrayIndexOutOfBoundsException ignore){
                     }
