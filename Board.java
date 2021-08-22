@@ -42,7 +42,7 @@ public class Board {
         for (int i=1;i<chessBoard[7].length-1;i++)
             chessBoard[7][i]=pawn.p2blackFigure();
     }
-    void getBoard(Object[][] chessBoard){
+    void printBoard(Object[][] chessBoard){
         for (int i = 0; i < chessBoard.length; i++) {
             for (int j = 0; j < chessBoard[1].length; j++) {
                 if (chessBoard[i][j]==null){
@@ -54,6 +54,15 @@ public class Board {
                 System.out.print(chessBoard[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+    void getBoard(Object[][] chessBoard) {
+        for (int i = 0; i < chessBoard.length; i++) {
+            for (int j = 0; j < chessBoard[1].length; j++) {
+                if (chessBoard[i][j] == "###" || chessBoard[i][j] == "***") {
+                    chessBoard[i][j]=null;
+                }
+            }
         }
     }
 }

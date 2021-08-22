@@ -20,10 +20,10 @@ public abstract class Figure {
     void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
     }
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        return true;
+        return false;
     }
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        return true;
+        return false;
     }
     boolean p1NoMoves(Object[][] chessBoard) {
         return true;
@@ -32,9 +32,9 @@ public abstract class Figure {
         return true;
     }
     boolean p1CoverCheck(Object[][]chessBoard){
-        return true;
+        return false;
     }
     boolean p2CoverCheck(Object[][]chessBoard){
-        return true;
+        return false;
     }
 }
