@@ -28,19 +28,19 @@ public abstract class Figure {
 
     boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         return false;
-    }
+    }//
 
     boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         return false;
-    }
+    }//
 
     boolean p1NoMoves(Object[][] chessBoard) {
         return true;
-    }
+    }//
 
     boolean p2NoMoves(Object[][] chessBoard) {
         return true;
-    }
+    }//
 
     boolean p1CoverCheck(Object[][] chessBoard) {
         return false;
