@@ -20,7 +20,7 @@ public class King extends Figure {
             chessBoard[0][takeColumn] = null;
             chessBoard[0][putColumn + 1] = chessBoard[0][0];
             chessBoard[0][0] = null;
-        } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[1][7] == "w.R") {
+        } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == "w.R") {
             chessBoard[0][putColumn] = chessBoard[0][takeColumn];
             chessBoard[0][takeColumn] = null;
             chessBoard[0][putColumn - 1] = chessBoard[0][7];
