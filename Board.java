@@ -24,7 +24,7 @@ public class Board {
             chessBoard[6][i] = new Pawn(Color.isBlackFigure,FigureName.blackPawn);
     }
 
-    void printBoard(Object[][] chessBoard) {
+    void printBoard(Figure[][] chessBoard) {
         Object[][] printBoard = new Object[10][10];
         printBoard[0][0] = "  ";
         printBoard[0][9] = "  ";
@@ -48,7 +48,7 @@ public class Board {
                         else
                             printBoard[i][j] = "###";//black
                     } else
-                        printBoard[i][j] = chessBoard[i-1][j-1];
+                        printBoard[i][j] = chessBoard[i-1][j-1].getFigureName();
                 }
                 System.out.print(printBoard[i][j] + " ");
             }
