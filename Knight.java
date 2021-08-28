@@ -30,7 +30,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isWhiteFigure)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
                             chessBoard[putRow][putColumn] = null;
@@ -44,7 +44,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isWhiteFigure)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
                             chessBoard[putRow][putColumn] = save;
@@ -61,7 +61,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isWhiteFigure)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
                             chessBoard[putRow][putColumn] = null;
@@ -75,7 +75,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isWhiteFigure)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
                             chessBoard[putRow][putColumn] = save;
@@ -95,7 +95,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isBlackFigure)) {
                             System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isBlackFigure,FigureName.blackKnight);
                             chessBoard[putRow][putColumn] = null;
@@ -109,7 +109,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isBlackFigure)) {
                             System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isBlackFigure,FigureName.blackKnight);
                             chessBoard[putRow][putColumn] = save;
@@ -126,7 +126,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isBlackFigure)) {
                             System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isBlackFigure,FigureName.blackKnight);
                             chessBoard[putRow][putColumn] = null;
@@ -140,7 +140,7 @@ public class Knight extends Figure {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (king.KingChecked(chessBoard)) {
+                        if (king.kingChecked(chessBoard,Color.isBlackFigure)) {
                             System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
                             chessBoard[takeRow][takeColumn] = new Knight(Color.isBlackFigure,FigureName.blackKnight);
                             chessBoard[putRow][putColumn] = save;

@@ -58,7 +58,6 @@ public class King extends Figure {
     boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-        int i=takeRow;
         int j=takeColumn;
         if (getFigureColor().equals(Color.isWhiteFigure.getColor())) {
             if (!wkIsMoved && !KingChecked(chessBoard)) {
@@ -115,92 +114,91 @@ public class King extends Figure {
                     chessBoard[0][putColumn] = null;
                     return true;
                 }
-            }////////////////////////////////-----------------
+            }
             if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
                 if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
                     if (chessBoard[putRow][putColumn] == null) {
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (p1KingChecked(chessBoard)) {
+                        if (KingChecked(chessBoard)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                            chessBoard[takeRow][takeColumn] = p2blackFigure();
-                            chessBoard[putRow][putColumn] = mover;
-                            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                            chessBoard[takeRow][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                            chessBoard[putRow][putColumn] = null;
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                         }
-                        chessBoard[takeRow][takeColumn] = p2blackFigure();
-                        chessBoard[putRow][putColumn] = mover;
+                        chessBoard[takeRow][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                        chessBoard[putRow][putColumn] = null;
                         return true;
-                    } else if (chessBoard[putRow][putColumn].toString().charAt(0) == 'w') {
-                        Object mover = chessBoard[putRow][putColumn];
+                    } else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+                        Figure save = chessBoard[putRow][putColumn];
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
 
-                        if (p1KingChecked(chessBoard)) {
+                        if (KingChecked(chessBoard)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                            chessBoard[takeRow][takeColumn] = p2blackFigure();
-                            chessBoard[putRow][putColumn] = mover;
-                            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                            chessBoard[takeRow][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                            chessBoard[putRow][putColumn] = save;
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                         }
-                        chessBoard[takeRow][takeColumn] = p2blackFigure();
-                        chessBoard[putRow][putColumn] = mover;
+                        chessBoard[takeRow][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                        chessBoard[putRow][putColumn] = save;
                         return true;
                     }
                 }
             }
-            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         }else {
-            if (chessBoard[takeRow][takeColumn] != p2blackFigure() || takeRow == putRow && takeColumn == putColumn)
-                return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-            if (!bkIsMoved && !p2KingChecked(chessBoard)) {
-                if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][1] == "b.R") {
+            if (!bkIsMoved && !KingChecked(chessBoard)) {
+                if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] instanceof Rook &&
+                        chessBoard[7][0].getFigureColor().equals(Color.isBlackFigure.getColor()) && ((Rook)chessBoard[7][0]).brIsMoved()) {
                     while (takeColumn > 2) {
                         takeColumn--;
                         if (chessBoard[7][takeColumn] != null)
-                            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
                     chessBoard[7][putColumn + 1] = chessBoard[7][takeColumn];
                     chessBoard[7][takeColumn] = null;
                     if (p2KingChecked(chessBoard)) {
                         System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                         chessBoard[7][putColumn + 1] = null;
-                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
                     chessBoard[7][putColumn] = chessBoard[7][putColumn + 1];
                     chessBoard[7][putColumn + 1] = null;
-                    if (p2KingChecked(chessBoard)) {
+                    if (KingChecked(chessBoard)) {
                         System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                         chessBoard[7][putColumn] = null;
-                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[7][takeColumn] = p2blackFigure();
+                    chessBoard[7][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                     chessBoard[7][putColumn] = null;
                     return true;
-                } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == "b.R") {
+                } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] instanceof Rook &&
+                        chessBoard[7][7].getFigureColor().equals(Color.isBlackFigure.getColor()) && ((Rook)chessBoard[7][7]).brIsMoved()) {
                     while (takeColumn < 7) {
                         takeColumn++;
                         if (chessBoard[7][takeColumn] != null)
-                            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
                     chessBoard[7][putColumn - 1] = chessBoard[takeRow][takeColumn];
                     chessBoard[takeRow][takeColumn] = null;
-                    if (p2KingChecked(chessBoard)) {
+                    if (KingChecked(chessBoard)) {
                         System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                         chessBoard[7][putColumn] = null;
-                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
                     chessBoard[7][putColumn] = chessBoard[7][putColumn - 1];
                     chessBoard[7][putColumn - 1] = null;
-                    if (p2KingChecked(chessBoard)) {
+                    if (KingChecked(chessBoard)) {
                         System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                         chessBoard[7][putColumn] = null;
-                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[7][takeColumn] = p2blackFigure();
+                    chessBoard[7][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                     chessBoard[7][putColumn] = null;
                     return true;
                 }
@@ -208,412 +206,426 @@ public class King extends Figure {
             if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
                 if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
                     if (chessBoard[putRow][putColumn] == null || chessBoard[putRow][putColumn].toString().charAt(0) == 'w') {
-                        Object mover = chessBoard[putRow][putColumn];
+                        Figure save = chessBoard[putRow][putColumn];
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
-                        if (p2KingChecked(chessBoard)) {
+                        if (KingChecked(chessBoard)) {
                             System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                            chessBoard[putRow][putColumn] = mover;
-                            chessBoard[takeRow][takeColumn] = p2blackFigure();
-                            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                            chessBoard[putRow][putColumn] = save;
+                            chessBoard[takeRow][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                         }
-                        chessBoard[putRow][putColumn] = mover;
-                        chessBoard[takeRow][takeColumn] = p2blackFigure();
+                        chessBoard[putRow][putColumn] = save;
+                        chessBoard[takeRow][takeColumn] = new King(Color.isBlackFigure,FigureName.blackKing);
                         return true;
                     }
                 }
             }
-            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         }
+        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
     }
-    boolean p1KingChecked(Object[][] chessBoard) {
-        int i = -1;
-        int j;
-        while (i < chessBoard.length - 1) {
-            i++;
-            j = -1;
-            while (j < chessBoard[i].length - 1) {
-                j++;
-                if (chessBoard[i][j] == "w.K") {
-                    int row = i;
-                    int column = j;
-                    try {
-                        if (chessBoard[row + 1][column + 1] == "b.P")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column - 1] == "b.P")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column + 2] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column - 2] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 2][column + 1] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 2][column - 1] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column + 2] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column - 2] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 2][column + 1] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 2][column - 1] == "bKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column + 1] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column - 1] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row][column - 1] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column - 1] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column + 1] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row][column + 1] == "b.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        do {
-                            row++;
-                            column++;
-                            if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
 
-                    try {
-                        do {
-                            row--;
-                            column--;
-                            if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
+    boolean kingChecked(Figure[][] chessBoard,Color color) {
+        int i,j;
+        if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
+            i = -1;
+            while (i < chessBoard.length - 1) {
+                i++;
+                j = -1;
+                while (j < chessBoard[i].length - 1) {
+                    j++;
+                    if (chessBoard[i][j] instanceof King && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+                        int row = i;
+                        int column = j;
+                        try {
+                            if (chessBoard[row + 1][column + 1] instanceof Pawn && chessBoard[row+1][column+1].getFigureColor().equals(Color.isBlackFigure.getColor()))
                                 return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column - 1] instanceof Pawn && chessBoard[row+1][column-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column + 2] instanceof Knight && chessBoard[row+1][column+2].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column - 2] instanceof Knight && chessBoard[row+1][column-2].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 2][column + 1] instanceof Knight && chessBoard[row+2][column+1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 2][column - 1]instanceof Knight && chessBoard[row+2][column-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column + 2] instanceof Knight && chessBoard[row-1][column+2].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column - 2] instanceof Knight && chessBoard[row-1][column-2].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 2][column + 1] instanceof Knight && chessBoard[row-2][column+1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 2][column - 1] instanceof Knight && chessBoard[row-2][column-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column + 1] instanceof King && chessBoard[row+1][column+1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column] instanceof King && chessBoard[row+1][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column - 1] instanceof King && chessBoard[row+1][column-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row][column - 1] instanceof King && chessBoard[row][column-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column - 1] instanceof King && chessBoard[row-1][column-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column]instanceof King && chessBoard[row-1][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column + 1] instanceof King && chessBoard[row-1][column+1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row][column + 1] instanceof King && chessBoard[row][column+1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            do {
+                                row++;
+                                column++;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
 
-                    try {
-                        do {
-                            row--;
-                            column++;
-                            if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
+                        try {
+                            do {
+                                row--;
+                                column--;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
 
-                    try {
-                        do {
-                            row++;
-                            column--;
-                            if (chessBoard[row][column] == "bbB" || chessBoard[row][column] == "bwB" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
+                        try {
+                            do {
+                                row--;
+                                column++;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
 
-                    try {
-                        do {
-                            row++;
-                            if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
+                        try {
+                            do {
+                                row++;
+                                column--;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
 
-                    try {
-                        do {
-                            row--;
-                            if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
+                        try {
+                            do {
+                                row++;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
 
-                    try {
-                        do {
-                            column++;
-                            if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    column = j;
+                        try {
+                            do {
+                                row--;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
 
-                    try {
-                        do {
-                            column--;
-                            if (chessBoard[row][column] == "b.R" || chessBoard[row][column] == "b.r" || chessBoard[row][column] == "b.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
+                        try {
+                            do {
+                                column++;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        column = j;
+
+                        try {
+                            do {
+                                column--;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        return false;
                     }
-                    return false;
+                }
+            }
+        }else {
+            i = 8;
+            while (i > 0) {
+                i--;
+                j = -1;
+                while (j < chessBoard[i].length-1) {
+                    j++;
+                    if (chessBoard[i][j] instanceof King && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+                        int row = i;
+                        int column = j;
+                        try {
+                            if (chessBoard[row - 1][column - 1] instanceof Pawn && chessBoard[row-1][column-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column + 1] instanceof Pawn && chessBoard[row-1][column+1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column + 2] instanceof Knight && chessBoard[row+1][column+2].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column - 2] instanceof Knight && chessBoard[row+1][column-2].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 2][column + 1] instanceof Knight && chessBoard[row+2][column+1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 2][column - 1] instanceof Knight && chessBoard[row+2][column-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column + 2] instanceof Knight && chessBoard[row-1][column+2].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column - 2] instanceof Knight && chessBoard[row-1][column-2].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 2][column + 1] instanceof Knight && chessBoard[row-2][column+1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 2][column - 1] instanceof Knight && chessBoard[row-2][column-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column + 1] instanceof King && chessBoard[row+1][column+1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column] instanceof King && chessBoard[row+1][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row + 1][column - 1] instanceof King && chessBoard[row+1][column-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row][column - 1] instanceof King && chessBoard[row][column-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column - 1] instanceof King && chessBoard[row-1][column-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column] instanceof King && chessBoard[row-1][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row - 1][column + 1] instanceof King && chessBoard[row-1][column+1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            if (chessBoard[row][column + 1] instanceof King && chessBoard[row][column+1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                return true;
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        try {
+                            do {
+                                row++;
+                                column++;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
+
+                        try {
+                            do {
+                                row++;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+
+                        try {
+                            do {
+                                row--;
+                                column--;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
+
+                        try {
+                            do {
+                                row--;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+
+                        try {
+                            do {
+                                column++;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        column = j;
+
+                        try {
+                            do {
+                                column--;
+                                if (chessBoard[row][column] instanceof Rook && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        column = j;
+
+                        try {
+                            do {
+                                row--;
+                                column++;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        row = i;
+                        column = j;
+
+                        try {
+                            do {
+                                row++;
+                                column--;
+                                if (chessBoard[row][column] instanceof Bishop && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()) ||
+                                        chessBoard[row][column] instanceof Queen && chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                                    return true;
+                            } while (chessBoard[row][column] == null);
+                        } catch (ArrayIndexOutOfBoundsException ignore) {
+                        }
+                        return false;
+                    }
                 }
             }
         }
         return false;
     }
-
-    boolean p2KingChecked(Object[][] chessBoard) {
-        int i = 8;
-        int j;
-        while (i > 0) {
-            i--;
-            j = -1;
-            while (j < chessBoard[i].length-1) {
-                j++;
-                if (chessBoard[i][j] == "b.K") {
-                    int row = i;
-                    int column = j;
-                    try {
-                        if (chessBoard[row - 1][column - 1] == "w.P")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column + 1] == "w.P")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column + 2] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column - 2] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 2][column + 1] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 2][column - 1] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column + 2] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column - 2] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 2][column + 1] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 2][column - 1] == "wKn")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column + 1] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row + 1][column - 1] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row][column - 1] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column - 1] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row - 1][column + 1] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        if (chessBoard[row][column + 1] == "w.K")
-                            return true;
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    try {
-                        do {
-                            row++;
-                            column++;
-                            if (chessBoard[row][column] == "wbB" || chessBoard[row][column] == "wwB" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
-
-                    try {
-                        do {
-                            row++;
-                            if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
-                                return true;
-
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-
-                    try {
-                        do {
-                            row--;
-                            column--;
-                            if (chessBoard[row][column] == "wbB" || chessBoard[row][column] == "wwB" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
-
-                    try {
-                        do {
-                            row--;
-                            if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-
-                    try {
-                        do {
-                            column++;
-                            if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    column = j;
-
-                    try {
-                        do {
-                            column--;
-                            if (chessBoard[row][column] == "w.R" || chessBoard[row][column] == "w.r" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    column = j;
-
-                    try {
-                        do {
-                            row--;
-                            column++;
-                            if (chessBoard[row][column] == "wbB" || chessBoard[row][column] == "wwB" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    row = i;
-                    column = j;
-
-                    try {
-                        do {
-                            row++;
-                            column--;
-                            if (chessBoard[row][column] == "wbB" || chessBoard[row][column] == "wwB" || chessBoard[row][column] == "w.Q")
-                                return true;
-                        } while (chessBoard[row][column] == null);
-                    } catch (ArrayIndexOutOfBoundsException ignore) {
-                    }
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
-
     boolean p1NoMoves(Object[][] chessBoard) {
         Object mover;
         for (int i = 0; i < chessBoard.length; i++) {
