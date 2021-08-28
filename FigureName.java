@@ -21,7 +21,7 @@ public enum FigureName {
         this.name = name;
     }
 
-    public String getFigureName() {
+    public String getName() {
         return name;
     }
 }

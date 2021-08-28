@@ -1,16 +1,15 @@
 package com.company;
 
 public enum Color {
-    isBlackFigure("black"),
-    isWhiteFigure("white");
+    isBlackFigure("Black"),
+    isWhiteFigure("White");
 
     private final String color;
     Color(String color) {
         this.color = color;
     }
 
-    public String getColor() {
+    String getColor() {
         return color;
     }
-
 }

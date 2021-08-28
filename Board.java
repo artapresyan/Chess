@@ -1,34 +1,27 @@
 package com.company;
 
 public class Board {
-    void createBoard(Object[][] chessBoard) {
-        Figure rook = new Rook();
-        Figure knight = new Knight();
-        Figure bishop = new Bishop();
-        Figure queen = new Queen();
-        Figure king = new King();
-        Figure pawn = new Pawn();
-
-        chessBoard[0][0] = rook.p1whiteFigure();
-        chessBoard[0][1] = knight.p1whiteFigure();
-        chessBoard[0][2] = bishop.p1whiteFigure();
-        chessBoard[0][3] = king.p1whiteFigure();
-        chessBoard[0][4] = queen.p1whiteFigure();
-        chessBoard[0][5] = bishop.p1blackFigure();
-        chessBoard[0][6] = knight.p1whiteFigure();
-        chessBoard[0][7] = rook.p1whiteFigure();
+    void createBoard(Figure[][] chessBoard) {
+        chessBoard[0][0] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+        chessBoard[0][1] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
+        chessBoard[0][2] = new Bishop(Color.isWhiteFigure,FigureName.whiteWhiteBishop);
+        chessBoard[0][3] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+        chessBoard[0][4] = new Queen(Color.isWhiteFigure,FigureName.whiteQueen);
+        chessBoard[0][5] = new Bishop(Color.isWhiteFigure,FigureName.whiteBlackBishop);
+        chessBoard[0][6] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
+        chessBoard[0][7] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
         for (int i = 0; i < chessBoard[1].length; i++)
-            chessBoard[1][i] = pawn.p1whiteFigure();
-        chessBoard[7][0] = rook.p2blackFigure();
-        chessBoard[7][1] = knight.p2blackFigure();
-        chessBoard[7][2] = bishop.p2blackFigure();
-        chessBoard[7][3] = king.p2blackFigure();
-        chessBoard[7][4] = queen.p2blackFigure();
-        chessBoard[7][5] = bishop.p2whiteFigure();
-        chessBoard[7][6] = knight.p2blackFigure();
-        chessBoard[7][7] = rook.p2blackFigure();
+            chessBoard[1][i] = new Pawn(Color.isWhiteFigure,FigureName.whitePawn);
+        chessBoard[7][0] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+        chessBoard[7][1] = new Knight(Color.isBlackFigure,FigureName.blackKnight);
+        chessBoard[7][2] = new Bishop(Color.isBlackFigure,FigureName.blackBlackBishop);
+        chessBoard[7][3] = new King(Color.isBlackFigure,FigureName.blackKing);
+        chessBoard[7][4] = new Queen(Color.isBlackFigure,FigureName.blackQueen);
+        chessBoard[7][5] = new Bishop(Color.isBlackFigure,FigureName.blackWhiteBishop);
+        chessBoard[7][6] = new Knight(Color.isBlackFigure,FigureName.blackKnight);
+        chessBoard[7][7] = new Rook(Color.isBlackFigure,FigureName.blackRook);
         for (int i = 0; i < chessBoard[6].length; i++)
-            chessBoard[6][i] = pawn.p2blackFigure();
+            chessBoard[6][i] = new Pawn(Color.isBlackFigure,FigureName.blackPawn);
     }
 
     void printBoard(Object[][] chessBoard) {

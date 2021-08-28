@@ -18,7 +18,7 @@ public class Chess {
         boolean p1ValidMove=false;
         boolean p2ValidMove=false;
         int takeRow, takeColumn, putRow, putColumn;
-        Object[][] chessBoard = new Object[8][8];
+        Figure[][] chessBoard = new Figure[8][8];
         board.createBoard(chessBoard);
         System.out.println("""
                 

@@ -1,224 +1,231 @@
 package com.company;
 
 public class King extends Figure {
-    private final Object p1figureName = "w.K";
-    private final Object p2figureName = "b.K";
+    King(Color figureColor,FigureName figureName){
+        super(figureColor,figureName);
+    }
+    @Override
+    public String getFigureColor() {
+        return super.getFigureColor();
+    }
+    @Override
+    public String getFigureName() {
+        return super.getFigureName();
+    }
     private boolean wkIsMoved = false;
     private boolean bkIsMoved = false;
-
-    public Object p1whiteFigure() {
-        return p1figureName;
-    }
-
-    public Object p2blackFigure() {
-        return p2figureName;
-    }
-
-    void p1moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == "w.R") {
-            chessBoard[0][putColumn] = chessBoard[0][takeColumn];
-            chessBoard[0][takeColumn] = null;
-            chessBoard[0][putColumn + 1] = chessBoard[0][0];
-            chessBoard[0][0] = null;
-        } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == "w.R") {
-            chessBoard[0][putColumn] = chessBoard[0][takeColumn];
-            chessBoard[0][takeColumn] = null;
-            chessBoard[0][putColumn - 1] = chessBoard[0][7];
-            chessBoard[0][7] = null;
-        } else {
-            wkIsMoved = true;
-            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-            chessBoard[takeRow][takeColumn] = null;
-        }
-    }
-
-    void p2moveFigure(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] == "w.R") {
-            chessBoard[7][putColumn] = chessBoard[7][takeColumn];
-            chessBoard[7][takeColumn] = null;
-            chessBoard[7][putColumn + 1] = chessBoard[7][0];
-            chessBoard[7][0] = null;
-        } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == "w.R") {
-            chessBoard[7][putColumn] = chessBoard[7][takeColumn];
-            chessBoard[7][takeColumn] = null;
-            chessBoard[7][putColumn - 1] = chessBoard[7][7];
-            chessBoard[7][7] = null;
-        } else {
-            bkIsMoved = true;
-            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-            chessBoard[takeRow][takeColumn] = null;
-        }
-    }
-
-    boolean p1checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn] != p1whiteFigure() || takeRow == putRow && takeColumn == putColumn)
-            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-        if (!wkIsMoved && !p1KingChecked(chessBoard)) {
-            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] == "w.R") {
-                while (takeColumn > 2) {
-                    takeColumn--;
-                    if (chessBoard[0][takeColumn] != null)
-                        return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[0][putColumn + 1] = chessBoard[0][takeColumn];
+    @Override
+    void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+        if (getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+            if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] instanceof Rook &&
+                    chessBoard[0][0].getFigureColor().equals(Color.isWhiteFigure.getColor()) && ((Rook)chessBoard[0][0]).wrIsMoved()) {
+                chessBoard[0][putColumn] = chessBoard[0][takeColumn];
                 chessBoard[0][takeColumn] = null;
-                if (p1KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P1, Please Be Observant And Check Your King's Position...");
-                    chessBoard[0][takeColumn] = p1whiteFigure();
-                    chessBoard[0][putColumn + 1] = null;
-                    return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[0][putColumn] = chessBoard[0][putColumn + 1];
-                chessBoard[0][putColumn + 1] = null;
-                if (p1KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P1, Please Be Observant And Check Your King's Position...");
-                    chessBoard[0][takeColumn] = p1whiteFigure();
-                    chessBoard[0][putColumn] = null;
-                    return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[0][takeColumn] = p1whiteFigure();
-                chessBoard[0][putColumn] = null;
-                return true;
-            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] == "w.R") {
-                while (takeColumn < 7) {
-                    takeColumn++;
-                    if (chessBoard[0][takeColumn] != null)
-                        return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[0][putColumn - 1] = chessBoard[takeRow][takeColumn];
+                chessBoard[0][putColumn + 1] = chessBoard[0][0];
+                chessBoard[0][0] = null;
+            } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] instanceof Rook &&
+                    chessBoard[0][7].getFigureColor().equals(Color.isWhiteFigure.getColor()) && ((Rook)chessBoard[0][7]).wrIsMoved()) {
+                chessBoard[0][putColumn] = chessBoard[0][takeColumn];
+                chessBoard[0][takeColumn] = null;
+                chessBoard[0][putColumn - 1] = chessBoard[0][7];
+                chessBoard[0][7] = null;
+            } else {
+                wkIsMoved = true;
+                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 chessBoard[takeRow][takeColumn] = null;
-                if (p1KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P1, Please Be Observant And Check Your King's Position...");
-                    chessBoard[0][takeColumn] = p1whiteFigure();
-                    chessBoard[0][putColumn] = null;
-                    return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[0][putColumn] = chessBoard[0][putColumn - 1];
-                chessBoard[0][putColumn - 1] = null;
-                if (p1KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P1, Please Be Observant And Check Your King's Position...");
-                    chessBoard[0][takeColumn] = p1whiteFigure();
-                    chessBoard[0][putColumn] = null;
-                    return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[0][takeColumn] = p1whiteFigure();
-                chessBoard[0][putColumn] = null;
-                return true;
             }
-        }
-        if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
-            if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                if (chessBoard[putRow][putColumn] == null) {
-                    Object mover = chessBoard[putRow][putColumn];
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                    chessBoard[takeRow][takeColumn] = null;
-
-                    if (p1KingChecked(chessBoard)) {
-                        System.out.println("\n"+"P1, Please Be Observant And Check Your King's Position...");
-                        chessBoard[takeRow][takeColumn] = p2blackFigure();
-                        chessBoard[putRow][putColumn] = mover;
-                        return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                    }
-                    chessBoard[takeRow][takeColumn] = p2blackFigure();
-                    chessBoard[putRow][putColumn] = mover;
-                    return true;
-                }else if (chessBoard[putRow][putColumn].toString().charAt(0)=='w'){
-                    Object mover = chessBoard[putRow][putColumn];
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-                    chessBoard[takeRow][takeColumn] = null;
-
-                    if (p1KingChecked(chessBoard)) {
-                        System.out.println("\n"+"P1, Please Be Observant And Check Your King's Position...");
-                        chessBoard[takeRow][takeColumn] = p2blackFigure();
-                        chessBoard[putRow][putColumn] = mover;
-                        return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                    }
-                    chessBoard[takeRow][takeColumn] = p2blackFigure();
-                    chessBoard[putRow][putColumn] = mover;
-                    return true;
-                }
-            }
-        }
-        return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-    }
-
-    boolean p2checkMove(Object[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn] != p2blackFigure() || takeRow == putRow && takeColumn == putColumn)
-            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-        if (!bkIsMoved && !p2KingChecked(chessBoard)) {
-            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][1] == "b.R") {
-                while (takeColumn > 2) {
-                    takeColumn--;
-                    if (chessBoard[7][takeColumn] != null)
-                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[7][putColumn + 1] = chessBoard[7][takeColumn];
+        }else {
+            if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][0] instanceof Rook &&
+                    chessBoard[7][0].getFigureColor().equals(Color.isBlackFigure.getColor()) && ((Rook)chessBoard[7][0]).brIsMoved()) {
+                chessBoard[7][putColumn] = chessBoard[7][takeColumn];
                 chessBoard[7][takeColumn] = null;
-                if (p2KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                    chessBoard[7][takeColumn] = p2blackFigure();
-                    chessBoard[7][putColumn + 1] = null;
-                    return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[7][putColumn] = chessBoard[7][putColumn + 1];
-                chessBoard[7][putColumn + 1] = null;
-                if (p2KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                    chessBoard[7][takeColumn] = p2blackFigure();
-                    chessBoard[7][putColumn] = null;
-                    return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[7][takeColumn] = p2blackFigure();
-                chessBoard[7][putColumn] = null;
-                return true;
-            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == "b.R") {
-                while (takeColumn < 7) {
-                    takeColumn++;
-                    if (chessBoard[7][takeColumn] != null)
-                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[7][putColumn - 1] = chessBoard[takeRow][takeColumn];
+                chessBoard[7][putColumn + 1] = chessBoard[7][0];
+                chessBoard[7][0] = null;
+            } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] instanceof Rook &&
+                    chessBoard[7][7].getFigureColor().equals(Color.isBlackFigure.getColor()) && ((Rook)chessBoard[7][7]).brIsMoved()) {
+                chessBoard[7][putColumn] = chessBoard[7][takeColumn];
+                chessBoard[7][takeColumn] = null;
+                chessBoard[7][putColumn - 1] = chessBoard[7][7];
+                chessBoard[7][7] = null;
+            } else {
+                bkIsMoved = true;
+                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                 chessBoard[takeRow][takeColumn] = null;
-                if (p2KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                    chessBoard[7][takeColumn] = p2blackFigure();
-                    chessBoard[7][putColumn] = null;
-                    return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[7][putColumn] = chessBoard[7][putColumn - 1];
-                chessBoard[7][putColumn - 1] = null;
-                if (p2KingChecked(chessBoard)) {
-                    System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                    chessBoard[7][takeColumn] = p2blackFigure();
-                    chessBoard[7][putColumn] = null;
-                    return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-                }
-                chessBoard[7][takeColumn] = p2blackFigure();
-                chessBoard[7][putColumn] = null;
-                return true;
             }
         }
-        if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
-            if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                if (chessBoard[putRow][putColumn] == null || chessBoard[putRow][putColumn].toString().charAt(0) == 'w') {
-                    Object mover = chessBoard[putRow][putColumn];
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+    }
+    @Override
+    boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+        if (takeRow == putRow && takeColumn == putColumn)
+            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+        int i=takeRow;
+        int j=takeColumn;
+        if (getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+            if (!wkIsMoved && !KingChecked(chessBoard)) {
+                if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] instanceof Rook &&
+                        chessBoard[0][0].getFigureColor().equals(Color.isWhiteFigure.getColor()) && ((Rook)chessBoard[0][0]).wrIsMoved()) {
+                    while (j > 2) {
+                        j--;
+                        if (chessBoard[0][takeColumn] != null)
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[0][putColumn + 1] = chessBoard[0][takeColumn];
+                    chessBoard[0][takeColumn] = null;
+                    if (KingChecked(chessBoard)) {
+                        System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
+                        chessBoard[0][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                        chessBoard[0][putColumn + 1] = null;
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[0][putColumn] = chessBoard[0][putColumn + 1];
+                    chessBoard[0][putColumn + 1] = null;
+                    if (KingChecked(chessBoard)) {
+                        System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
+                        chessBoard[0][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                        chessBoard[0][putColumn] = null;
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[0][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                    chessBoard[0][putColumn] = null;
+                    return true;
+                } else if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == -2 && chessBoard[0][7] instanceof Rook &&
+                        chessBoard[0][7].getFigureColor().equals(Color.isWhiteFigure.getColor()) && ((Rook)chessBoard[0][7]).wrIsMoved()) {
+                    while (j < 7) {
+                        j++;
+                        if (chessBoard[0][takeColumn] != null)
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[0][putColumn - 1] = chessBoard[takeRow][takeColumn];
+                    chessBoard[takeRow][takeColumn] = null;
+                    if (KingChecked(chessBoard)) {
+                        System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
+                        chessBoard[0][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                        chessBoard[0][putColumn] = null;
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[0][putColumn] = chessBoard[0][putColumn - 1];
+                    chessBoard[0][putColumn - 1] = null;
+                    if (KingChecked(chessBoard)) {
+                        System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
+                        chessBoard[0][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                        chessBoard[0][putColumn] = null;
+                        return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[0][takeColumn] = new King(Color.isWhiteFigure,FigureName.whiteKing);
+                    chessBoard[0][putColumn] = null;
+                    return true;
+                }
+            }////////////////////////////////-----------------
+            if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
+                if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
+                    if (chessBoard[putRow][putColumn] == null) {
+                        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                        chessBoard[takeRow][takeColumn] = null;
+
+                        if (p1KingChecked(chessBoard)) {
+                            System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
+                            chessBoard[takeRow][takeColumn] = p2blackFigure();
+                            chessBoard[putRow][putColumn] = mover;
+                            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        }
+                        chessBoard[takeRow][takeColumn] = p2blackFigure();
+                        chessBoard[putRow][putColumn] = mover;
+                        return true;
+                    } else if (chessBoard[putRow][putColumn].toString().charAt(0) == 'w') {
+                        Object mover = chessBoard[putRow][putColumn];
+                        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                        chessBoard[takeRow][takeColumn] = null;
+
+                        if (p1KingChecked(chessBoard)) {
+                            System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
+                            chessBoard[takeRow][takeColumn] = p2blackFigure();
+                            chessBoard[putRow][putColumn] = mover;
+                            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        }
+                        chessBoard[takeRow][takeColumn] = p2blackFigure();
+                        chessBoard[putRow][putColumn] = mover;
+                        return true;
+                    }
+                }
+            }
+            return super.p1checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+        }else {
+            if (chessBoard[takeRow][takeColumn] != p2blackFigure() || takeRow == putRow && takeColumn == putColumn)
+                return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+            if (!bkIsMoved && !p2KingChecked(chessBoard)) {
+                if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == 2 && chessBoard[7][1] == "b.R") {
+                    while (takeColumn > 2) {
+                        takeColumn--;
+                        if (chessBoard[7][takeColumn] != null)
+                            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[7][putColumn + 1] = chessBoard[7][takeColumn];
+                    chessBoard[7][takeColumn] = null;
+                    if (p2KingChecked(chessBoard)) {
+                        System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
+                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][putColumn + 1] = null;
+                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[7][putColumn] = chessBoard[7][putColumn + 1];
+                    chessBoard[7][putColumn + 1] = null;
+                    if (p2KingChecked(chessBoard)) {
+                        System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
+                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][putColumn] = null;
+                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[7][takeColumn] = p2blackFigure();
+                    chessBoard[7][putColumn] = null;
+                    return true;
+                } else if (putRow == 7 && takeRow == 7 && takeColumn - putColumn == -2 && chessBoard[7][7] == "b.R") {
+                    while (takeColumn < 7) {
+                        takeColumn++;
+                        if (chessBoard[7][takeColumn] != null)
+                            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[7][putColumn - 1] = chessBoard[takeRow][takeColumn];
                     chessBoard[takeRow][takeColumn] = null;
                     if (p2KingChecked(chessBoard)) {
                         System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[putRow][putColumn] = mover;
-                        chessBoard[takeRow][takeColumn] = p2blackFigure();
+                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][putColumn] = null;
                         return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[putRow][putColumn] = mover;
-                    chessBoard[takeRow][takeColumn] = p2blackFigure();
+                    chessBoard[7][putColumn] = chessBoard[7][putColumn - 1];
+                    chessBoard[7][putColumn - 1] = null;
+                    if (p2KingChecked(chessBoard)) {
+                        System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
+                        chessBoard[7][takeColumn] = p2blackFigure();
+                        chessBoard[7][putColumn] = null;
+                        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                    }
+                    chessBoard[7][takeColumn] = p2blackFigure();
+                    chessBoard[7][putColumn] = null;
                     return true;
                 }
             }
+            if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
+                if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
+                    if (chessBoard[putRow][putColumn] == null || chessBoard[putRow][putColumn].toString().charAt(0) == 'w') {
+                        Object mover = chessBoard[putRow][putColumn];
+                        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                        chessBoard[takeRow][takeColumn] = null;
+                        if (p2KingChecked(chessBoard)) {
+                            System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
+                            chessBoard[putRow][putColumn] = mover;
+                            chessBoard[takeRow][takeColumn] = p2blackFigure();
+                            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        }
+                        chessBoard[putRow][putColumn] = mover;
+                        chessBoard[takeRow][takeColumn] = p2blackFigure();
+                        return true;
+                    }
+                }
+            }
+            return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         }
-        return super.p2checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
     }
-
     boolean p1KingChecked(Object[][] chessBoard) {
         int i = -1;
         int j;
