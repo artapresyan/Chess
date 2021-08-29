@@ -5,8 +5,7 @@ public class Chess {
 
     public static void main(String[] args) {
         Board board = new Board();
-        Scanner getLet = new Scanner(System.in);
-        Scanner getNum = new Scanner(System.in);
+        Scanner getString = new Scanner(System.in);
         Figure whiteRook = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
         Figure whiteKnight = new Knight(Color.isWhiteFigure, FigureName.whiteKnight);
         Figure whiteBishop = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
@@ -24,14 +23,13 @@ public class Chess {
         boolean p1ValidMove = false;
         boolean p2ValidMove = false;
         int takeRow, takeColumn, putRow, putColumn;
-        String takeColumnLet, putColumnLet;
+        String takeColumnString, putColumnString,takeRowString,putRowString;
         Figure[][] chessBoard = new Figure[8][8];
         board.createBoard(chessBoard);
         System.out.println("""
                                 
                             Game Stared
                 """);
-        whiteBishop.moveFigure(chessBoard,0,2,3,5);
         whiteQueen.moveFigure(chessBoard,0,4,2,2);
         board.printBoard(chessBoard);
         while (!gameOver) {
@@ -55,69 +53,71 @@ public class Chess {
                             do {
                                 do {
                                     System.out.println("\n" + "P1 Enter Letter From Which Column To Take");
-                                    takeColumnLet = getLet.nextLine();
-                                    if (!takeColumnLet.matches("[a-hA-H]"))
+                                    takeColumnString = getString.nextLine();
+                                    if (!takeColumnString.matches("[a-hA-H]"))
                                         System.out.println("P1 Enter Valid Column");
-                                } while (!takeColumnLet.matches("[a-hA-H]"));
+                                } while (!takeColumnString.matches("[a-hA-H]"));
                                 do {
                                     System.out.println("\n" + "P1 Enter Number From Which Row To Take");
-                                    takeRow = getNum.nextByte();
-                                    if (takeRow < 1 || takeRow > 8)
+                                    takeRowString = getString.nextLine();
+                                    if (!takeRowString.matches("[1-8]"))
                                         System.out.println("P1 Enter Valid Row");
-                                } while (takeRow < 1 || takeRow > 8);
-                                takeColumn = 105 - takeColumnLet.charAt(0);
-                                if (chessBoard[takeRow - 1][takeColumn - 1] == null)
+                                } while (!takeRowString.matches("[1-8]"));
+                                takeColumn = 104 - takeColumnString.charAt(0);
+                                takeRow=Integer.parseInt(takeRowString)-1;
+                                if (chessBoard[takeRow][takeColumn] == null)
                                     System.out.println("There Is No Figure There");
-                            } while (chessBoard[takeRow - 1][takeColumn - 1] == null);
-                            if (!chessBoard[takeRow - 1][takeColumn - 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                            } while (chessBoard[takeRow][takeColumn] == null);
+                            if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()))
                                 System.out.println("You Can Play Only With White Figures");
-                        } while (!chessBoard[takeRow - 1][takeColumn - 1].getFigureColor().equals(Color.isWhiteFigure.getColor()));
+                        } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()));
                         do {
                             System.out.println("\n" + "P1 Enter Letter On Which Column To Put");
-                            putColumnLet = getLet.nextLine();
-                            if (!putColumnLet.matches("[a-hA-H]"))
+                            putColumnString = getString.nextLine();
+                            if (!putColumnString.matches("[a-hA-H]"))
                                 System.out.println("P1 Enter Valid Column");
-                        } while (!putColumnLet.matches("[a-hA-H]"));
+                        } while (!putColumnString.matches("[a-hA-H]"));
                         do {
                             System.out.println("\n" + "P1 Enter Number On Which Row to Put");
-                            putRow = getNum.nextByte();
-                            if (putRow < 1 || putRow > 8)
+                            putRowString = getString.nextLine();
+                            if (!putRowString.matches("[1-8]"))
                                 System.out.println("P1 Enter Valid Row");
-                        } while (putRow < 1 || putRow > 8);
-                        putColumn = 105 - putColumnLet.charAt(0);
-                        if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Rook) {
-                            if (whiteRook.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                whiteRook.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } while (!putRowString.matches("[1-8]"));
+                        putColumn = 104 - putColumnString.charAt(0);
+                        putRow=Integer.parseInt(putRowString)-1;
+                        if (chessBoard[takeRow][takeColumn] instanceof Rook) {
+                            if (whiteRook.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                whiteRook.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p1ValidMove = true;
                             } else
                                 System.out.println("P1 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Knight) {
-                            if (whiteKnight.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                whiteKnight.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Knight) {
+                            if (whiteKnight.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                whiteKnight.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p1ValidMove = true;
                             } else
                                 System.out.println("P1 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Bishop) {
-                            if (whiteBishop.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                whiteBishop.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Bishop) {
+                            if (whiteBishop.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                whiteBishop.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p1ValidMove = true;
                             } else
                                 System.out.println("P1 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof King) {
-                            if (whiteKing.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                whiteKing.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof King) {
+                            if (whiteKing.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                whiteKing.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p1ValidMove = true;
                             } else
                                 System.out.println("P1 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Queen) {
-                            if (whiteQueen.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                whiteQueen.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Queen) {
+                            if (whiteQueen.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                whiteQueen.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p1ValidMove = true;
                             } else
                                 System.out.println("P1 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Pawn) {
-                            if (whitePawn.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                whitePawn.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Pawn) {
+                            if (whitePawn.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                whitePawn.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p1ValidMove = true;
                             } else
                                 System.out.println("P1 Enter Valid Move");
@@ -144,69 +144,71 @@ public class Chess {
                             do {
                                 do {
                                     System.out.println("\n" + "P2 Enter Letter From Which Column To Take");
-                                    takeColumnLet = getLet.nextLine();
-                                    if (!takeColumnLet.matches("[a-hA-H]"))
+                                    takeColumnString = getString.nextLine();
+                                    if (!takeColumnString.matches("[a-hA-H]"))
                                         System.out.println("P2 Enter Valid Column");
-                                } while (!takeColumnLet.matches("[a-hA-H]"));
+                                } while (!takeColumnString.matches("[a-hA-H]"));
                                 do {
                                     System.out.println("\n" + "P2 Enter Number From Which Row To Take");
-                                    takeRow = getNum.nextByte();
-                                    if (takeRow < 1 || takeRow > 8)
+                                    takeRowString = getString.nextLine();
+                                    if (!takeRowString.matches("[1-8]"))
                                         System.out.println("P2 Enter Valid Row");
-                                } while (takeRow < 1 || takeRow > 8);
-                                takeColumn = 105 - takeColumnLet.charAt(0);
-                                if (chessBoard[takeRow - 1][takeColumn - 1] == null)
+                                } while (!takeRowString.matches("[1-8]"));
+                                takeColumn = 104 - takeColumnString.charAt(0);
+                                takeRow=Integer.parseInt(takeRowString)-1;
+                                if (chessBoard[takeRow][takeColumn] == null)
                                     System.out.println("There Is No Figure There");
-                            } while (chessBoard[takeRow - 1][takeColumn - 1] == null);
-                            if (!chessBoard[takeRow - 1][takeColumn - 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                            } while (chessBoard[takeRow][takeColumn] == null);
+                            if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()))
                                 System.out.println("You Can Play Only With Black Figures");
-                        } while (!chessBoard[takeRow - 1][takeColumn - 1].getFigureColor().equals(Color.isBlackFigure.getColor()));
+                        } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()));
                         do {
                             System.out.println("\n" + "P2 Enter Letter On Which Column To Put");
-                            putColumnLet = getLet.nextLine();
-                            if (!putColumnLet.matches("[a-hA-H]"))
+                            putColumnString = getString.nextLine();
+                            if (!putColumnString.matches("[a-hA-H]"))
                                 System.out.println("P2 Enter Valid Column");
-                        } while (!putColumnLet.matches("[a-hA-H]"));
+                        } while (!putColumnString.matches("[a-hA-H]"));
                         do {
                             System.out.println("\n" + "P2 Enter Number On Which Row to Put");
-                            putRow = getNum.nextByte();
-                            if (putRow < 1 || putRow > 8)
+                            putRowString = getString.nextLine();
+                            if (!putRowString.matches("[1-8]"))
                                 System.out.println("P2 Enter Valid Row");
-                        } while (putRow < 1 || putRow > 8);
-                        putColumn = 105 - putColumnLet.charAt(0);
-                        if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Rook) {
-                            if (blackRook.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                blackRook.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } while (!putRowString.matches("[1-8]"));
+                        putColumn = 104 - putColumnString.charAt(0);
+                        putRow=Integer.parseInt(putRowString)-1;
+                        if (chessBoard[takeRow][takeColumn] instanceof Rook) {
+                            if (blackRook.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                blackRook.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p2ValidMove = true;
                             } else
                                 System.out.println("P2 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Knight) {
-                            if (blackKnight.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                blackKnight.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Knight) {
+                            if (blackKnight.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                blackKnight.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p2ValidMove = true;
                             } else
                                 System.out.println("P2 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Bishop) {
-                            if (blackBishop.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                blackBishop.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Bishop) {
+                            if (blackBishop.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                blackBishop.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p2ValidMove = true;
                             } else
                                 System.out.println("P2 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof King) {
-                            if (blackKing.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                blackKing.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof King) {
+                            if (blackKing.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                blackKing.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p2ValidMove = true;
                             } else
                                 System.out.println("P2 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Queen) {
-                            if (blackQueen.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                blackQueen.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Queen) {
+                            if (blackQueen.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                blackQueen.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p2ValidMove = true;
                             } else
                                 System.out.println("P2 Enter Valid Move");
-                        } else if (chessBoard[takeRow - 1][takeColumn - 1] instanceof Pawn) {
-                            if (blackPawn.checkMove(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1)) {
-                                blackPawn.moveFigure(chessBoard, takeRow - 1, takeColumn - 1, putRow - 1, putColumn - 1);
+                        } else if (chessBoard[takeRow][takeColumn] instanceof Pawn) {
+                            if (blackPawn.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
+                                blackPawn.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
                                 p2ValidMove = true;
                             } else
                                 System.out.println("P2 Enter Valid Move");
