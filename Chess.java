@@ -5,7 +5,7 @@ public class Chess {
 
     public static void main(String[] args) {
         Board board = new Board();
-    //    Scanner getLet = new Scanner(System.in);
+        Scanner getLet = new Scanner(System.in);
         Scanner getNum = new Scanner(System.in);
         Figure whiteRook = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
         Figure whiteKnight = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
@@ -24,17 +24,13 @@ public class Chess {
         boolean p1ValidMove=false;
         boolean p2ValidMove=false;
         int takeRow, takeColumn, putRow, putColumn;
+        String takeColumnLet,putColumnLet;
         Figure[][] chessBoard = new Figure[8][8];
         board.createBoard(chessBoard);
         System.out.println("""
                 
                             Game Stared
                 """);
-        whiteKnight.moveFigure(chessBoard,0,1,2,0);
-        whitePawn.moveFigure(chessBoard,1,1,2,1);
-        whiteBishop.moveFigure(chessBoard,0,2,1,1);
-        whiteRook.moveFigure(chessBoard,0,0,0,1);
-        whiteRook.moveFigure(chessBoard,0,1,0,0);
         board.printBoard(chessBoard);
         while (!gameOver) {
             queue++;
@@ -55,18 +51,38 @@ public class Chess {
                     do {
                        do {
                            do {
-                               System.out.println("\n" + "P1 Take Your Figure");
-                               System.out.println("\n" + "P1 Enter takeRow");
-                               takeRow = getNum.nextByte();
-                               System.out.println("\n" + "P1 Enter takeColumn");
-                               takeColumn = getNum.nextByte();
+                                   do {
+                                       System.out.println("\n" + "P1 Enter Letter From Which Column To Take");
+                                       takeColumnLet = getLet.nextLine();
+                                       if (!takeColumnLet.matches("[a-hA-H]"))
+                                           System.out.println("P1 Enter Valid Column");
+                                   }while (!takeColumnLet.matches("[a-hA-H]"));
+                                   do {
+                                       System.out.println("\n" + "P1 Enter Number From Which Row To Take");
+                                       takeRow = getNum.nextByte();
+                                       if (takeRow<1 || takeRow>8)
+                                           System.out.println("P1 Enter Valid Row");
+                                   }while (takeRow<1 || takeRow>8);
+                               takeColumn=takeColumnLet.charAt(0)-96;
+                               if (chessBoard[takeRow-1][takeColumn-1]==null)
+                                   System.out.println("There Is No Figure There");
                            }while (chessBoard[takeRow-1][takeColumn-1]==null);
+                           if (!chessBoard[takeRow-1][takeColumn-1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
+                               System.out.println("You Can Play Only With White Figures");
                         } while (!chessBoard[takeRow-1][takeColumn-1].getFigureColor().equals(Color.isWhiteFigure.getColor()));
-                        System.out.println("\n"+"P1 Enter putRow");
-                        putRow = getNum.nextByte();
-                        System.out.println("\n"+"P1 Enter putColumn");
-                        putColumn = getNum.nextByte();
-
+                       do {
+                           System.out.println("\n" + "P1 Enter Letter On Which Column To Put");
+                           putColumnLet = getLet.nextLine();
+                           if (!putColumnLet.matches("[a-hA-H]"))
+                               System.out.println("P1 Enter Valid Column");
+                       }while (!putColumnLet.matches("[a-hA-H]"));
+                       do {
+                           System.out.println("\n" + "P1 Enter Number On Which Row to Put");
+                           putRow = getNum.nextByte();
+                               if (putRow<1 || putRow>8)
+                                   System.out.println("P1 Enter Valid Row");
+                       }while (putRow<1 || putRow>8);
+                        putColumn=putColumnLet.charAt(0)-96;
                         if (chessBoard[takeRow-1][takeColumn-1] instanceof Rook) {
                             if (whiteRook.checkMove(chessBoard, takeRow-1, takeColumn-1, putRow-1, putColumn-1)) {
                                 whiteRook.moveFigure(chessBoard, takeRow-1, takeColumn-1, putRow-1, putColumn-1);
@@ -124,17 +140,38 @@ public class Chess {
                     do {
                         do {
                             do {
-                                System.out.println("\n" + "P2 Take Valid Figure");
-                                System.out.println("\n" + "P2 Enter TakeRow");
-                                takeRow = getNum.nextByte();
-                                System.out.println("\n" + "P2 Enter TakeColumn");
-                                takeColumn = getNum.nextByte();
+                                do {
+                                    System.out.println("\n" + "P2 Enter Letter From Which Column To Take");
+                                    takeColumnLet = getLet.nextLine();
+                                    if (!takeColumnLet.matches("[a-hA-H]"))
+                                        System.out.println("P2 Enter Valid Column");
+                                }while (!takeColumnLet.matches("[a-hA-H]"));
+                                do {
+                                    System.out.println("\n" + "P2 Enter Number From Which Row To Take");
+                                    takeRow = getNum.nextByte();
+                                    if (takeRow<1 || takeRow>8)
+                                        System.out.println("P2 Enter Valid Row");
+                                }while (takeRow<1 || takeRow>8);
+                                takeColumn=takeColumnLet.charAt(0)-96;
+                                if (chessBoard[takeRow-1][takeColumn-1]==null)
+                                    System.out.println("There Is No Figure There");
                             }while (chessBoard[takeRow-1][takeColumn-1]==null);
-                        }while (!chessBoard[takeRow-1][takeColumn-1].getFigureColor().equals(Color.isBlackFigure.getColor()));
-                        System.out.println("\n"+"P2 Enter PutRow");
-                        putRow = getNum.nextByte();
-                        System.out.println("\n"+"P2 Enter PutColumn");
-                        putColumn = getNum.nextByte();
+                            if (!chessBoard[takeRow-1][takeColumn-1].getFigureColor().equals(Color.isBlackFigure.getColor()))
+                                System.out.println("You Can Play Only With Black Figures");
+                        } while (!chessBoard[takeRow-1][takeColumn-1].getFigureColor().equals(Color.isBlackFigure.getColor()));
+                        do {
+                            System.out.println("\n" + "P2 Enter Letter On Which Column To Put");
+                            putColumnLet = getLet.nextLine();
+                            if (!putColumnLet.matches("[a-hA-H]"))
+                                System.out.println("P2 Enter Valid Column");
+                        }while (!putColumnLet.matches("[a-hA-H]"));
+                        do {
+                            System.out.println("\n" + "P2 Enter Number On Which Row to Put");
+                            putRow = getNum.nextByte();
+                            if (putRow<1 || putRow>8)
+                                System.out.println("P2 Enter Valid Row");
+                        }while (putRow<1 || putRow>8);
+                        putColumn=putColumnLet.charAt(0)-96;
                     if (chessBoard[takeRow-1][takeColumn-1] instanceof Rook) {
                         if (blackRook.checkMove(chessBoard, takeRow-1, takeColumn-1, putRow-1, putColumn-1)) {
                             blackRook.moveFigure(chessBoard, takeRow-1, takeColumn-1, putRow-1, putColumn-1);
