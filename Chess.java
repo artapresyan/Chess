@@ -30,7 +30,6 @@ public class Chess {
                                 
                             Game Stared
                 """);
-        whiteQueen.moveFigure(chessBoard,0,4,2,2);
         board.printBoard(chessBoard);
         while (!gameOver) {
             queue++;
