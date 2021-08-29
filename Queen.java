@@ -396,7 +396,7 @@ public class Queen extends Figure {
                                 } else if (chessBoard[i][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if(!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = new Queen(Color.isWhiteFigure, FigureName.whiteQueen);
                                         chessBoard[i][column] = save;
                                         return true;

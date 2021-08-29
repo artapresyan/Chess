@@ -1,15 +1,18 @@
 package com.company;
 
 public class Rook extends Figure {
-    private boolean wrIsMoved=false;
-    private boolean brIsMoved=false;
-    Rook(Color figureColor,FigureName figureName){
-        super(figureColor,figureName);
+    private boolean wrIsMoved = false;
+    private boolean brIsMoved = false;
+
+    Rook(Color figureColor, FigureName figureName) {
+        super(figureColor, figureName);
     }
+
     @Override
     public String getFigureColor() {
         return super.getFigureColor();
     }
+
     @Override
     public String getFigureName() {
         return super.getFigureName();
@@ -22,15 +25,17 @@ public class Rook extends Figure {
     boolean brIsMoved() {
         return brIsMoved;
     }
+
     @Override
     void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()) && wrIsMoved==false)
+        if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()) && wrIsMoved == false)
             wrIsMoved = true;
-        else if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()) && brIsMoved==false)
-            brIsMoved=true;
+        else if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()) && brIsMoved == false)
+            brIsMoved = true;
         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
         chessBoard[takeRow][takeColumn] = null;
     }
+
     @Override
     boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (takeRow == putRow && takeColumn == putColumn)
@@ -39,7 +44,7 @@ public class Rook extends Figure {
         int j = takeColumn;
         King king;
         if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-            king = new King(Color.isWhiteFigure,FigureName.whiteKing);
+            king = new King(Color.isWhiteFigure, FigureName.whiteKing);
             if (takeRow == putRow) {
                 if (putColumn > takeColumn) {
                     while (takeColumn < putColumn - 1) {
@@ -75,13 +80,13 @@ public class Rook extends Figure {
                 chessBoard[putRow][putColumn] = chessBoard[i][j];
                 chessBoard[i][j] = null;
 
-                if (king.kingChecked(chessBoard,Color.isWhiteFigure)) {
+                if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                     System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                    chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                    chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                     chessBoard[putRow][putColumn] = save;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                 chessBoard[putRow][putColumn] = save;
                 return true;
             } else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isBlackFigure.getColor())) {
@@ -89,19 +94,19 @@ public class Rook extends Figure {
                 chessBoard[putRow][putColumn] = chessBoard[i][j];
                 chessBoard[i][j] = null;
 
-                if (king.kingChecked(chessBoard,Color.isWhiteFigure)) {
+                if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                     System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                    chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                    chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                     chessBoard[putRow][putColumn] = save;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                 chessBoard[putRow][putColumn] = save;
                 return true;
             }
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
-        }else {
-            king = new King(Color.isBlackFigure,FigureName.blackKing);
+        } else {
+            king = new King(Color.isBlackFigure, FigureName.blackKing);
             if (takeRow == putRow) {
                 if (putColumn > takeColumn) {
                     while (takeColumn < putColumn - 1) {
@@ -134,35 +139,36 @@ public class Rook extends Figure {
             if (chessBoard[putRow][putColumn] == null) {
                 chessBoard[putRow][putColumn] = chessBoard[i][j];
                 chessBoard[i][j] = null;
-                if (king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                    System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                    chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                    System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
+                    chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                     chessBoard[putRow][putColumn] = null;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                 chessBoard[putRow][putColumn] = null;
                 return true;
-            }else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())){
+            } else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                 Figure save = chessBoard[putRow][putColumn];
                 chessBoard[putRow][putColumn] = chessBoard[i][j];
                 chessBoard[i][j] = null;
 
-                if (king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                    System.out.println("\n"+"P2, Please Be Observant And Check Your King's Position...");
-                    chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                    System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
+                    chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                     chessBoard[putRow][putColumn] = save;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                 chessBoard[putRow][putColumn] = save;
                 return true;
             }
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         }
     }
+
     @Override
-    boolean noMoves(Figure[][] chessBoard,Color color) {
+    boolean noMoves(Figure[][] chessBoard, Color color) {
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -190,7 +196,7 @@ public class Rook extends Figure {
                     }
                 }
             }
-        }else {
+        } else {
             for (int i = chessBoard.length - 1; i >= 0; i--) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
@@ -220,11 +226,12 @@ public class Rook extends Figure {
         }
         return super.noMoves(chessBoard, color);
     }
+
     @Override
-    boolean coverCheck(Figure[][] chessBoard,Color color) {
+    boolean coverCheck(Figure[][] chessBoard, Color color) {
         King king;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
-            king = new King(Color.isWhiteFigure,FigureName.whiteKing);
+            king = new King(Color.isWhiteFigure, FigureName.whiteKing);
             Figure save;
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -237,23 +244,23 @@ public class Rook extends Figure {
                                 if (chessBoard[row][j] == null) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[row][j] = save;
                                     }
                                 } else if (chessBoard[row][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                     chessBoard[row][j] = save;
                                     break;
                                 } else
@@ -269,23 +276,23 @@ public class Rook extends Figure {
                                 if (chessBoard[row][j] == null) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[row][j] = save;
                                     }
                                 } else if (chessBoard[row][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                     chessBoard[row][j] = save;
                                     break;
                                 } else
@@ -301,23 +308,23 @@ public class Rook extends Figure {
                                 if (chessBoard[i][column] == null) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)){
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[i][column] = save;
                                     }
                                 } else if (chessBoard[i][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                     chessBoard[i][column] = save;
                                     break;
                                 } else
@@ -333,23 +340,23 @@ public class Rook extends Figure {
                                 if (chessBoard[i][column] == null) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[i][column] = save;
                                     }
                                 } else if (chessBoard[i][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isWhiteFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    if (!king.kingChecked(chessBoard, Color.isWhiteFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+                                    chessBoard[i][j] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
                                     chessBoard[i][column] = save;
                                     break;
                                 } else
@@ -360,8 +367,8 @@ public class Rook extends Figure {
                     }
                 }
             }
-        }else {
-            king = new King(Color.isBlackFigure,FigureName.blackKing);
+        } else {
+            king = new King(Color.isBlackFigure, FigureName.blackKing);
             Figure save;
             for (int i = chessBoard.length - 1; i >= 0; i--) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -374,23 +381,24 @@ public class Rook extends Figure {
                                 if (chessBoard[row][j] == null) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[row][j] = save;
                                     }
                                 } else if (chessBoard[row][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);;
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
+                                        ;
                                         chessBoard[row][j] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                     chessBoard[row][j] = save;
                                     break;
                                 } else
@@ -406,23 +414,23 @@ public class Rook extends Figure {
                                 if (chessBoard[row][j] == null) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[row][j] = save;
                                     }
                                 } else if (chessBoard[row][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                                     chessBoard[row][j] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[row][j] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                     chessBoard[row][j] = save;
                                     break;
                                 } else
@@ -438,23 +446,23 @@ public class Rook extends Figure {
                                 if (chessBoard[i][column] == null) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[i][column] = save;
                                     }
                                 } else if (chessBoard[i][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                     chessBoard[i][column] = save;
                                     break;
                                 } else
@@ -470,23 +478,23 @@ public class Rook extends Figure {
                                 if (chessBoard[i][column] == null) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     } else {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[i][column] = save;
                                     }
                                 } else if (chessBoard[i][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                                     chessBoard[i][column] = chessBoard[i][j];
                                     chessBoard[i][j] = null;
-                                    if (!king.kingChecked(chessBoard,Color.isBlackFigure)) {
-                                        chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    if (!king.kingChecked(chessBoard, Color.isBlackFigure)) {
+                                        chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                         chessBoard[i][column] = save;
                                         return true;
                                     }
-                                    chessBoard[i][j] = new Rook(Color.isBlackFigure,FigureName.blackRook);
+                                    chessBoard[i][j] = new Rook(Color.isBlackFigure, FigureName.blackRook);
                                     chessBoard[i][column] = save;
                                     break;
                                 } else
@@ -498,6 +506,6 @@ public class Rook extends Figure {
                 }
             }
         }
-        return super.coverCheck(chessBoard,color);
+        return super.coverCheck(chessBoard, color);
     }
 }

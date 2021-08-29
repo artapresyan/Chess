@@ -32,11 +32,11 @@ public class Board {
         printBoard[9][9] = "  ";
         for (int a = 1, x = 1; a < printBoard.length - 1; a++, x++)
             printBoard[a][9] = " " + x;
-        for (char a = 'A', x = 1; x < printBoard.length - 1; a++, x++)
+        for (char a = 'H', x = 1; x < printBoard.length - 1; a--, x++)
             printBoard[9][x] = " " + a + " ";
         for (int a = 1, x = 1; a < printBoard.length - 1; a++, x++)
             printBoard[a][0] = x + " ";
-        for (char a = 'A', x = 1; x < printBoard[0].length - 1; a++, x++)
+        for (char a = 'H', x = 1; x < printBoard[0].length - 1; a--, x++)
             printBoard[0][x] = " " + a + " ";
 
         for (int i = 0; i < printBoard.length; i++) {
