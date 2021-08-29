@@ -63,28 +63,28 @@ public class Queen extends Figure {
                 while (takeRow < putRow - 1 && takeColumn < putColumn - 1) {
                     takeRow++;
                     takeColumn++;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow-1 && takeColumn != putColumn-1) || (takeRow != putRow-1 && takeColumn == putColumn-1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             } else if (putRow > takeRow) {
                 while (takeRow < putRow - 1 && takeColumn > putColumn + 1) {
                     takeRow++;
                     takeColumn--;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow-1 && takeColumn != putColumn+1) || (takeRow != putRow-1 && takeColumn == putColumn+1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             } else if (putColumn < takeColumn) {
                 while (takeRow > putRow + 1 && takeColumn > putColumn + 1) {
                     takeRow--;
                     takeColumn--;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow+1 && takeColumn != putColumn+1) || (takeRow != putRow+1 && takeColumn == putColumn+1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             } else {
                 while (takeRow > putRow + 1 && takeColumn < putColumn - 1) {
                     takeRow--;
                     takeColumn++;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow+1 && takeColumn != putColumn-1) || (takeRow != putRow+1 && takeColumn == putColumn-1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             }
@@ -148,28 +148,28 @@ public class Queen extends Figure {
                 while (takeRow < putRow - 1 && takeColumn < putColumn - 1) {
                     takeRow++;
                     takeColumn++;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow-1 && takeColumn != putColumn-1) || (takeRow != putRow-1 && takeColumn == putColumn-1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             } else if (putRow > takeRow) {
                 while (takeRow < putRow - 1 && takeColumn > putColumn + 1) {
                     takeRow++;
                     takeColumn--;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow-1 && takeColumn != putColumn+1) || (takeRow != putRow-1 && takeColumn == putColumn+1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             } else if (putColumn < takeColumn) {
                 while (takeRow > putRow + 1 && takeColumn > putColumn + 1) {
                     takeRow--;
                     takeColumn--;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow+1 && takeColumn != putColumn+1) || (takeRow != putRow+1 && takeColumn == putColumn+1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             } else {
                 while (takeRow > putRow + 1 && takeColumn < putColumn - 1) {
                     takeRow--;
                     takeColumn++;
-                    if (chessBoard[takeRow][takeColumn] != null || takeRow == putRow && takeColumn != putColumn || takeRow != putRow && takeColumn == putColumn)
+                    if (chessBoard[takeRow][takeColumn] != null || (takeRow == putRow+1 && takeColumn != putColumn-1) || (takeRow != putRow+1 && takeColumn == putColumn-1))
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
             }
@@ -205,107 +205,7 @@ public class Queen extends Figure {
     }
 
     @Override
-    boolean noMoves(Figure[][] chessBoard, Color color) {
-        if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
-            for (int i = 0; i < chessBoard.length; i++) {
-                for (int j = 0; j < chessBoard[i].length; j++) {
-                    if (chessBoard[i][j] instanceof Queen && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                        try {
-                            if (chessBoard[i + 1][j] == null || chessBoard[i + 1][j].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j] == null || chessBoard[i - 1][j].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j + 1] == null || chessBoard[i][j + 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j - 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i + 1][j - 1] == null || chessBoard[i + 1][j].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i + 1][j + 1] == null || chessBoard[i - 1][j].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j + 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j - 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                    }
-                }
-            }
-        } else {
-            for (int i = chessBoard.length - 1; i >= 0; i--) {
-                for (int j = 0; j < chessBoard[i].length; j++) {
-                    if (chessBoard[i][j] instanceof Queen && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                        try {
-                            if (chessBoard[i + 1][j] == null || chessBoard[i + 1][j].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j] == null || chessBoard[i - 1][j].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j + 1] == null || chessBoard[i][j + 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j - 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i + 1][j - 1] == null || chessBoard[i + 1][j].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i + 1][j + 1] == null || chessBoard[i - 1][j].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j + 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j - 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                    }
-                }
-            }
-        }
-        return super.noMoves(chessBoard, color);
-    }
-
-    @Override
-    boolean coverCheck(Figure[][] chessBoard, Color color) {
+    boolean validMoves(Figure[][] chessBoard, Color color) {
         King king;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             king = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -854,7 +754,7 @@ public class Queen extends Figure {
                 }
             }
         }
-        return super.coverCheck(chessBoard, color);
+        return super.validMoves(chessBoard, color);
     }
 }
 

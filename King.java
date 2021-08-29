@@ -1,12 +1,13 @@
 package com.company;
 
 public class King extends Figure {
-    King(Color figureColor, FigureName figureName) {
-        super(figureColor, figureName);
-    }
 
     private boolean wkIsMoved = false;
     private boolean bkIsMoved = false;
+
+    King(Color figureColor, FigureName figureName) {
+        super(figureColor, figureName);
+    }
 
     @Override
     public String getFigureColor() {
@@ -210,7 +211,19 @@ public class King extends Figure {
             }
             if (takeRow - putRow == -1 || takeRow - putRow == 1 || takeRow == putRow) {
                 if (takeColumn - putColumn == -1 || takeColumn - putColumn == 1 || takeColumn == putColumn) {
-                    if (chessBoard[putRow][putColumn] == null || chessBoard[putRow][putColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+                    if (chessBoard[putRow][putColumn] == null) {
+                        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                        chessBoard[takeRow][takeColumn] = null;
+                        if (kingChecked(chessBoard, Color.isBlackFigure)) {
+                            System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
+                            chessBoard[putRow][putColumn] = null;
+                            chessBoard[takeRow][takeColumn] = new King(Color.isBlackFigure, FigureName.blackKing);
+                            return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
+                        }
+                        chessBoard[putRow][putColumn] = null;
+                        chessBoard[takeRow][takeColumn] = new King(Color.isBlackFigure, FigureName.blackKing);
+                        return true;
+                    }else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())){
                         Figure save = chessBoard[putRow][putColumn];
                         chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
                         chessBoard[takeRow][takeColumn] = null;
@@ -231,7 +244,7 @@ public class King extends Figure {
     }
 
     @Override
-    boolean noMoves(Figure[][] chessBoard, Color color) {
+    boolean validMoves(Figure[][] chessBoard, Color color) {
         Figure save;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
@@ -245,7 +258,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i + 1][j] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -260,7 +273,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i + 1][j - 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -275,7 +288,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i + 1][j + 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -290,7 +303,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i][j - 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -305,7 +318,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i][j + 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -320,7 +333,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i - 1][j - 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -335,7 +348,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i - 1][j] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -350,14 +363,14 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isWhiteFigure)) {
                                     chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                                     chessBoard[i - 1][j + 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isWhiteFigure, FigureName.whiteKing);
                             chessBoard[i - 1][j + 1] = save;
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
-                        return super.noMoves(chessBoard, color);
+                        return true;
                     }
                 }
             }
@@ -373,7 +386,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i + 1][j] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -388,7 +401,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i + 1][j - 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -403,7 +416,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i + 1][j + 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -418,7 +431,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i][j - 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -433,7 +446,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i][j + 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -448,7 +461,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i - 1][j - 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -463,7 +476,7 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i - 1][j] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
@@ -478,19 +491,19 @@ public class King extends Figure {
                                 if (!kingChecked(chessBoard, Color.isBlackFigure)) {
                                     chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                                     chessBoard[i - 1][j + 1] = save;
-                                    return false;
+                                    return super.validMoves(chessBoard,color);
                                 }
                             }
                             chessBoard[i][j] = new King(Color.isBlackFigure, FigureName.blackKing);
                             chessBoard[i - 1][j + 1] = save;
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
-                        return super.noMoves(chessBoard, color);
+                        return true;
                     }
                 }
             }
         }
-        return false;
+        return super.validMoves(chessBoard,color);
     }
 
     boolean kingChecked(Figure[][] chessBoard, Color color) {
@@ -907,10 +920,10 @@ public class King extends Figure {
             bishop = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
             queen = new Queen(Color.isWhiteFigure, FigureName.whiteQueen);
             pawn = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
-            if (kingChecked(chessBoard, Color.isWhiteFigure) && noMoves(chessBoard, Color.isWhiteFigure)) {
-                return !rook.coverCheck(chessBoard, Color.isWhiteFigure) && !bishop.coverCheck(chessBoard, Color.isWhiteFigure) &&
-                        !queen.coverCheck(chessBoard, Color.isWhiteFigure) && !knight.coverCheck(chessBoard, Color.isWhiteFigure) &&
-                        !pawn.coverCheck(chessBoard, Color.isWhiteFigure);
+            if (kingChecked(chessBoard, Color.isWhiteFigure) && validMoves(chessBoard, Color.isWhiteFigure)) {
+                return !rook.validMoves(chessBoard, Color.isWhiteFigure) && !bishop.validMoves(chessBoard, Color.isWhiteFigure) &&
+                        !queen.validMoves(chessBoard, Color.isWhiteFigure) && !knight.validMoves(chessBoard, Color.isWhiteFigure) &&
+                        !pawn.validMoves(chessBoard, Color.isWhiteFigure);
             }
         } else {
             rook = new Rook(Color.isBlackFigure, FigureName.blackRook);
@@ -918,10 +931,10 @@ public class King extends Figure {
             bishop = new Bishop(Color.isBlackFigure, FigureName.blackBlackBishop);
             queen = new Queen(Color.isBlackFigure, FigureName.blackQueen);
             pawn = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
-            if (kingChecked(chessBoard, Color.isBlackFigure) && noMoves(chessBoard, Color.isBlackFigure)) {
-                return !rook.coverCheck(chessBoard, Color.isBlackFigure) && !bishop.coverCheck(chessBoard, Color.isBlackFigure) &&
-                        !queen.coverCheck(chessBoard, Color.isBlackFigure) && !knight.coverCheck(chessBoard, Color.isBlackFigure) &&
-                        !pawn.coverCheck(chessBoard, Color.isBlackFigure);
+            if (kingChecked(chessBoard, Color.isBlackFigure) && validMoves(chessBoard, Color.isBlackFigure)) {
+                return !rook.validMoves(chessBoard, Color.isBlackFigure) && !bishop.validMoves(chessBoard, Color.isBlackFigure) &&
+                        !queen.validMoves(chessBoard, Color.isBlackFigure) && !knight.validMoves(chessBoard, Color.isBlackFigure) &&
+                        !pawn.validMoves(chessBoard, Color.isBlackFigure);
             }
         }
         return false;
@@ -939,10 +952,10 @@ public class King extends Figure {
             bishop = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
             queen = new Queen(Color.isWhiteFigure, FigureName.whiteQueen);
             pawn = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
-            if (!kingChecked(chessBoard, Color.isWhiteFigure) && noMoves(chessBoard, Color.isWhiteFigure)) {
-                return rook.coverCheck(chessBoard, Color.isWhiteFigure) && bishop.coverCheck(chessBoard, Color.isWhiteFigure) &&
-                        queen.coverCheck(chessBoard, Color.isWhiteFigure) && knight.coverCheck(chessBoard, Color.isWhiteFigure) &&
-                        pawn.coverCheck(chessBoard, Color.isWhiteFigure);
+            if (!kingChecked(chessBoard, Color.isWhiteFigure) && validMoves(chessBoard, Color.isWhiteFigure)) {
+                return !rook.validMoves(chessBoard, Color.isWhiteFigure) && !bishop.validMoves(chessBoard, Color.isWhiteFigure) &&
+                        !queen.validMoves(chessBoard, Color.isWhiteFigure) && !knight.validMoves(chessBoard, Color.isWhiteFigure) &&
+                        !pawn.validMoves(chessBoard, Color.isWhiteFigure);
             }
         } else {
             rook = new Rook(Color.isBlackFigure, FigureName.blackRook);
@@ -950,10 +963,10 @@ public class King extends Figure {
             bishop = new Bishop(Color.isBlackFigure, FigureName.blackBlackBishop);
             queen = new Queen(Color.isBlackFigure, FigureName.blackQueen);
             pawn = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
-            if (!kingChecked(chessBoard, Color.isBlackFigure) && noMoves(chessBoard, Color.isBlackFigure)) {
-                return rook.coverCheck(chessBoard, Color.isBlackFigure) && bishop.coverCheck(chessBoard, Color.isBlackFigure) &&
-                        queen.coverCheck(chessBoard, Color.isBlackFigure) && knight.coverCheck(chessBoard, Color.isBlackFigure) &&
-                        pawn.coverCheck(chessBoard, Color.isBlackFigure);
+            if (!kingChecked(chessBoard, Color.isBlackFigure) && validMoves(chessBoard, Color.isBlackFigure)) {
+                return !rook.validMoves(chessBoard, Color.isBlackFigure) && !bishop.validMoves(chessBoard, Color.isBlackFigure) &&
+                        !queen.validMoves(chessBoard, Color.isBlackFigure) && !knight.validMoves(chessBoard, Color.isBlackFigure) &&
+                        !pawn.validMoves(chessBoard, Color.isBlackFigure);
             }
         }
         return false;

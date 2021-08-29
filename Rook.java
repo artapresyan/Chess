@@ -8,6 +8,14 @@ public class Rook extends Figure {
         super(figureColor, figureName);
     }
 
+    boolean wrIsMoved() {
+        return wrIsMoved;
+    }
+
+    boolean brIsMoved() {
+        return brIsMoved;
+    }
+
     @Override
     public String getFigureColor() {
         return super.getFigureColor();
@@ -16,14 +24,6 @@ public class Rook extends Figure {
     @Override
     public String getFigureName() {
         return super.getFigureName();
-    }
-
-    boolean wrIsMoved() {
-        return wrIsMoved;
-    }
-
-    boolean brIsMoved() {
-        return brIsMoved;
     }
 
     @Override
@@ -168,67 +168,7 @@ public class Rook extends Figure {
     }
 
     @Override
-    boolean noMoves(Figure[][] chessBoard, Color color) {
-        if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
-            for (int i = 0; i < chessBoard.length; i++) {
-                for (int j = 0; j < chessBoard[i].length; j++) {
-                    if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                        try {
-                            if (chessBoard[i + 1][j] == null || chessBoard[i + 1][j].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j] == null || chessBoard[i - 1][j].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j + 1] == null || chessBoard[i][j + 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j - 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                    }
-                }
-            }
-        } else {
-            for (int i = chessBoard.length - 1; i >= 0; i--) {
-                for (int j = 0; j < chessBoard[i].length; j++) {
-                    if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                        try {
-                            if (chessBoard[i + 1][j] == null || chessBoard[i + 1][j].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i - 1][j] == null || chessBoard[i - 1][j].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j + 1] == null || chessBoard[i][j + 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (chessBoard[i][j - 1] == null || chessBoard[i][j - 1].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                    }
-                }
-            }
-        }
-        return super.noMoves(chessBoard, color);
-    }
-
-    @Override
-    boolean coverCheck(Figure[][] chessBoard, Color color) {
+    boolean validMoves(Figure[][] chessBoard, Color color) {
         King king;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             king = new King(Color.isWhiteFigure, FigureName.whiteKing);
@@ -506,6 +446,6 @@ public class Rook extends Figure {
                 }
             }
         }
-        return super.coverCheck(chessBoard, color);
+        return super.validMoves(chessBoard, color);
     }
 }

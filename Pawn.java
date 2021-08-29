@@ -186,57 +186,7 @@ public class Pawn extends Figure {
     }
 
     @Override
-    boolean noMoves(Figure[][] chessBoard, Color color) {
-        if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
-            for (int i = 0; i < chessBoard.length; i++) {
-                for (int j = 0; j < chessBoard[i].length; j++) {
-                    if (chessBoard[i][j] instanceof Pawn && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                        try {
-                            if (checkMove(chessBoard, i, j, i + 1, j))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (checkMove(chessBoard, i, j, i + 1, j + 1))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (checkMove(chessBoard, i, j, i + 1, j - 1))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                    }
-                }
-            }
-        } else {
-            for (int i = chessBoard.length - 1; i >= 0; i--) {
-                for (int j = 0; j < chessBoard[i].length; j++) {
-                    if (chessBoard[i][j] instanceof Pawn && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                        try {
-                            if (checkMove(chessBoard, i, j, i + 1, j))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (checkMove(chessBoard, i, j, i + 1, j + 1))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            if (checkMove(chessBoard, i, j, i + 1, j - 1))
-                                return false;
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                    }
-                }
-            }
-        }
-        return super.noMoves(chessBoard, color);
-    }
-
-    @Override
-    boolean coverCheck(Figure[][] chessBoard, Color color) {
+    boolean validMoves(Figure[][] chessBoard, Color color) {
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -300,7 +250,7 @@ public class Pawn extends Figure {
                 }
             }
         }
-        return super.coverCheck(chessBoard, color);
+        return super.validMoves(chessBoard, color);
     }
 }
 
