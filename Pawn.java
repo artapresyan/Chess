@@ -44,6 +44,9 @@ public class Pawn extends Figure {
                     } else
                         System.out.println("Invalid Figure");
                 } while (!rightFigure);
+            }else {
+                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                chessBoard[takeRow][takeColumn] = null;
             }
         } else if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor())) {
             boolean rightFigure = false;
@@ -71,10 +74,10 @@ public class Pawn extends Figure {
                     } else
                         System.out.println("Invalid figure");
                 } while (!rightFigure);
+            }else {
+                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                chessBoard[takeRow][takeColumn] = null;
             }
-        } else {
-            chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
-            chessBoard[takeRow][takeColumn] = null;
         }
     }
     @Override
