@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e82b09ce-7a9b-42d2-8561-61d5e364c7ce" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bishop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Chess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Figure.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FigureName.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/King.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Knight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pawn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Queen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rook.java" beforeDir="false" />
-    </list>
+    <list default="true" id="e82b09ce-7a9b-42d2-8561-61d5e364c7ce" name="Changes" comment="Added files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -305,7 +292,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630272517711</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary=".">
+      <created>1630318197076</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1630318197076</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Added files">
+      <created>1630318244214</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1630318244214</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -338,7 +339,8 @@
     <MESSAGE value="Code Refactoring" />
     <MESSAGE value="Code Simplified" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Added files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
