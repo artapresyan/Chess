@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e82b09ce-7a9b-42d2-8561-61d5e364c7ce" name="Changes" comment=".">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bishop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Chess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Figure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FigureName.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/King.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Knight.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pawn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Queen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Rook.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/com/company/Rook.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectId" id="1wLqm2B5LiA1BECPmweKWK7dySa" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled104" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="company" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../VariableName" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Chess" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Chess" />
+      <module name="Chess" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Chess" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e82b09ce-7a9b-42d2-8561-61d5e364c7ce" name="Changes" comment="" />
+      <created>1628248375895</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1628248375895</updated>
+    </task>
+    <task id="LOCAL-00001" summary="gitignore changes">
+      <created>1628679165429</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1628679165429</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Castling bug fixed">
+      <created>1628713555139</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1628713555139</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added function that do not allow king move through check">
+      <created>1628802856115</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1628802856115</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Forcing cover check or escape from check">
+      <created>1628872719469</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1628872719469</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Check fully works">
+      <created>1628876818604</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1628876818604</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Chessboard updated">
+      <created>1628894324603</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1628894324603</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Code simplifying">
+      <created>1628950210708</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1628950210708</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Code simplifying">
+      <created>1629153102886</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1629153102887</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Bugs Fixed">
+      <created>1629205114102</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1629205114102</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Bugs Fixed">
+      <created>1629205289046</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1629205289046</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Code simplifying">
+      <created>1629230910506</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1629230910506</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added Mate and&#10;StaleMate">
+      <created>1629563027129</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1629563027129</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Working chess">
+      <created>1629642934537</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1629642934537</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Mate bug fixed">
+      <created>1629657058998</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1629657058998</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fully working chess">
+      <created>1629753908201</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1629753908201</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added Enum Classes">
+      <created>1629830055739</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1629830055739</updated>
+    </task>
+    <task id="LOCAL-00017" summary="bug fixed">
+      <created>1630064501909</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1630064501909</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Code Refactoring">
+      <created>1630184462262</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1630184462263</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Code Refactoring">
+      <created>1630188346081</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1630188346081</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Code Refactoring">
+      <created>1630190513841</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1630190513841</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Code Refactoring">
+      <created>1630243945591</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1630243945591</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Code Refactoring">
+      <created>1630252886584</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1630252886584</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Code Refactoring">
+      <created>1630264412867</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1630264412867</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Code Simplified">
+      <created>1630270798247</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1630270798247</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Code Simplified">
+      <created>1630272349334</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1630272349334</updated>
+    </task>
+    <task id="LOCAL-00026" summary=".">
+      <created>1630272517711</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1630272517711</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="gitignore changes" />
+    <MESSAGE value="Castling bug fixed" />
+    <MESSAGE value="Added function that do not allow king move through check" />
+    <MESSAGE value="Forcing cover check or escape from check" />
+    <MESSAGE value="Check fully works" />
+    <MESSAGE value="Chessboard updated" />
+    <MESSAGE value="Bugs Fixed" />
+    <MESSAGE value="Code simplifying" />
+    <MESSAGE value="Added Mate and&#10;StaleMate" />
+    <MESSAGE value="Working chess" />
+    <MESSAGE value="Mate bug fixed" />
+    <MESSAGE value="Fully working chess" />
+    <MESSAGE value="Added Enum Classes" />
+    <MESSAGE value="bug fixed" />
+    <MESSAGE value="Code Refactoring" />
+    <MESSAGE value="Code Simplified" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/com/company/Queen.java</url>
+          <line>24</line>
+          <properties class="com.company.Queen" method="checkMove">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
