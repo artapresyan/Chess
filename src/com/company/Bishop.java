@@ -173,7 +173,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -184,7 +184,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -207,7 +207,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -218,7 +218,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -241,7 +241,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -252,7 +252,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -275,7 +275,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -286,7 +286,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -318,7 +318,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -329,7 +329,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -352,7 +352,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -363,7 +363,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -386,7 +386,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -397,7 +397,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -420,7 +420,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -431,7 +431,7 @@ public class Bishop extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;

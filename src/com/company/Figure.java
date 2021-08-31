@@ -25,6 +25,6 @@ public abstract class Figure {
     }
 
     boolean noValidMoves(Figure[][] chessBoard, Color color) {
-        return false;
+        return true;
     }
 }

@@ -224,7 +224,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
@@ -235,7 +235,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][j] = save;
@@ -256,7 +256,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
@@ -267,7 +267,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][j] = save;
@@ -288,7 +288,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
@@ -299,7 +299,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[i][column] = save;
@@ -320,7 +320,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
@@ -331,7 +331,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[i][column] = save;
@@ -354,7 +354,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -365,7 +365,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -388,7 +388,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -399,7 +399,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -422,7 +422,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -433,7 +433,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -456,7 +456,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -467,7 +467,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -497,7 +497,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
@@ -508,7 +508,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][j] = save;
@@ -529,7 +529,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
@@ -540,7 +540,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][j] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][j] = save;
@@ -561,7 +561,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
@@ -572,7 +572,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[i][column] = save;
@@ -593,7 +593,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
@@ -604,7 +604,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[i][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[i][column] = save;
@@ -627,7 +627,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -638,7 +638,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -661,7 +661,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -672,7 +672,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -695,7 +695,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -706,7 +706,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;
@@ -729,7 +729,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     } else {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
@@ -740,7 +740,7 @@ public class Queen extends Figure {
                                     if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
                                         chessBoard[i][j] = this;
                                         chessBoard[row][column] = save;
-                                        return true;
+                                        return false;
                                     }
                                     chessBoard[i][j] = this;
                                     chessBoard[row][column] = save;

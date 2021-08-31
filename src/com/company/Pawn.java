@@ -193,25 +193,25 @@ public class Pawn extends Figure {
                     if (chessBoard[i][j] instanceof Pawn && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                         try {
                             if (checkMove(chessBoard, i, j, i + 1, j)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
                         try {
                             if (checkMove(chessBoard, i, j, i + 2, j)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
                         try {
                             if (checkMove(chessBoard, i, j, i + 1, j + 1)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
                         try {
                             if (checkMove(chessBoard, i, j, i + 1, j - 1)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
@@ -224,25 +224,25 @@ public class Pawn extends Figure {
                     if (chessBoard[i][j] instanceof Pawn && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                         try {
                             if (checkMove(chessBoard, i, j, i - 1, j)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
                         try {
                             if (checkMove(chessBoard, i, j, i - 2, j)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
                         try {
                             if (checkMove(chessBoard, i, j, i - 1, j + 1)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
                         try {
                             if (checkMove(chessBoard, i, j, i - 1, j - 1)) {
-                                return true;
+                                return false;
                             }
                         } catch (ArrayIndexOutOfBoundsException ignore) {
                         }
