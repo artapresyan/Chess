@@ -186,7 +186,7 @@ public class Pawn extends Figure {
     }
 
     @Override
-    boolean validMoves(Figure[][] chessBoard, Color color) {
+    boolean noValidMoves(Figure[][] chessBoard, Color color) {
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -250,7 +250,7 @@ public class Pawn extends Figure {
                 }
             }
         }
-        return super.validMoves(chessBoard, color);
+        return super.noValidMoves(chessBoard, color);
     }
 }
 
