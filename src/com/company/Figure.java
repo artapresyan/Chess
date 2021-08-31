@@ -23,6 +23,7 @@ public abstract class Figure {
     boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         return false;
     }
+
     boolean validMoves(Figure[][] chessBoard, Color color) {
         return false;
     }

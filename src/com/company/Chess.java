@@ -219,7 +219,7 @@ public class Chess {
             board.printBoard(chessBoard);
         }
         System.out.println("""
-                                
+
                             Game Over
                 """);
     }

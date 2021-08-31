@@ -17,7 +17,7 @@ public class Bishop extends Figure {
 
     @Override
     void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
-        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+        chessBoard[putRow][putColumn] = this;
         chessBoard[takeRow][takeColumn] = null;
     }
 
@@ -26,7 +26,7 @@ public class Bishop extends Figure {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         King king;
-        if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+        if (this.getFigureColor().equals(Color.isWhiteFigure.getColor())) {
             king = new King(Color.isWhiteFigure, FigureName.whiteKing);
             int i = takeRow;
             int j = takeColumn;
@@ -60,41 +60,29 @@ public class Bishop extends Figure {
                 }
             }
             if (chessBoard[putRow][putColumn] == null) {
-                chessBoard[putRow][putColumn] = chessBoard[i][j];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[i][j] = null;
                 if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                     System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                    if ((i + j) % 2 == 0)
-                        chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
-                    else
-                        chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteBlackBishop);
+                    chessBoard[i][j] = this;
                     chessBoard[putRow][putColumn] = null;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                if ((i + j) % 2 == 0)
-                    chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
-                else
-                    chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteBlackBishop);
+                chessBoard[i][j] = this;
                 chessBoard[putRow][putColumn] = null;
                 return true;
             } else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isBlackFigure.getColor())) {
                 Figure save = chessBoard[putRow][putColumn];
-                chessBoard[putRow][putColumn] = chessBoard[i][j];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[i][j] = null;
 
                 if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                     System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                    if ((i + j) % 2 == 0)
-                        chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
-                    else
-                        chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteBlackBishop);
+                    chessBoard[i][j] = this;
                     chessBoard[putRow][putColumn] = save;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                if ((i + j) % 2 == 0)
-                    chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
-                else
-                    chessBoard[i][j] = new Bishop(Color.isWhiteFigure, FigureName.whiteBlackBishop);
+                chessBoard[i][j] = this;
                 chessBoard[putRow][putColumn] = save;
                 return true;
             }
@@ -132,42 +120,30 @@ public class Bishop extends Figure {
                 }
             }
             if (chessBoard[putRow][putColumn] == null) {
-                chessBoard[putRow][putColumn] = chessBoard[i][j];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[i][j] = null;
 
                 if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
                     System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
-                    if ((i + j) % 2 == 0)
-                        chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackWhiteBishop);
-                    else
-                        chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackBlackBishop);
+                    chessBoard[i][j] = this;
                     chessBoard[putRow][putColumn] = null;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                if ((i + j) % 2 == 0)
-                    chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackWhiteBishop);
-                else
-                    chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackBlackBishop);
+                chessBoard[i][j] = this;
                 chessBoard[putRow][putColumn] = null;
                 return true;
             } else if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
                 Figure save = chessBoard[putRow][putColumn];
-                chessBoard[putRow][putColumn] = chessBoard[i][j];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[i][j] = null;
 
                 if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
                     System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
-                    if ((i + j) % 2 == 0)
-                        chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackWhiteBishop);
-                    else
-                        chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackBlackBishop);
+                    chessBoard[i][j] = this;
                     chessBoard[putRow][putColumn] = save;
                     return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                 }
-                if ((i + j) % 2 == 0)
-                    chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackWhiteBishop);
-                else
-                    chessBoard[i][j] = new Bishop(Color.isBlackFigure, FigureName.blackBlackBishop);
+                chessBoard[i][j] = this;
                 chessBoard[putRow][putColumn] = save;
                 return true;
             }

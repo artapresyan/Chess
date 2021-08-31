@@ -21,10 +21,10 @@ public class Pawn extends Figure {
     void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         String name;
         Scanner a = new Scanner(System.in);
-        if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+        if (this.getFigureColor().equals(Color.isWhiteFigure.getColor())) {
             boolean rightFigure = false;
             if (putRow == 7) {
-                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[takeRow][takeColumn] = null;
                 do {
                     System.out.println("Choose figure");
@@ -48,13 +48,13 @@ public class Pawn extends Figure {
                         System.out.println("Invalid Figure");
                 } while (!rightFigure);
             } else {
-                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[takeRow][takeColumn] = null;
             }
-        } else if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+        } else {
             boolean rightFigure = false;
             if (putRow == 0) {
-                chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                chessBoard[putRow][putColumn] = this;
                 chessBoard[takeRow][takeColumn] = null;
                 do {
                     System.out.println("Choose figure");
@@ -89,47 +89,47 @@ public class Pawn extends Figure {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         King king;
-        if (chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+        if (this.getFigureColor().equals(Color.isWhiteFigure.getColor())) {
             king = new King(Color.isWhiteFigure, FigureName.whiteKing);
             if (takeRow == 1 && putRow == 3 && takeColumn == putColumn) {
                 if (chessBoard[putRow][putColumn] == null && chessBoard[putRow - 1][putColumn] == null) {
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                    chessBoard[putRow][putColumn] = this;
                     chessBoard[takeRow][takeColumn] = null;
                     if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                         System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                        chessBoard[takeRow][takeColumn] = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
+                        chessBoard[takeRow][takeColumn] = this;
                         chessBoard[putRow][putColumn] = null;
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[takeRow][takeColumn] = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
+                    chessBoard[takeRow][takeColumn] = this;
                     chessBoard[putRow][putColumn] = null;
                     return true;
                 }
             } else if (takeRow - putRow == -1) {
                 if (takeColumn == putColumn && chessBoard[putRow][putColumn] == null) {
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                    chessBoard[putRow][putColumn] = this;
                     chessBoard[takeRow][takeColumn] = null;
                     if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                         System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                        chessBoard[takeRow][takeColumn] = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
+                        chessBoard[takeRow][takeColumn] = this;
                         chessBoard[putRow][putColumn] = null;
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[takeRow][takeColumn] = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
+                    chessBoard[takeRow][takeColumn] = this;
                     chessBoard[putRow][putColumn] = null;
                     return true;
                 } else if (chessBoard[putRow][putColumn] != null) {
                     if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isBlackFigure.getColor()) && (takeColumn - putColumn == -1 || takeColumn - putColumn == 1)) {
                         Figure save = chessBoard[putRow][putColumn];
-                        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                        chessBoard[putRow][putColumn] = this;
                         chessBoard[takeRow][takeColumn] = null;
                         if (king.kingChecked(chessBoard, Color.isWhiteFigure)) {
                             System.out.println("\n" + "P1, Please Be Observant And Check Your King's Position...");
-                            chessBoard[takeRow][takeColumn] = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
+                            chessBoard[takeRow][takeColumn] = this;
                             chessBoard[putRow][putColumn] = save;
                             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                         }
-                        chessBoard[takeRow][takeColumn] = new Pawn(Color.isWhiteFigure, FigureName.whitePawn);
+                        chessBoard[takeRow][takeColumn] = this;
                         chessBoard[putRow][putColumn] = save;
                         return true;
                     }
@@ -139,43 +139,43 @@ public class Pawn extends Figure {
             king = new King(Color.isBlackFigure, FigureName.blackKing);
             if (takeRow == 6 && putRow == 4 && takeColumn == putColumn) {
                 if (chessBoard[putRow][putColumn] == null && chessBoard[putRow + 1][putColumn] == null) {
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                    chessBoard[putRow][putColumn] = this;
                     chessBoard[takeRow][takeColumn] = null;
                     if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
                         System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[takeRow][takeColumn] = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
+                        chessBoard[takeRow][takeColumn] = this;
                         chessBoard[putRow][putColumn] = null;
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[takeRow][takeColumn] = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
+                    chessBoard[takeRow][takeColumn] = this;
                     chessBoard[putRow][putColumn] = null;
                     return true;
                 }
             } else if (takeRow - putRow == 1) {
                 if (takeColumn == putColumn && chessBoard[putRow][putColumn] == null) {
-                    chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                    chessBoard[putRow][putColumn] = this;
                     chessBoard[takeRow][takeColumn] = null;
                     if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
                         System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
-                        chessBoard[takeRow][takeColumn] = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
+                        chessBoard[takeRow][takeColumn] = this;
                         chessBoard[putRow][putColumn] = null;
                         return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                     }
-                    chessBoard[takeRow][takeColumn] = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
+                    chessBoard[takeRow][takeColumn] = this;
                     chessBoard[putRow][putColumn] = null;
                     return true;
                 } else if (chessBoard[putRow][putColumn] != null) {
                     if (chessBoard[putRow][putColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()) && (takeColumn - putColumn == -1 || takeColumn - putColumn == 1)) {
                         Figure save = chessBoard[putRow][putColumn];
-                        chessBoard[putRow][putColumn] = chessBoard[takeRow][takeColumn];
+                        chessBoard[putRow][putColumn] = this;
                         chessBoard[takeRow][takeColumn] = null;
                         if (king.kingChecked(chessBoard, Color.isBlackFigure)) {
                             System.out.println("\n" + "P2, Please Be Observant And Check Your King's Position...");
-                            chessBoard[takeRow][takeColumn] = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
+                            chessBoard[takeRow][takeColumn] = this;
                             chessBoard[putRow][putColumn] = save;
                             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
                         }
-                        chessBoard[takeRow][takeColumn] = new Pawn(Color.isBlackFigure, FigureName.blackPawn);
+                        chessBoard[takeRow][takeColumn] = this;
                         chessBoard[putRow][putColumn] = save;
                         return true;
                     }
