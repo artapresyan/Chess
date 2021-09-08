@@ -23,18 +23,13 @@ public class Chess {
         boolean p1ValidMove = false;
         boolean p2ValidMove = false;
         int takeRow, takeColumn, putRow, putColumn;
-        String takeColumnString, putColumnString,takeRowString,putRowString;
+        String takeFigure, putFigure;
         Figure[][] chessBoard = new Figure[8][8];
         board.createBoard(chessBoard);
         System.out.println("""
                                 
                             Game Stared
                 """);
-        whiteKnight.moveFigure(chessBoard,0,1,4,1);
-        whiteQueen.moveFigure(chessBoard,0,4,2,4);
-        blackKnight.moveFigure(chessBoard,7,1,5,2);
-        blackBishop.moveFigure(chessBoard,7,2,5,4);
-        blackKing.moveFigure(chessBoard,7,3,7,1);
         board.printBoard(chessBoard);
         while (!gameOver) {
             queue++;
@@ -56,39 +51,27 @@ public class Chess {
                         do {
                             do {
                                 do {
-                                    System.out.println("\n" + "P1 Enter Letter From Which Column To Take");
-                                    takeColumnString = getString.nextLine();
-                                    if (!takeColumnString.matches("[a-hA-H]"))
-                                        System.out.println("P1 Enter Valid Column");
-                                } while (!takeColumnString.matches("[a-hA-H]"));
-                                do {
-                                    System.out.println("\n" + "P1 Enter Number From Which Row To Take");
-                                    takeRowString = getString.nextLine();
-                                    if (!takeRowString.matches("[1-8]"))
-                                        System.out.println("P1 Enter Valid Row");
-                                } while (!takeRowString.matches("[1-8]"));
-                                takeColumn = 104 - takeColumnString.charAt(0);
-                                takeRow=Integer.parseInt(takeRowString)-1;
+                                    System.out.println("\n" + "P1 Take Figure");
+                                    takeFigure = getString.nextLine();
+                                    if (!takeFigure.matches("[a-hA-H][1-8]"))
+                                        System.out.println("P1 Enter Valid Field");
+                                } while (!takeFigure.matches("[a-hA-H][1-8]"));
+                                takeColumn = 104 - takeFigure.charAt(0);
+                                takeRow=Integer.parseInt(String.valueOf(takeFigure.charAt(1)))-1;
                                 if (chessBoard[takeRow][takeColumn] == null)
-                                    System.out.println("There Is No Figure There");
+                                    System.out.println("There Is No Figure");
                             } while (chessBoard[takeRow][takeColumn] == null);
                             if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()))
                                 System.out.println("You Can Play Only With White Figures");
                         } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()));
                         do {
-                            System.out.println("\n" + "P1 Enter Letter On Which Column To Put");
-                            putColumnString = getString.nextLine();
-                            if (!putColumnString.matches("[a-hA-H]"))
-                                System.out.println("P1 Enter Valid Column");
-                        } while (!putColumnString.matches("[a-hA-H]"));
-                        do {
-                            System.out.println("\n" + "P1 Enter Number On Which Row to Put");
-                            putRowString = getString.nextLine();
-                            if (!putRowString.matches("[1-8]"))
-                                System.out.println("P1 Enter Valid Row");
-                        } while (!putRowString.matches("[1-8]"));
-                        putColumn = 104 - putColumnString.charAt(0);
-                        putRow=Integer.parseInt(putRowString)-1;
+                            System.out.println("\n" + "P1 Put Figure");
+                            putFigure = getString.nextLine();
+                            if (!putFigure.matches("[a-hA-H][1-8]"))
+                                System.out.println("P1 Enter Valid Field");
+                        } while (!putFigure.matches("[a-hA-H][1-8]"));
+                        putColumn = 104 - putFigure.charAt(0);
+                        putRow=Integer.parseInt(String.valueOf(putFigure.charAt(1)))-1;
                         if (chessBoard[takeRow][takeColumn] instanceof Rook) {
                             if (whiteRook.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
                                 whiteRook.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
@@ -147,39 +130,27 @@ public class Chess {
                         do {
                             do {
                                 do {
-                                    System.out.println("\n" + "P2 Enter Letter From Which Column To Take");
-                                    takeColumnString = getString.nextLine();
-                                    if (!takeColumnString.matches("[a-hA-H]"))
-                                        System.out.println("P2 Enter Valid Column");
-                                } while (!takeColumnString.matches("[a-hA-H]"));
-                                do {
-                                    System.out.println("\n" + "P2 Enter Number From Which Row To Take");
-                                    takeRowString = getString.nextLine();
-                                    if (!takeRowString.matches("[1-8]"))
-                                        System.out.println("P2 Enter Valid Row");
-                                } while (!takeRowString.matches("[1-8]"));
-                                takeColumn = 104 - takeColumnString.charAt(0);
-                                takeRow=Integer.parseInt(takeRowString)-1;
+                                    System.out.println("\n" + "P2 Take Figure");
+                                    takeFigure = getString.nextLine();
+                                    if (!takeFigure.matches("[a-hA-H][1-8]"))
+                                        System.out.println("P2 Enter Valid Field");
+                                } while (!takeFigure.matches("[a-hA-H][1-8]"));
+                                takeColumn = 104 - takeFigure.charAt(0);
+                                takeRow=Integer.parseInt(String.valueOf(takeFigure.charAt(1)))-1;
                                 if (chessBoard[takeRow][takeColumn] == null)
-                                    System.out.println("There Is No Figure There");
+                                    System.out.println("There Is No Figure");
                             } while (chessBoard[takeRow][takeColumn] == null);
                             if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()))
                                 System.out.println("You Can Play Only With Black Figures");
                         } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()));
                         do {
-                            System.out.println("\n" + "P2 Enter Letter On Which Column To Put");
-                            putColumnString = getString.nextLine();
-                            if (!putColumnString.matches("[a-hA-H]"))
-                                System.out.println("P2 Enter Valid Column");
-                        } while (!putColumnString.matches("[a-hA-H]"));
-                        do {
-                            System.out.println("\n" + "P2 Enter Number On Which Row to Put");
-                            putRowString = getString.nextLine();
-                            if (!putRowString.matches("[1-8]"))
-                                System.out.println("P2 Enter Valid Row");
-                        } while (!putRowString.matches("[1-8]"));
-                        putColumn = 104 - putColumnString.charAt(0);
-                        putRow=Integer.parseInt(putRowString)-1;
+                            System.out.println("\n" + "P2 Put Figure");
+                            putFigure = getString.nextLine();
+                            if (!putFigure.matches("[a-hA-H][1-8]"))
+                                System.out.println("P2 Enter Valid Field");
+                        } while (!putFigure.matches("[a-hA-H][1-8]"));
+                        putColumn = 104 - putFigure.charAt(0);
+                        putRow=Integer.parseInt(String.valueOf(putFigure.charAt(1)))-1;
                         if (chessBoard[takeRow][takeColumn] instanceof Rook) {
                             if (blackRook.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
                                 blackRook.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
