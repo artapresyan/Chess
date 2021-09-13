@@ -186,6 +186,7 @@ public class Bishop extends Figure {
         }
         return super.noValidMoves(chessBoard, color);
     }
+
     boolean checking(Color figureColor, boolean rowToDo, boolean columnToDo, Figure[][] chessBoard, int i, int j){
         // true means ++
         King king;
