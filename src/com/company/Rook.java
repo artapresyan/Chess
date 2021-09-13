@@ -172,13 +172,13 @@ public class Rook extends Figure {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                        if (search(Color.isWhiteFigure,true,true,chessBoard,i,j))
+                        if (checking(Color.isWhiteFigure, true, true, chessBoard, i, j))
                             return false;
-                        if (search(Color.isWhiteFigure,true,false,chessBoard,i,j))
+                        if (checking(Color.isWhiteFigure, true, false, chessBoard, i, j))
                             return false;
-                        if (search(Color.isWhiteFigure,false,true,chessBoard,i,j))
+                        if (checking(Color.isWhiteFigure, false, true, chessBoard, i, j))
                             return false;
-                        if (search(Color.isWhiteFigure,false,false,chessBoard,i,j))
+                        if (checking(Color.isWhiteFigure, false, false, chessBoard, i, j))
                             return false;
                     }
                 }
@@ -187,13 +187,13 @@ public class Rook extends Figure {
             for (int i = chessBoard.length - 1; i >= 0; i--) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                        if (search(Color.isBlackFigure,true,true,chessBoard,i,j))
+                        if (checking(Color.isBlackFigure, true, true, chessBoard, i, j))
                             return false;
-                        if (search(Color.isBlackFigure,true,false,chessBoard,i,j))
+                        if (checking(Color.isBlackFigure, true, false, chessBoard, i, j))
                             return false;
-                        if (search(Color.isBlackFigure,false,true,chessBoard,i,j))
+                        if (checking(Color.isBlackFigure, false, true, chessBoard, i, j))
                             return false;
-                        if (search(Color.isBlackFigure,false,false,chessBoard,i,j))
+                        if (checking(Color.isBlackFigure, false, false, chessBoard, i, j))
                             return false;
                     }
                 }
@@ -201,7 +201,8 @@ public class Rook extends Figure {
         }
         return super.noValidMoves(chessBoard, color);
     }
-    boolean search(Color figureColor, boolean line,boolean toDo,Figure[][] chessBoard,int i,int j){
+
+    boolean checking(Color figureColor, boolean line, boolean toDo, Figure[][] chessBoard, int i, int j) {
         // line is true means row, toDoo is true means ++
         King king;
         if (figureColor.getColor().equals(Color.isBlackFigure.getColor())) {
@@ -241,7 +242,7 @@ public class Rook extends Figure {
                         }
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
-                }else {
+                } else {
                     try {
                         int row = i;
                         while (row > 0) {
@@ -275,8 +276,8 @@ public class Rook extends Figure {
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
                 }
-            }else {
-                if (toDo){
+            } else {
+                if (toDo) {
                     try {
                         int column = j;
                         while (column < chessBoard.length - 1) {
@@ -309,7 +310,7 @@ public class Rook extends Figure {
                         }
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
-                }else {
+                } else {
                     try {
                         int column = j;
                         while (column > 0) {
@@ -344,11 +345,11 @@ public class Rook extends Figure {
                     }
                 }
             }
-        }else {
+        } else {
             king = new King(Color.isWhiteFigure, FigureName.whiteKing);
             Figure save;
-            if (line){
-                if (toDo){
+            if (line) {
+                if (toDo) {
                     try {
                         int row = i;
                         while (row < chessBoard.length - 1) {
@@ -381,7 +382,7 @@ public class Rook extends Figure {
                         }
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
-                }else {
+                } else {
                     try {
                         int row = i;
                         while (row > 0) {
@@ -415,8 +416,8 @@ public class Rook extends Figure {
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
                 }
-            }else{
-                if (toDo){
+            } else {
+                if (toDo) {
                     try {
                         int column = j;
                         while (column < chessBoard.length - 1) {
@@ -449,7 +450,7 @@ public class Rook extends Figure {
                         }
                     } catch (ArrayIndexOutOfBoundsException ignore) {
                     }
-                }else {
+                } else {
                     try {
                         int column = j;
                         while (column > 0) {

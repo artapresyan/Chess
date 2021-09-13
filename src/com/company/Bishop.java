@@ -153,298 +153,331 @@ public class Bishop extends Figure {
 
     @Override
     boolean noValidMoves(Figure[][] chessBoard, Color color) {
-        King king;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
-            king = new King(Color.isWhiteFigure, FigureName.whiteKing);
-            Figure save;
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Bishop && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row++;
-                                column++;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row++;
-                                column--;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row--;
-                                column++;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row--;
-                                column--;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
+                       if (checking(Color.isWhiteFigure,true,true,chessBoard,i,j))
+                           return false;
+                       if (checking(Color.isWhiteFigure,true,false,chessBoard,i,j))
+                            return false;
+                       if (checking(Color.isWhiteFigure,false,true,chessBoard,i,j))
+                            return false;
+                       if (checking(Color.isWhiteFigure,false,false,chessBoard,i,j))
+                            return false;
                     }
                 }
             }
         } else {
-            king = new King(Color.isBlackFigure, FigureName.blackKing);
-            Figure save;
             for (int i = chessBoard.length - 1; i >= 0; i--) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Bishop && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row++;
-                                column++;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row++;
-                                column--;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row--;
-                                column++;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
-                        try {
-                            int row = i;
-                            int column = j;
-                            while (true) {
-                                row--;
-                                column--;
-                                save = chessBoard[row][column];
-                                if (chessBoard[row][column] == null) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    } else {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                    }
-                                } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                                    chessBoard[row][column] = this;
-                                    chessBoard[i][j] = null;
-                                    if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
-                                        chessBoard[i][j] = this;
-                                        chessBoard[row][column] = save;
-                                        return false;
-                                    }
-                                    chessBoard[i][j] = this;
-                                    chessBoard[row][column] = save;
-                                    break;
-                                } else
-                                    break;
-                            }
-                        } catch (ArrayIndexOutOfBoundsException ignore) {
-                        }
+                        if (checking(Color.isBlackFigure,true,true,chessBoard,i,j))
+                            return false;
+                        if (checking(Color.isBlackFigure,true,false,chessBoard,i,j))
+                            return false;
+                        if (checking(Color.isBlackFigure,false,true,chessBoard,i,j))
+                            return false;
+                        if (checking(Color.isBlackFigure,false,false,chessBoard,i,j))
+                            return false;
                     }
                 }
             }
         }
         return super.noValidMoves(chessBoard, color);
+    }
+    boolean checking(Color figureColor, boolean rowToDo, boolean columnToDo, Figure[][] chessBoard, int i, int j){
+        // true means ++
+        King king;
+        if (figureColor.getColor().equals(Color.isBlackFigure.getColor())){
+            king = new King(Color.isBlackFigure, FigureName.blackKing);
+            Figure save;
+            if (rowToDo && columnToDo){
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row++;
+                        column++;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }else if (rowToDo){
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row++;
+                        column--;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }else if (columnToDo){
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row--;
+                        column++;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }else {
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row--;
+                        column--;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isBlackFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }
+        }else {
+            king = new King(Color.isWhiteFigure, FigureName.whiteKing);
+            Figure save;
+            if (rowToDo && columnToDo){
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row++;
+                        column++;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }else if (rowToDo){
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row++;
+                        column--;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }else if (columnToDo){
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row--;
+                        column++;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }else {
+                try {
+                    int row = i;
+                    int column = j;
+                    while (true) {
+                        row--;
+                        column--;
+                        save = chessBoard[row][column];
+                        if (chessBoard[row][column] == null) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            } else {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                            }
+                        } else if (chessBoard[row][column].getFigureColor().equals(Color.isBlackFigure.getColor())) {
+                            chessBoard[row][column] = this;
+                            chessBoard[i][j] = null;
+                            if (!(king.kingChecked(chessBoard, Color.isWhiteFigure))) {
+                                chessBoard[i][j] = this;
+                                chessBoard[row][column] = save;
+                                return true;
+                            }
+                            chessBoard[i][j] = this;
+                            chessBoard[row][column] = save;
+                            break;
+                        } else
+                            break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignore) {
+                }
+            }
+        }
+        return false;
     }
 }
