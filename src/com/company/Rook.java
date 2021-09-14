@@ -172,14 +172,10 @@ public class Rook extends Figure {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isWhiteFigure.getColor())) {
-                        if (checking(Color.isWhiteFigure, true, true, chessBoard, i, j))
-                            return false;
-                        if (checking(Color.isWhiteFigure, true, false, chessBoard, i, j))
-                            return false;
-                        if (checking(Color.isWhiteFigure, false, true, chessBoard, i, j))
-                            return false;
-                        if (checking(Color.isWhiteFigure, false, false, chessBoard, i, j))
-                            return false;
+                        return !checking(Color.isWhiteFigure, true, true, chessBoard, i, j) &&
+                                !checking(Color.isWhiteFigure, true, false, chessBoard, i, j) &&
+                                !checking(Color.isWhiteFigure, false, true, chessBoard, i, j) &&
+                                !checking(Color.isWhiteFigure, false, false, chessBoard, i, j);
                     }
                 }
             }
@@ -187,14 +183,10 @@ public class Rook extends Figure {
             for (int i = chessBoard.length - 1; i >= 0; i--) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
                     if (chessBoard[i][j] instanceof Rook && chessBoard[i][j].getFigureColor().equals(Color.isBlackFigure.getColor())) {
-                        if (checking(Color.isBlackFigure, true, true, chessBoard, i, j))
-                            return false;
-                        if (checking(Color.isBlackFigure, true, false, chessBoard, i, j))
-                            return false;
-                        if (checking(Color.isBlackFigure, false, true, chessBoard, i, j))
-                            return false;
-                        if (checking(Color.isBlackFigure, false, false, chessBoard, i, j))
-                            return false;
+                        return !checking(Color.isBlackFigure, true, true, chessBoard, i, j) &&
+                                !checking(Color.isBlackFigure, true, false, chessBoard, i, j) &&
+                                !checking(Color.isBlackFigure, false, true, chessBoard, i, j) &&
+                                !checking(Color.isBlackFigure, false, false, chessBoard, i, j);
                     }
                 }
             }
