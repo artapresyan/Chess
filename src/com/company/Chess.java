@@ -5,7 +5,6 @@ public class Chess {
 
     public static void main(String[] args) {
         Board board = new Board();
-        Scanner getString = new Scanner(System.in);
         Figure whiteRook = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
         Figure whiteKnight = new Knight(Color.isWhiteFigure, FigureName.whiteKnight);
         Figure whiteBishop = new Bishop(Color.isWhiteFigure, FigureName.whiteWhiteBishop);
@@ -22,9 +21,9 @@ public class Chess {
         boolean gameOver = false;
         boolean p1ValidMove = false;
         boolean p2ValidMove = false;
-        int takeRow, takeColumn, putRow, putColumn;
+        int takeRow,takeColumn,putRow,putColumn;
         String takeFigure, putFigure;
-        Figure[][] chessBoard = new Figure[8][8];
+                Figure[][] chessBoard = new Figure[8][8];
         board.createBoard(chessBoard);
         System.out.println("""
                                 
@@ -48,30 +47,14 @@ public class Chess {
                     gameOver = true;
                 } else {
                     do {
-                        do {
-                            do {
-                                do {
-                                    System.out.println("\n" + "P1 Take Figure");
-                                    takeFigure = getString.nextLine();
-                                    if (!takeFigure.matches("[a-hA-H][1-8]"))
-                                        System.out.println("P1 Enter Valid Field");
-                                } while (!takeFigure.matches("[a-hA-H][1-8]"));
-                                takeColumn = 104 - takeFigure.charAt(0);
-                                takeRow=Integer.parseInt(String.valueOf(takeFigure.charAt(1)))-1;
-                                if (chessBoard[takeRow][takeColumn] == null)
-                                    System.out.println("There Is No Figure");
-                            } while (chessBoard[takeRow][takeColumn] == null);
-                            if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()))
-                                System.out.println("You Can Play Only With White Figures");
-                        } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isWhiteFigure.getColor()));
-                        do {
-                            System.out.println("\n" + "P1 Put Figure");
-                            putFigure = getString.nextLine();
-                            if (!putFigure.matches("[a-hA-H][1-8]"))
-                                System.out.println("P1 Enter Valid Field");
-                        } while (!putFigure.matches("[a-hA-H][1-8]"));
+                        takeFigure=takeRightFigure(chessBoard, queue);
+                        takeColumn = 104 - takeFigure.charAt(0);
+                        takeRow =Integer.parseInt(String.valueOf(takeFigure.charAt(1)))-1;
+
+                        putFigure=putRightField(queue);
                         putColumn = 104 - putFigure.charAt(0);
                         putRow=Integer.parseInt(String.valueOf(putFigure.charAt(1)))-1;
+
                         if (chessBoard[takeRow][takeColumn] instanceof Rook) {
                             if (whiteRook.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
                                 whiteRook.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
@@ -127,30 +110,14 @@ public class Chess {
                     gameOver = true;
                 } else {
                     do {
-                        do {
-                            do {
-                                do {
-                                    System.out.println("\n" + "P2 Take Figure");
-                                    takeFigure = getString.nextLine();
-                                    if (!takeFigure.matches("[a-hA-H][1-8]"))
-                                        System.out.println("P2 Enter Valid Field");
-                                } while (!takeFigure.matches("[a-hA-H][1-8]"));
-                                takeColumn = 104 - takeFigure.charAt(0);
-                                takeRow=Integer.parseInt(String.valueOf(takeFigure.charAt(1)))-1;
-                                if (chessBoard[takeRow][takeColumn] == null)
-                                    System.out.println("There Is No Figure");
-                            } while (chessBoard[takeRow][takeColumn] == null);
-                            if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()))
-                                System.out.println("You Can Play Only With Black Figures");
-                        } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(Color.isBlackFigure.getColor()));
-                        do {
-                            System.out.println("\n" + "P2 Put Figure");
-                            putFigure = getString.nextLine();
-                            if (!putFigure.matches("[a-hA-H][1-8]"))
-                                System.out.println("P2 Enter Valid Field");
-                        } while (!putFigure.matches("[a-hA-H][1-8]"));
+                        takeFigure=takeRightFigure(chessBoard, queue);
+                        takeColumn = 104 - takeFigure.charAt(0);
+                        takeRow =Integer.parseInt(String.valueOf(takeFigure.charAt(1)))-1;
+
+                        putFigure=putRightField(queue);
                         putColumn = 104 - putFigure.charAt(0);
                         putRow=Integer.parseInt(String.valueOf(putFigure.charAt(1)))-1;
+
                         if (chessBoard[takeRow][takeColumn] instanceof Rook) {
                             if (blackRook.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn)) {
                                 blackRook.moveFigure(chessBoard, takeRow, takeColumn, putRow, putColumn);
@@ -198,5 +165,51 @@ public class Chess {
 
                             Game Over
                 """);
+    }
+    static String takeRightFigure(Figure[][] chessBoard, int queue){
+        Scanner getString = new Scanner(System.in);
+        String player,figure;
+        Color color;
+        if (queue%2==0) {
+            player = "P1";
+            color = Color.isWhiteFigure;
+        }
+        else {
+            player = "P2";
+            color=Color.isBlackFigure;
+        }
+        int takeRow,takeColumn;
+        do {
+            do {
+                do {
+                    System.out.print("\n" +player+" Take Figure: ");
+                    figure = getString.nextLine();
+                    if (!figure.matches("[a-hA-H][1-8]"))
+                        System.out.println(player+" Enter Valid Field");
+                } while (!figure.matches("[a-hA-H][1-8]"));
+                 takeColumn = 104 - figure.charAt(0);
+                 takeRow =Integer.parseInt(String.valueOf(figure.charAt(1)))-1;
+                if (chessBoard[takeRow][takeColumn] == null)
+                    System.out.println(player+" There Is No Figure");
+            } while (chessBoard[takeRow][takeColumn] == null);
+            if (!chessBoard[takeRow][takeColumn].getFigureColor().equals(color.getColor()))
+                System.out.println(player+" You Can Play Only With "+color.getColor()+" Figures");
+        } while (!chessBoard[takeRow][takeColumn].getFigureColor().equals(color.getColor()));
+        return figure;
+    }
+    static String putRightField(int queue){
+        Scanner getString = new Scanner(System.in);
+        String player,field;
+        if (queue%2==0)
+            player="P1";
+        else
+            player="P2";
+        do {
+            System.out.print("\n" +player+" Put Figure: ");
+            field = getString.nextLine();
+            if (!field.matches("[a-hA-H][1-8]"))
+                System.out.println(player+" Enter Valid Field To Put Figure");
+        } while (!field.matches("[a-hA-H][1-8]"));
+        return field;
     }
 }
