@@ -1,4 +1,7 @@
-package com.company;
+package com.company.figures;
+
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
 
 public abstract class Figure {
     private final Color figureColor;
@@ -17,14 +20,14 @@ public abstract class Figure {
         return figureName.getName();
     }
 
-    void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
     }
 
-    boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         return false;
     }
 
-    boolean noValidMoves(Figure[][] chessBoard, Color color) {
+    public boolean noValidMoves(Figure[][] chessBoard, Color color) {
         return true;
     }
 }

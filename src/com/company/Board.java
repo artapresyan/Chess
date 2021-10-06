@@ -1,8 +1,12 @@
 package com.company;
 
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
+import com.company.figures.*;
+
 public class Board {
     void createBoard(Figure[][] chessBoard) {
-        chessBoard[0][0] = new Rook(Color.isWhiteFigure,FigureName.whiteRook);
+        chessBoard[0][0] = new Rook(Color.isWhiteFigure, FigureName.whiteRook);
         chessBoard[0][1] = new Knight(Color.isWhiteFigure,FigureName.whiteKnight);
         chessBoard[0][2] = new Bishop(Color.isWhiteFigure,FigureName.whiteWhiteBishop);
         chessBoard[0][3] = new King(Color.isWhiteFigure,FigureName.whiteKing);

@@ -1,9 +1,12 @@
-package com.company;
+package com.company.figures;
+
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
 
 import java.util.Scanner;
 
 public class Pawn extends Figure {
-    Pawn(Color figureColor, FigureName figureName) {
+    public Pawn(Color figureColor, FigureName figureName) {
         super(figureColor, figureName);
     }
 
@@ -18,7 +21,7 @@ public class Pawn extends Figure {
     }
 
     @Override
-    void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         String name;
         Scanner a = new Scanner(System.in);
         if (this.getFigureColor().equals(Color.isWhiteFigure.getColor())) {
@@ -85,7 +88,7 @@ public class Pawn extends Figure {
     }
 
     @Override
-    boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         King king;
@@ -186,7 +189,7 @@ public class Pawn extends Figure {
     }
 
     @Override
-    boolean noValidMoves(Figure[][] chessBoard, Color color) {
+    public boolean noValidMoves(Figure[][] chessBoard, Color color) {
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {

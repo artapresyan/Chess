@@ -1,4 +1,8 @@
 package com.company;
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
+import com.company.figures.*;
+
 import java.util.Scanner;
 
 public class Chess {

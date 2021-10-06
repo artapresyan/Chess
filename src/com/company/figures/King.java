@@ -1,11 +1,14 @@
-package com.company;
+package com.company.figures;
+
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
 
 public class King extends Figure {
 
     private boolean wkIsMoved = false;
     private boolean bkIsMoved = false;
 
-    King(Color figureColor, FigureName figureName) {
+    public King(Color figureColor, FigureName figureName) {
         super(figureColor, figureName);
     }
 
@@ -20,7 +23,7 @@ public class King extends Figure {
     }
 
     @Override
-    void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (this.getFigureColor().equals(Color.isWhiteFigure.getColor())) {
             if (putRow == 0 && takeRow == 0 && takeColumn - putColumn == 2 && chessBoard[0][0] instanceof Rook &&
                     chessBoard[0][0].getFigureColor().equals(Color.isWhiteFigure.getColor()) && ((Rook) chessBoard[0][0]).wrIsMoved()) {
@@ -61,7 +64,7 @@ public class King extends Figure {
     }
 
     @Override
-    boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         int j = takeColumn;
@@ -246,7 +249,7 @@ public class King extends Figure {
     }
 
     @Override
-    boolean noValidMoves(Figure[][] chessBoard, Color color) {
+    public boolean noValidMoves(Figure[][] chessBoard, Color color) {
         Figure save;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
@@ -508,7 +511,7 @@ public class King extends Figure {
         return super.noValidMoves(chessBoard, color);
     }
 
-    boolean kingChecked(Figure[][] chessBoard, Color color) {
+    public boolean kingChecked(Figure[][] chessBoard, Color color) {
         int i, j;
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             i = -1;
@@ -910,7 +913,7 @@ public class King extends Figure {
         return false;
     }
 
-    boolean mated(Figure[][] chessBoard, Color color) {
+    public boolean mated(Figure[][] chessBoard, Color color) {
         Figure rook;
         Figure knight;
         Figure bishop;
@@ -942,7 +945,7 @@ public class King extends Figure {
         return false;
     }
 
-    boolean staleMate(Figure[][] chessBoard, Color color) {
+    public boolean staleMate(Figure[][] chessBoard, Color color) {
         Figure rook;
         Figure knight;
         Figure bishop;

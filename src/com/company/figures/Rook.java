@@ -1,18 +1,21 @@
-package com.company;
+package com.company.figures;
+
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
 
 public class Rook extends Figure {
     private boolean wrIsMoved = false;
     private boolean brIsMoved = false;
 
-    boolean wrIsMoved() {
+    public boolean wrIsMoved() {
         return !wrIsMoved;
     }
 
-    boolean brIsMoved() {
+    public boolean brIsMoved() {
         return !brIsMoved;
     }
 
-    Rook(Color figureColor, FigureName figureName) {
+    public Rook(Color figureColor, FigureName figureName) {
         super(figureColor, figureName);
     }
 
@@ -27,7 +30,7 @@ public class Rook extends Figure {
     }
 
     @Override
-    void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (!wrIsMoved && this.getFigureColor().equals(Color.isWhiteFigure.getColor()))
             wrIsMoved = true;
         else if (!brIsMoved && this.getFigureColor().equals(Color.isBlackFigure.getColor()))
@@ -37,7 +40,7 @@ public class Rook extends Figure {
     }
 
     @Override
-    boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         int i = takeRow;
@@ -167,7 +170,7 @@ public class Rook extends Figure {
     }
 
     @Override
-    boolean noValidMoves(Figure[][] chessBoard, Color color) {
+    public boolean noValidMoves(Figure[][] chessBoard, Color color) {
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -194,7 +197,7 @@ public class Rook extends Figure {
         return super.noValidMoves(chessBoard, color);
     }
 
-    boolean checking(Color figureColor, boolean line, boolean toDo, Figure[][] chessBoard, int i, int j) {
+    public boolean checking(Color figureColor, boolean line, boolean toDo, Figure[][] chessBoard, int i, int j) {
         // line is true means row, toDoo is true means ++
         King king;
         if (figureColor.getColor().equals(Color.isBlackFigure.getColor())) {

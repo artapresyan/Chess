@@ -1,7 +1,10 @@
-package com.company;
+package com.company.figures;
+
+import com.company.enum_class.Color;
+import com.company.enum_class.FigureName;
 
 public class Queen extends Figure {
-    Queen(Color figureColor, FigureName figureName) {
+    public Queen(Color figureColor, FigureName figureName) {
         super(figureColor, figureName);
     }
 
@@ -16,13 +19,13 @@ public class Queen extends Figure {
     }
 
     @Override
-    void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public void moveFigure(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         chessBoard[putRow][putColumn] = this;
         chessBoard[takeRow][takeColumn] = null;
     }
 
     @Override
-    boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
+    public boolean checkMove(Figure[][] chessBoard, int takeRow, int takeColumn, int putRow, int putColumn) {
         if (takeRow == putRow && takeColumn == putColumn)
             return super.checkMove(chessBoard, takeRow, takeColumn, putRow, putColumn);
         int i = takeRow;
@@ -205,7 +208,7 @@ public class Queen extends Figure {
     }
 
     @Override
-    boolean noValidMoves(Figure[][] chessBoard, Color color) {
+    public boolean noValidMoves(Figure[][] chessBoard, Color color) {
         if (color.getColor().equals(Color.isWhiteFigure.getColor())) {
             for (int i = 0; i < chessBoard.length; i++) {
                 for (int j = 0; j < chessBoard[i].length; j++) {
@@ -240,7 +243,7 @@ public class Queen extends Figure {
         return super.noValidMoves(chessBoard, color);
     }
 
-    boolean checking(Color figureColor,boolean type, boolean rowToDo, boolean columnToDo, Figure[][] chessBoard, int i, int j) {
+    public boolean checking(Color figureColor,boolean type, boolean rowToDo, boolean columnToDo, Figure[][] chessBoard, int i, int j) {
     // type is true means check
         King king;
         if(type){

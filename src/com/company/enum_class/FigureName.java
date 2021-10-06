@@ -1,4 +1,4 @@
-package com.company;
+package com.company.enum_class;
 
 public enum FigureName {
     whitePawn("w.P"),

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.enum_class;
 
 public enum Color {
     isBlackFigure("Black"),
@@ -9,7 +9,7 @@ public enum Color {
         this.color = color;
     }
 
-    String getColor() {
+    public String getColor() {
         return color;
     }
 }
