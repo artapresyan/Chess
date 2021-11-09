@@ -3,6 +3,7 @@ import com.company.enum_class.Color;
 import com.company.enum_class.FigureName;
 import com.company.figures.*;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Chess {
@@ -166,7 +167,7 @@ public class Chess {
             do {
                 do {
                     System.out.print("\n" + player + " Take Figure: ");
-                    figure = getString.nextLine();
+                    figure = getString.nextLine().toLowerCase();
                     if (!figure.matches("[a-hA-H][1-8]"))
                         System.out.println(player + " Enter Valid Field");
                 } while (!figure.matches("[a-hA-H][1-8]"));
@@ -190,7 +191,7 @@ public class Chess {
             player = "P2";
         do {
             System.out.print("\n" + player + " Put Figure: ");
-            field = getString.nextLine();
+            field = getString.nextLine().toLowerCase();
             if (!field.matches("[a-hA-H][1-8]"))
                 System.out.println(player + " Enter Valid Field To Put Figure");
         } while (!field.matches("[a-hA-H][1-8]"));
