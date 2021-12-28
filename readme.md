@@ -1,4 +1,4 @@
-#<ins><p align="center">Chess
+#<ins><p align="center">Chess</p></ins>
 Chess is believed to have been invented 1500 years ago in India. It is an abstract strategy board game (game where
 the theme is not important to the experience of playing) played between two players and involves no hidden information.
 It is played on a square chessboard with 64 squares arranged in an eight-by-eight grid. At the start, each player 
